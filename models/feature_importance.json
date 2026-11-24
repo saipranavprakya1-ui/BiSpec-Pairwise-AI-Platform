@@ -1,0 +1,110 @@
+[
+  {
+    "feature": "relevance_prod",
+    "importance": 0.1972
+  },
+  {
+    "feature": "relevance_sum",
+    "importance": 0.1276
+  },
+  {
+    "feature": "sc_corrcoef_tLung",
+    "importance": 0.1087
+  },
+  {
+    "feature": "sc_corrcoef_mac",
+    "importance": 0.0921
+  },
+  {
+    "feature": "sc_corrcoef_all",
+    "importance": 0.0912
+  },
+  {
+    "feature": "sc_corrcoef_treg",
+    "importance": 0.0891
+  },
+  {
+    "feature": "sc_sum_single_ratio",
+    "importance": 0.053
+  },
+  {
+    "feature": "sc_double_ratio_tLung",
+    "importance": 0.0263
+  },
+  {
+    "feature": "synergy_score",
+    "importance": 0.0237
+  },
+  {
+    "feature": "mw_sum",
+    "importance": 0.0227
+  },
+  {
+    "feature": "sc_min_single_ratio",
+    "importance": 0.0225
+  },
+  {
+    "feature": "sc_double_ratio_all",
+    "importance": 0.0199
+  },
+  {
+    "feature": "mw_diff",
+    "importance": 0.0197
+  },
+  {
+    "feature": "relevance_diff",
+    "importance": 0.0168
+  },
+  {
+    "feature": "tox_max",
+    "importance": 0.0158
+  },
+  {
+    "feature": "sc_safe_score",
+    "importance": 0.0157
+  },
+  {
+    "feature": "loc_prod",
+    "importance": 0.0157
+  },
+  {
+    "feature": "sc_tumor_delta_sum",
+    "importance": 0.0154
+  },
+  {
+    "feature": "mw_ratio",
+    "importance": 0.0146
+  },
+  {
+    "feature": "tox_mean",
+    "importance": 0.0124
+  },
+  {
+    "feature": "shared_pathway_proxy",
+    "importance": 0.0
+  },
+  {
+    "feature": "is_tumor_tcell",
+    "importance": 0.0
+  },
+  {
+    "feature": "is_dual_checkpoint",
+    "importance": 0.0
+  },
+  {
+    "feature": "is_checkpoint_costim",
+    "importance": 0.0
+  },
+  {
+    "feature": "is_dual_rtk",
+    "importance": 0.0
+  },
+  {
+    "feature": "is_checkpoint_angiogenesis",
+    "importance": 0.0
+  },
+  {
+    "feature": "indication_match",
+    "importance": 0.0
+  }
+]
