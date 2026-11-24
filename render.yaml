@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: bispec-ai-backend
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: NVIDIA_API_KEY
+        sync: false
+      - key: PORT
+        value: "8000"
