@@ -1,0 +1,18 @@
+.git
+.env
+.vscode
+.vscode.zip
+node_modules
+dist
+.vite
+DATA/RAW DATA
+__pycache__
+*.pyc
+users_history.db
+FrameDemo.java
+Untitled-1.java
+unslop
+skills
+base papers
+*.pptx
+*.log
