@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f3f9ff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="BiSpec AI" />
+    <title>BiSpec — Next-Generation Bispecific Oncology Biotherapeutics</title>
+    <meta
+      name="description"
+      content="BiSpec is an AI-guided oncology discovery platform engineering next-generation bispecific antibodies targeting two synergistic antigens simultaneously."
+    />
+
+    <!-- Google Fonts: Plus Jakarta Sans, Inter, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- =========================================================================
+         VIEW 1: ABOUT & SCIENCE MARKETING PAGE (Appears First)
+         Contains ONLY:
+           1. Project Overview (WebGL Hero + Badges)
+           2. Solution for the Problem (The Clinical Barrier)
+           3. Target Binding Demonstration (Interactive Mechanism Visualization)
+         All other contents (Pipeline, Results, Team, Arena) moved to Main Portal.
+         ========================================================================= -->
+    <div id="view-about" style="display: block;">
+      <!-- Three.js WebGL Stage spanning the entire About page background -->
+      <div id="stage" aria-hidden="true"></div>
+
+      <!-- 1. HERO SECTION: PROJECT OVERVIEW (Full Viewport) -->
+      <section class="hero" id="hero" aria-label="Hero project overview">
+
+        <!-- Top Header Landmark -->
+        <header class="hero-header">
+          <a href="#hero" class="hero-logo" aria-label="BiSpec Home">
+            BiSpec<span class="hero-logo-dot">.</span>
+          </a>
+          <nav class="hero-nav" aria-label="About page navigation">
+            <a href="#hero">Overview</a>
+            <a href="#problem">Clinical Barrier</a>
+            <!-- Sign In Portal Trigger -->
+            <button type="button" class="btn-login-header js-open-login" aria-label="Sign In to Enterprise Workspace">
+              <span>Researcher Portal</span>
+            </button>
+          </nav>
+        </header>
+
+        <!-- Center / Hero Content -->
+        <div class="hero-body">
+          <span class="hero-badge" data-placeholder="program-code">Dual-target oncology biotherapeutics</span>
+          <!-- Exactly ONE h1 on the page -->
+          <h1 data-placeholder="hero-headline">Two targets. One molecule.</h1>
+          <p class="hero-tagline" data-placeholder="hero-tagline">
+            Engineering dual-antigen avidity to overcome mutational antigen escape and off-tumor toxicity in refractory solid tumors.
+          </p>
+          <div class="hero-cta-row">
+            <button type="button" class="btn-hero-primary js-open-login">
+              <span>Launch Screening Studio</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+            <a href="#problem" class="btn-hero-secondary">
+              <span>Explore Clinical Barrier</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Bottom Bar -->
+        <div class="hero-footer">
+          <span class="hero-status-tag" data-placeholder="hero-stage">Preclinical lead candidate</span>
+          <span class="hero-status-tag" data-placeholder="hero-modality">Asymmetric 1+1 IgG-like bispecific</span>
+        </div>
+      </section>
+
+      <!-- Main Content Landmark -->
+      <main id="main-content">
+        <!-- 2. SECTION: PROBLEM & SOLUTION -->
+        <section class="section-pad" id="problem" aria-labelledby="problem-heading">
+          <div class="container">
+            <span class="section-label" data-placeholder="problem-kicker">The clinical barrier</span>
+            <h2 class="section-heading" id="problem-heading" data-placeholder="problem-heading">
+              Why single-target therapy falls short in solid tumors
+            </h2>
+            <p class="section-subhead" data-placeholder="problem-subhead">
+              Monoclonal antibodies directed at single oncogenic drivers frequently fail due to antigen loss, bypass signaling, and on-target off-tumor toxicities. Durable clinical responses require simultaneous dual-target engagement.
+            </p>
+
+            <div class="problem-grid">
+              <article class="card">
+                <span class="problem-card-num">01</span>
+                <h3 class="problem-card-title" data-placeholder="problem-point-1-title">Antigen loss &amp; escape mutations</h3>
+                <p class="problem-card-desc" data-placeholder="problem-point-1-desc">
+                  Selective pressure from single-target therapeutics triggers receptor downregulation, alternative splicing, and target-negative clone emergence in solid tumors.
+                </p>
+              </article>
+
+              <article class="card">
+                <span class="problem-card-num">02</span>
+                <h3 class="problem-card-title" data-placeholder="problem-point-2-title">On-target, off-tumor toxicity</h3>
+                <p class="problem-card-desc" data-placeholder="problem-point-2-desc">
+                  Individual target antigens are shared with healthy epithelial tissues, creating severe dose-limiting toxicities before therapeutic tumor saturation is achieved.
+                </p>
+              </article>
+
+              <article class="card">
+                <span class="problem-card-num">03</span>
+                <h3 class="problem-card-title" data-placeholder="problem-point-3-title">Compensatory pathway re-wiring</h3>
+                <p class="problem-card-desc" data-placeholder="problem-point-3-desc">
+                  Inhibition of a single signaling node stimulates compensatory cross-talk through parallel growth receptor pathways, rapidly restoring tumor survival.
+                </p>
+              </article>
+            </div>
+
+            <blockquote class="editorial-quote" data-placeholder="problem-quote">
+              "Single-antigen blockades exert evolutionary bottlenecks that heterogeneous tumors circumvent. Next-generation oncology demands obligate dual-target coincidence detection."
+            </blockquote>
+          </div>
+        </section>
+      </main>
+
+      <!-- Minimal Calm Site Footer for About Page -->
+      <footer class="site-footer" role="contentinfo">
+        <div class="container">
+          <div class="footer-top">
+            <div>
+              <a href="#hero" class="footer-logo">BiSpec<span class="hero-logo-dot">.</span></a>
+              <p class="footer-desc">
+                Engineering precision bispecific antibodies with stoichiometric avidity. Guided by pairwise machine learning across 208,506 single cells.
+              </p>
+            </div>
+            <div class="footer-links">
+              <a href="#hero">Overview</a>
+              <a href="#problem">Clinical Barrier</a>
+              <button type="button" class="btn-text-link js-open-login">Researcher Portal &rarr;</button>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2026 BiSpec Therapeutics Consortium. For investigational research use only.</p>
+            <div class="footer-legal">
+              <span class="status-pill status-active">System Operational</span>
+              <a href="#hero" class="back-to-top" aria-label="Back to top of overview">&uarr; Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 2: SCIENTIFIC RESEARCHER AUTHENTICATION & LOGIN PORTAL
+         Full-Viewport Split Layout Replicating Reference Design + Sign In / Sign Up
+         ========================================================================= -->
+    <div id="view-login" class="login-split-screen" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="loginPortalHeading">
+      <!-- Close / Return to Landing Page Button -->
+      <button type="button" class="btn-split-close js-close-login" aria-label="Return to overview">
+        <span>&larr; Overview</span>
+      </button>
+
+      <!-- LEFT 50% PANE: 3D Bispecific Antibody Showcase & Bottom 4-Metric Bar -->
+      <div class="login-split-left">
+        <div class="login-left-video-bg">
+          <video
+            class="login-bg-video"
+            src="/assets/bispec_hero.mp4"
+            muted
+            loop
+            autoplay
+            playsinline
+          ></video>
+          <div class="login-left-scrim"></div>
+        </div>
+
+        <!-- Top Brand & Engine Status -->
+        <div class="login-left-top">
+          <div class="login-brand-row">
+            <span class="login-serif-brand"><em>BiSpec</em> Pairwise AI</span>
+            <span class="login-version-pill">BSPAI v2.0</span>
+          </div>
+          <div class="login-engine-status">
+            <span class="engine-dot"></span>
+            <span>Discovery Engine Online &bull; Pairwise Consensus Model</span>
+          </div>
+        </div>
+
+        <!-- Center Headline & Subcopy -->
+        <div class="login-left-hero">
+          <h2 class="login-hero-headline">
+            Predictive Druggability.<br />
+            Zero-Risk Target Synergy.
+          </h2>
+          <p class="login-hero-subcopy">
+            Narrowing 24,753 dual-protein combinations with biophysical validation and dynamic Nemotron RAG intelligence.
+          </p>
+        </div>
+
+        <!-- Bottom 4-Column Telemetry Strip -->
+        <div class="login-left-metrics">
+          <div class="login-metric-col">
+            <span class="lm-num">208,506</span>
+            <span class="lm-label">Single Cells (GSE131907)</span>
+          </div>
+          <span class="lm-sep">&bull;</span>
+          <div class="login-metric-col">
+            <span class="lm-num">24,753</span>
+            <span class="lm-label">Candidate Pairs</span>
+          </div>
+          <span class="lm-sep">&bull;</span>
+          <div class="login-metric-col">
+            <span class="lm-num">40</span>
+            <span class="lm-label">Engineered Biological Features</span>
+          </div>
+          <span class="lm-sep">&bull;</span>
+          <div class="login-metric-col">
+            <span class="lm-num">791</span>
+            <span class="lm-label">Trial Benchmarks</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT 50% PANE: Centered Auth Card (Sign In + Sign Up + SQLite DB Auth) -->
+      <div class="login-split-right">
+        <div class="login-auth-card">
+          <!-- Card Header -->
+          <div class="auth-card-header">
+            <h2 class="auth-card-title" id="loginPortalHeading">Sign in to BiSpec AI</h2>
+            <p class="auth-card-sub" id="loginPortalSub">Access your oncology target discovery workspace.</p>
+          </div>
+
+          <!-- Sign In / Sign Up Mode Switcher -->
+          <div class="auth-mode-tabs" role="tablist">
+            <button type="button" class="auth-mode-tab active" id="tabModeSignIn" data-mode="signin">
+              Sign In
+            </button>
+            <button type="button" class="auth-mode-tab" id="tabModeSignUp" data-mode="signup">
+              Create Account (Sign Up)
+            </button>
+          </div>
+
+          <!-- Alert Banner for Auth Errors or Registration Confirmation -->
+          <div id="authFeedbackBanner" class="auth-feedback-banner" style="display: none;" role="alert"></div>
+
+          <!-- FORM 1: SIGN IN FORM (Authenticates against SQLite /api/auth/login) -->
+          <form id="portalLoginForm" class="auth-form">
+            <div class="auth-field">
+              <label for="portalEmail" class="auth-label">Work Email or Username</label>
+              <input
+                type="text"
+                id="portalEmail"
+                class="auth-input"
+                placeholder="name@institution.org or username"
+                value="elena.rostova@genebiotech.com"
+                autocomplete="username"
+                required
+              />
+            </div>
+
+            <div class="auth-field">
+              <div class="auth-label-row">
+                <label for="portalToken" class="auth-label">Passkey / Password</label>
+                <button type="button" class="auth-forgot-link" id="btnResetDemoPass" title="Reset to default demo password (Password123!)">
+                  Forgot?
+                </button>
+              </div>
+              <div class="auth-password-wrap">
+                <input
+                  type="password"
+                  id="portalToken"
+                  class="auth-input"
+                  placeholder="Enter your password"
+                  value="Password123!"
+                  autocomplete="current-password"
+                  required
+                />
+                <button type="button" class="btn-toggle-pwd" id="btnToggleSignInPwd" aria-label="Toggle password visibility">
+                  &#128065;
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-auth-submit" id="loginSubmitBtn">
+              <span id="loginSubmitText">Enter Discovery Suite</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </form>
+
+          <!-- FORM 2: SIGN UP / REGISTER FORM (Persists new user to SQLite /api/auth/register) -->
+          <form id="portalRegisterForm" class="auth-form" style="display: none;">
+            <div class="auth-field-row">
+              <div class="auth-field">
+                <label for="regFullName" class="auth-label">Full Name</label>
+                <input
+                  type="text"
+                  id="regFullName"
+                  class="auth-input"
+                  placeholder="Dr. Alex Rivera, PhD"
+                  required
+                />
+              </div>
+              <div class="auth-field">
+                <label for="regUsername" class="auth-label">Username</label>
+                <input
+                  type="text"
+                  id="regUsername"
+                  class="auth-input"
+                  placeholder="alex_rivera"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="auth-field">
+              <label for="regEmail" class="auth-label">Work / Institutional Email</label>
+              <input
+                type="email"
+                id="regEmail"
+                class="auth-input"
+                placeholder="alex.rivera@oncology-institute.org"
+                required
+              />
+            </div>
+
+            <div class="auth-field-row">
+              <div class="auth-field">
+                <label for="regRole" class="auth-label">Role / Title</label>
+                <input
+                  type="text"
+                  id="regRole"
+                  class="auth-input"
+                  placeholder="Lead Oncology Scientist"
+                  value="Lead Oncology Scientist"
+                />
+              </div>
+              <div class="auth-field">
+                <label for="regOrg" class="auth-label">Institution</label>
+                <input
+                  type="text"
+                  id="regOrg"
+                  class="auth-input"
+                  placeholder="BiSpec Consortium"
+                  value="BiSpec Consortium"
+                />
+              </div>
+            </div>
+
+            <div class="auth-field">
+              <label for="regPassword" class="auth-label">Create Password (min 6 chars)</label>
+              <div class="auth-password-wrap">
+                <input
+                  type="password"
+                  id="regPassword"
+                  class="auth-input"
+                  placeholder="Create a strong password"
+                  minlength="6"
+                  required
+                />
+                <button type="button" class="btn-toggle-pwd" id="btnToggleSignUpPwd" aria-label="Toggle password visibility">
+                  &#128065;
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-auth-submit" id="registerSubmitBtn">
+              <span>Register &amp; Enter Discovery Suite</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </form>
+
+          <!-- Quick Launch Live Demo Profiles Box -->
+          <div class="quick-demo-box">
+            <div class="quick-demo-header">
+              <span class="quick-bolt">&#9889;</span>
+              <span>Quick Launch Live Demo Profiles</span>
+            </div>
+            <div class="quick-demo-pills">
+              <button
+                type="button"
+                class="demo-pill active js-persona-select"
+                data-user-id="1"
+                data-name="Dr. Elena Rostova, PhD"
+                data-role="Lead Computational Biologist"
+                data-org="Genentech Oncology R&amp;D"
+                data-email="elena.rostova@genebiotech.com"
+                data-initials="ER"
+              >
+                <span>Clinical Lead (Dr. Rostova)</span>
+                <span class="pill-caret">&#9662;</span>
+              </button>
+
+              <button
+                type="button"
+                class="demo-pill js-persona-select"
+                data-user-id="2"
+                data-name="Dr. Marcus Vance, MD, PhD"
+                data-role="Director of Immuno-Oncology"
+                data-org="Memorial Sloan Kettering Cancer Center"
+                data-email="marcus.vance@mskcc-immuno.org"
+                data-initials="MV"
+              >
+                <span>Research Lead (Dr. Vance)</span>
+                <span class="pill-caret">&#9662;</span>
+              </button>
+
+              <button
+                type="button"
+                class="demo-pill js-persona-select"
+                data-user-id="3"
+                data-name="Dr. Priya Ramanathan, PhD"
+                data-role="Translational Medicine Director"
+                data-org="AstraZeneca Biologics Engineering"
+                data-email="priya.ramanathan@astrazeneca-rd.com"
+                data-initials="PR"
+              >
+                <span>AstraZeneca Dossier</span>
+                <span class="pill-caret">&#9662;</span>
+              </button>
+
+              <button
+                type="button"
+                class="demo-pill js-persona-select"
+                data-user-id="4"
+                data-name="Dr. Arthur Chen, PhD"
+                data-role="Principal Scientist — Structural Biology"
+                data-org="Dana-Farber Cancer Institute"
+                data-email="arthur.chen@dana-farber.harvard.edu"
+                data-initials="AC"
+              >
+                <span>Dana-Farber (Dr. Chen)</span>
+                <span class="pill-caret">&#9662;</span>
+              </button>
+
+              <button
+                type="button"
+                class="demo-pill js-persona-select"
+                data-user-id="5"
+                data-name="Dr. Sarah Jenkins, PhD"
+                data-role="Senior Bioinformatician"
+                data-org="Amgen Synthetic Biology Hub"
+                data-email="sarah.jenkins@amgen-discovery.com"
+                data-initials="SJ"
+              >
+                <span>Amgen BiTE Hub</span>
+                <span class="pill-caret">&#9662;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Compliance Footer -->
+        <div class="login-right-compliance">
+          SOC 2 Type II Compliant &bull; PBKDF2-SHA256 SQLite Auth &bull; End-to-End Encrypted
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 3: MAIN APPLICATION WORKSPACE (Appears after login)
+         Contains the 6 individually displayed panels:
+           1. Home (Overview, Metric Highlights, Pipeline Roadmap, Team)
+           2. Screening Pair Studio (193 Processed Genes, Live Inference Engine)
+           3. Models (Results Component, 6-Model Arena, XGBoost & BiSpec Theory, ROC/PR Curves)
+           4. Pair Comparison (Side-by-side Candidate Comparison)
+           5. Clinical Registry (791 Clinical Precedents from processed_dataset.csv)
+           6. My Research (Audit Trail & Screening History)
+         ========================================================================= -->
+    <div id="view-app" class="app-workspace-layout" style="display: none;">
+      <!-- PERSISTENT LEFT COMMAND SIDEBAR -->
+      <aside class="wb-sidebar" aria-label="Workspace navigation">
+        <div class="wb-sidebar-brand">
+          <div class="wb-brand-link">
+            <span class="wb-brand-logo">BiSpec<span class="hero-logo-dot">.</span></span>
+            <span class="wb-brand-pill">BSPAI v2.0</span>
+          </div>
+        </div>
+
+        <div class="wb-nav-section-label">Discovery</div>
+        <nav class="wb-nav-list" role="tablist">
+          <button type="button" class="wb-nav-btn app-nav-tab active" data-tab="home" role="tab" aria-selected="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+            <span class="wb-nav-label">Command Center</span>
+          </button>
+
+          <button type="button" class="wb-nav-btn app-nav-tab" data-tab="screening" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>
+            <span class="wb-nav-label">Screening Studio</span>
+            <span class="wb-nav-badge">193</span>
+          </button>
+
+          <button type="button" class="wb-nav-btn app-nav-tab" data-tab="compare" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 21H3v-5M21 3l-7 7M3 21l7-7"/></svg>
+            <span class="wb-nav-label">Pair Comparison</span>
+            <span class="wb-nav-badge" id="navCompareBadge">3</span>
+          </button>
+        </nav>
+
+        <div class="wb-nav-section-label">Intelligence</div>
+        <nav class="wb-nav-list" role="tablist">
+          <button type="button" class="wb-nav-btn app-nav-tab" data-tab="models" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+            <span class="wb-nav-label">Model Arena</span>
+            <span class="wb-nav-badge">6</span>
+          </button>
+
+          <button type="button" class="wb-nav-btn app-nav-tab" data-tab="registry" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+            <span class="wb-nav-label">Clinical Registry</span>
+            <span class="wb-nav-badge">791</span>
+          </button>
+
+          <button type="button" class="wb-nav-btn app-nav-tab" data-tab="research" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span class="wb-nav-label">My Research</span>
+            <span class="wb-nav-badge" id="navHistoryBadge">3</span>
+          </button>
+        </nav>
+
+        <!-- Sidebar Bottom: Live Compute Engine & User Profile -->
+        <div class="wb-sidebar-footer">
+          <div class="wb-engine-card">
+            <div class="wb-engine-top">
+              <span class="hud-pulse-dot"></span>
+              <span>XGBOOST + NEMOTRON ONLINE</span>
+            </div>
+            <div class="wb-engine-meta">
+              Champion ROC-AUC: <strong style="color: var(--ink);">95.06%</strong><br />
+              Atlas: <strong style="color: var(--ink);">208,506</strong> cells (GSE131907)
+            </div>
+          </div>
+
+          <div class="wb-user-card">
+            <span class="wb-user-avatar" id="userNavAvatar">ER</span>
+            <div class="wb-user-text">
+              <span class="wb-user-name" id="userNavName">Dr. Elena Rostova, PhD</span>
+              <span class="wb-user-role" id="userNavRole">Lead Computational Biologist</span>
+            </div>
+            <button type="button" class="wb-signout-icon js-sign-out" title="Sign Out">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Left-Edge Hover Trigger for Auto-Reveal Sidebar on Desktop -->
+      <div id="wbSidebarHoverZone" class="wb-sidebar-hover-zone" aria-hidden="true"></div>
+
+      <!-- Mobile/iPad Sidebar Backdrop -->
+      <div id="wbSidebarBackdrop" class="wb-sidebar-backdrop" aria-hidden="true"></div>
+
+      <!-- MAIN WORKSPACE SHELL -->
+      <div class="wb-main-shell">
+        <!-- Sticky Slim Top Command Bar -->
+        <header class="wb-topbar">
+          <div class="wb-topbar-left">
+            <button type="button" id="wbMobileMenuBtn" class="wb-mobile-menu-btn" aria-label="Toggle Navigation Menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <span class="wb-breadcrumb-root">BiSpec Suite</span>
+            <span class="wb-breadcrumb-sep">/</span>
+            <span class="wb-topbar-title" id="wbTopbarTitle">Command Center</span>
+          </div>
+
+          <!-- Global Instant Search (Targets & Clinical Drugs) -->
+          <div class="wb-topbar-center">
+            <svg class="wb-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input
+              type="text"
+              id="wbGlobalSearch"
+              class="wb-global-search"
+              placeholder="Jump to gene (EGFR, CLDN18) or drug (Amivantamab)..."
+              autocomplete="off"
+            />
+            <div id="wbSearchDropdown" class="wb-search-dropdown"></div>
+          </div>
+
+          <div class="wb-topbar-right">
+            <button type="button" class="wb-btn-ghost" id="btnOpenCmdPalette" title="Open Command Palette (Ctrl+K)">
+              <span>Search</span>
+              <span class="cmd-kbd">Ctrl K</span>
+            </button>
+            <button type="button" class="wb-btn-primary" id="wbQuickNewScreen">
+              <span>+ New Screen</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Mobile Scrollable Navigation Bar -->
+        <nav class="wb-mobile-nav" aria-label="Mobile workspace navigation">
+          <button type="button" class="app-nav-tab active" data-tab="home">Home</button>
+          <button type="button" class="app-nav-tab" data-tab="screening">Studio</button>
+          <button type="button" class="app-nav-tab" data-tab="compare">Compare</button>
+          <button type="button" class="app-nav-tab" data-tab="models">Models</button>
+          <button type="button" class="app-nav-tab" data-tab="registry">Registry</button>
+          <button type="button" class="app-nav-tab" data-tab="research">Research</button>
+        </nav>
+
+        <!-- Application Body: 6 INDIVIDUALLY DISPLAYED PANELS -->
+        <main class="wb-content">
+
+          <!-- ===================================================================
+               PANEL 1: COMMAND CENTER (HOME)
+               =================================================================== -->
+          <section id="app-panel-home" class="app-panel" style="display: block;">
+            <!-- Personalized Discovery Hero Banner -->
+            <div class="wb-hero-banner">
+              <div class="wb-hero-top">
+                <div>
+                  <span class="wb-kicker">Computational Oncology Workbench &bull; GSE131907</span>
+                  <h2 class="wb-hero-greeting">
+                    Welcome back, <span id="homeWelcomeName">Dr. Elena Rostova</span>
+                  </h2>
+                  <p class="wb-subtitle">
+                    Prioritize bispecific antibody target combinations using 27 permutation-invariant single-cell features, 9 live trained ML models (95.06% ROC-AUC), and literature-grounded RAG synthesis.
+                  </p>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  <button type="button" class="wb-btn-primary" onclick="window.__appWorkspace.switchAppTab('screening')">
+                    <span>Open Screening Studio &rarr;</span>
+                  </button>
+                  <button type="button" class="wb-btn-ghost" onclick="window.__appWorkspace.switchAppTab('compare')">
+                    <span>Compare Candidates</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 1-Click Quick-Screen Preset Ribbon -->
+              <div class="wb-quick-screen-bar">
+                <span class="wb-quick-label">Instant Screen:</span>
+                <button type="button" class="wb-preset-chip js-quick-screen-pair" data-a="EGFR" data-b="MET" data-ind="NSCLC">
+                  <span>EGFR &times; MET</span>
+                  <span class="wb-preset-score">Amivantamab</span>
+                </button>
+                <button type="button" class="wb-preset-chip js-quick-screen-pair" data-a="CLDN18" data-b="CD3E" data-ind="Gastric">
+                  <span>CLDN18 &times; CD3E</span>
+                  <span class="wb-preset-score">T-Cell Engager</span>
+                </button>
+                <button type="button" class="wb-preset-chip js-quick-screen-pair" data-a="MS4A1" data-b="CD3E" data-ind="NSCLC">
+                  <span>MS4A1 &times; CD3E</span>
+                  <span class="wb-preset-score">Epcoritamab</span>
+                </button>
+                <button type="button" class="wb-preset-chip js-quick-screen-pair" data-a="PDCD1" data-b="CTLA4" data-ind="NSCLC">
+                  <span>PDCD1 &times; CTLA4</span>
+                  <span class="wb-preset-score">Cadonilimab</span>
+                </button>
+                <button type="button" class="wb-preset-chip js-quick-screen-pair" data-a="CD274" data-b="TNFRSF9" data-ind="NSCLC">
+                  <span>PD-L1 &times; 4-1BB</span>
+                  <span class="wb-preset-score">Co-Stim</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 4 Executive KPI Cards -->
+            <div class="wb-kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+              <article class="wb-kpi-card wb-card-accent-teal">
+                <div class="wb-kpi-label"><span>Clinical Benchmarks</span><span style="color: var(--wb-accent);">ACTIVE</span></div>
+                <div class="wb-kpi-val tabular-nums">791</div>
+                <div class="wb-kpi-sub">618 active clinical programs vs 173 discontinued bispecific precedents.</div>
+              </article>
+              <article class="wb-kpi-card wb-card-accent-amber">
+                <div class="wb-kpi-label"><span>Champion ROC-AUC</span><span style="color: var(--wb-amber);">CLINICAL SAFE</span></div>
+                <div class="wb-kpi-val tabular-nums">95.06%</div>
+                <div class="wb-kpi-sub">Clinical Safe Ensemble (5-CV 95.54% &bull; Spec 90.3%) across 9 live models.</div>
+              </article>
+              <article class="wb-kpi-card">
+                <div class="wb-kpi-label"><span>Single-Cell Atlas</span><span style="color: var(--wb-sky);">GSE131907</span></div>
+                <div class="wb-kpi-val tabular-nums">208,506</div>
+                <div class="wb-kpi-sub">Cells profiled across 54 biopsies &amp; 8 tumor/immune compartments.</div>
+              </article>
+            </div>
+
+            <!-- Bento Row: Top-Ranked Bispecific Leads + Scientific Foundations -->
+            <div class="wb-bento-grid">
+              <div class="wb-card">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                  <div>
+                    <span class="wb-kicker" style="margin-bottom: 4px;">Priority Lead Queue</span>
+                    <h3 style="font-size: 1.15rem; font-weight: 500; color: var(--ink);">Top-Ranked Bispecific Combinations</h3>
+                  </div>
+                  <button type="button" class="wb-btn-ghost" onclick="window.__appWorkspace.switchAppTab('screening')">View All &rarr;</button>
+                </div>
+
+                <div class="wb-lead-list">
+                  <div class="wb-lead-row js-quick-screen-pair" data-a="MS4A1" data-b="CD3E" data-ind="NSCLC">
+                    <div>
+                      <div class="wb-lead-pair">MS4A1 &times; CD3E</div>
+                      <div class="wb-lead-mech">CD20-directed T-cell engager &bull; Approved (Epcoritamab / Glofitamab)</div>
+                    </div>
+                    <div class="wb-lead-right">
+                      <span class="wb-tier-pill">Tier 1 &bull; 96.4%</span>
+                      <span style="color: var(--color-muted);">&rarr;</span>
+                    </div>
+                  </div>
+
+                  <div class="wb-lead-row js-quick-screen-pair" data-a="CLDN18" data-b="CD3E" data-ind="Gastric">
+                    <div>
+                      <div class="wb-lead-pair">CLDN18 &times; CD3E</div>
+                      <div class="wb-lead-mech">Claudin 18.2 solid tumor cytolytic bridge &bull; High epithelial selectivity</div>
+                    </div>
+                    <div class="wb-lead-right">
+                      <span class="wb-tier-pill">Tier 1 &bull; 92.1%</span>
+                      <span style="color: var(--color-muted);">&rarr;</span>
+                    </div>
+                  </div>
+
+                  <div class="wb-lead-row js-quick-screen-pair" data-a="EGFR" data-b="MET" data-ind="NSCLC">
+                    <div>
+                      <div class="wb-lead-pair">EGFR &times; MET</div>
+                      <div class="wb-lead-mech">Dual RTK bypass blockade &bull; Approved (Amivantamab-VMJM)</div>
+                    </div>
+                    <div class="wb-lead-right">
+                      <span class="wb-tier-pill tier-2">Tier 2 &bull; 88.4%</span>
+                      <span style="color: var(--color-muted);">&rarr;</span>
+                    </div>
+                  </div>
+
+                  <div class="wb-lead-row js-quick-screen-pair" data-a="PDCD1" data-b="CTLA4" data-ind="NSCLC">
+                    <div>
+                      <div class="wb-lead-pair">PDCD1 &times; CTLA4</div>
+                      <div class="wb-lead-mech">Co-localized dual immune checkpoint &bull; Approved (Cadonilimab)</div>
+                    </div>
+                    <div class="wb-lead-right">
+                      <span class="wb-tier-pill tier-2">Tier 2 &bull; 85.2%</span>
+                      <span style="color: var(--color-muted);">&rarr;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Bento Card: Foundational Literature + Quick Navigation -->
+              <div class="wb-card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 18px;">
+                <div>
+                  <span class="wb-kicker" style="margin-bottom: 4px;">Peer-Reviewed Architecture</span>
+                  <h3 style="font-size: 1.15rem; font-weight: 500; color: var(--ink); margin-bottom: 14px;">Foundational Base Papers</h3>
+                  <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="padding: 14px; background: var(--surface); border-radius: 10px; border: 1px solid var(--wb-border); border-left: 3px solid var(--wb-accent);">
+                      <strong style="color: var(--ink); font-size: 0.86rem;">Zhang, X. et al. (2024)</strong>
+                      <p style="font-size: 0.8rem; color: var(--color-dots); margin: 4px 0 6px; line-height: 1.45;">
+                        <em>"BiSpec Pairwise AI: guiding the selection of bispecific antibody target combinations with pairwise learning and GPT augmentation."</em>
+                      </p>
+                      <span style="color: var(--wb-accent); font-family: var(--font-mono); font-size: 0.68rem;">J. Cancer Res. Clin. Oncol. &bull; 10.1007/s00432-024-05740-3</span>
+                    </div>
+
+                    <div style="padding: 14px; background: var(--surface); border-radius: 10px; border: 1px solid var(--wb-border); border-left: 3px solid var(--wb-amber);">
+                      <strong style="color: var(--ink); font-size: 0.86rem;">Chen, T. &amp; Guestrin, C. (2016)</strong>
+                      <p style="font-size: 0.8rem; color: var(--color-dots); margin: 4px 0 6px; line-height: 1.45;">
+                        <em>"XGBoost: A Scalable Tree Boosting System."</em>
+                      </p>
+                      <span style="color: var(--wb-amber); font-family: var(--font-mono); font-size: 0.68rem;">ACM SIGKDD &bull; 10.1145/2939672.2939785</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                  <button type="button" class="wb-btn-ghost" style="justify-content: center;" onclick="window.__appWorkspace.switchAppTab('models')">
+                    Inspect 9 Models &rarr;
+                  </button>
+                  <button type="button" class="wb-btn-ghost" style="justify-content: center;" onclick="window.__appWorkspace.switchAppTab('registry')">
+                    Browse 791 Drugs &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Translational Pipeline Roadmap -->
+            <div class="wb-card" style="margin-bottom: 24px;">
+              <div id="pipeline-mount">
+                <!-- Rendered dynamically by PipelineComponent -->
+              </div>
+            </div>
+          </section>
+
+          <!-- ===================================================================
+               PANEL 2: SCREENING PAIR STUDIO
+               =================================================================== -->
+          <section id="app-panel-screening" class="app-panel" style="display: none;">
+            <div class="wb-section-head">
+              <div>
+                <span class="wb-kicker">Combinatorial Discovery Engine</span>
+                <h2 class="wb-title">Screening Pair Studio</h2>
+                <p class="wb-subtitle">
+                  Configure Fab Arm 1 (Target A) and Fab Arm 2 (Target B) across 193 profiled surface genes to compute symmetric synergy, 5-axis biophysics, and NVIDIA Nemotron literature analysis.
+                </p>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button type="button" class="wb-btn-ghost" id="btnAddCurrentToCompare">+ Add to Comparison</button>
+              </div>
+            </div>
+
+            <!-- Quick Benchmark Presets Bar -->
+            <div class="studio-preset-strip">
+              <span class="wb-quick-label">Benchmarks:</span>
+              <button type="button" class="wb-preset-chip js-studio-preset" data-a="CLDN18" data-b="CD3E" data-ind="Gastric">CLDN18 &times; CD3E</button>
+              <button type="button" class="wb-preset-chip js-studio-preset" data-a="EGFR" data-b="MET" data-ind="NSCLC">EGFR &times; MET</button>
+              <button type="button" class="wb-preset-chip js-studio-preset" data-a="MS4A1" data-b="CD3E" data-ind="NSCLC">MS4A1 &times; CD3E</button>
+              <button type="button" class="wb-preset-chip js-studio-preset" data-a="PDCD1" data-b="CTLA4" data-ind="NSCLC">PDCD1 &times; CTLA4</button>
+              <button type="button" class="wb-preset-chip js-studio-preset" data-a="CD274" data-b="TNFRSF9" data-ind="NSCLC">CD274 &times; TNFRSF9</button>
+              <button type="button" class="wb-preset-chip js-studio-preset" data-a="ERBB2" data-b="CD3E" data-ind="Gastric">ERBB2 &times; CD3E</button>
+            </div>
+
+            <div class="studio-workbench-grid studio-stacked-layout">
+              <!-- Top Horizontal Configuration Deck -->
+              <div class="wb-card studio-config-deck">
+                <div class="studio-arms-row">
+                  <div class="studio-arm-block arm-a-block">
+                    <label for="screenTargetA" class="form-label" style="color: var(--wb-accent); margin-bottom: 8px;">
+                      Fab Arm 1 &bull; Target A (Tumor Anchor)
+                    </label>
+                    <select id="screenTargetA" class="form-select" style="margin-bottom: 10px;"></select>
+                    <div id="inspectorTargetA" class="target-inspector-card"></div>
+                  </div>
+
+                  <!-- Swap Arms Button (Demonstrates Permutation Invariance) -->
+                  <div class="studio-swap-row">
+                    <button type="button" id="btnSwapTargets" class="btn-swap-arms" title="Swap Target A and Target B to verify f(A, B) = f(B, A)">
+                      <span>&#8644; Swap Arms</span>
+                    </button>
+                  </div>
+
+                  <div class="studio-arm-block arm-b-block">
+                    <label for="screenTargetB" class="form-label" style="color: var(--wb-amber); margin-bottom: 8px;">
+                      Fab Arm 2 &bull; Target B (Effector / Co-Target)
+                    </label>
+                    <select id="screenTargetB" class="form-select" style="margin-bottom: 10px;"></select>
+                    <div id="inspectorTargetB" class="target-inspector-card"></div>
+                  </div>
+                </div>
+
+                <div class="studio-controls-row">
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label for="screenIndication" class="form-label">Clinical Indication Context</label>
+                    <select id="screenIndication" class="form-select">
+                      <option value="Non-Small Cell Lung Cancer">Non-Small Cell Lung Cancer (GSE131907)</option>
+                      <option value="Gastric Adenocarcinoma">Gastric &amp; Gastroesophageal Junction</option>
+                      <option value="Triple-Negative Breast Cancer">Triple-Negative Breast Cancer</option>
+                      <option value="Colorectal Carcinoma">Colorectal Carcinoma</option>
+                      <option value="Multiple Myeloma">Relapsed/Refractory Multiple Myeloma</option>
+                      <option value="Ovarian Carcinoma">High-Grade Serous Ovarian Carcinoma</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label for="screenModelSelect" class="form-label" style="color: var(--wb-accent);">Live Trained Python ML Model</label>
+                    <select id="screenModelSelect" class="form-select">
+                      <option value="Clinical Safe Ensemble">Clinical Safe Ensemble (Champion &bull; 4-Model Consensus)</option>
+                      <option value="HistGBDT (Monotonic Safe)">HistGBDT (Monotonic Toxicity Guardrails)</option>
+                      <option value="ExtraTrees (Safety-First)">ExtraTrees (Safety-First Balanced Forest)</option>
+                      <option value="XGBoost + Pairwise AI">XGBoost + Pairwise AI</option>
+                      <option value="GBDT">GBDT (Regularized Gradient Boosted Trees)</option>
+                      <option value="Random Forest">Random Forest (150 Trees)</option>
+                      <option value="Decision Tree">Decision Tree (Depth 5)</option>
+                      <option value="Logistic Regression">Logistic Regression (Scaled)</option>
+                      <option value="DNN (MLP)">DNN / MLP Neural Network (64-32)</option>
+                    </select>
+                  </div>
+
+                  <button type="button" id="btnRunScreening" class="wb-btn-primary studio-run-btn">
+                    <span>Run Live Python ML Inference &rarr;</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Full-Width Live Discovery Output, Consensus, Radar & RAG Below -->
+              <div id="screeningResultBox">
+                <!-- Populated dynamically with Radial Gauge, 2-Arm Schematic, Radar Chart, Microenvironment Bars, Clinical Precedents, and Nemotron RAG -->
+              </div>
+            </div>
+          </section>
+
+          <!-- ===================================================================
+               PANEL 3: MODEL ARENA (CLEAN ROC-AUC & BASE PAPER BENCHMARK)
+               =================================================================== -->
+          <section id="app-panel-models" class="app-panel" style="display: none;">
+            <div class="wb-section-head">
+              <div>
+                <span class="wb-kicker">ROC-AUC Benchmark &bull; Zhang et al. (2024) Fig. 3 vs. Live Models</span>
+                <h2 class="wb-title">Model Arena</h2>
+                <p class="wb-subtitle">
+                  Clean ROC-AUC performance comparing your base paper benchmarks (NSCLC Fig. 3) against all 9 live trained models. Click any algorithm to highlight its ROC curve and confusion matrix.
+                </p>
+              </div>
+            </div>
+
+            <!-- Compact Model Selector Pills -->
+            <div id="modelSelectorCards" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px;">
+              <!-- Populated dynamically -->
+            </div>
+
+            <!-- Clean 2-Column Hero: Publication-Grade ROC-AUC Curve + Selected Model Inspector -->
+            <div class="model-inspector-grid" style="grid-template-columns: 1.45fr 1fr; gap: 22px; margin-bottom: 24px; align-items: stretch;">
+              <div class="wb-card" style="padding: 22px;">
+                <div class="chart-header" style="margin-bottom: 14px;">
+                  <div>
+                    <span class="wb-kicker" style="margin-bottom: 4px;">Receiver Operating Characteristic (NSCLC)</span>
+                    <h3 style="font-size: 1.12rem; font-weight: 500; color: var(--ink);">ROC-AUC Curves &mdash; Live vs. Base Paper (Fig. 3)</h3>
+                  </div>
+                  <span style="font-family: var(--font-mono); font-size: 0.72rem; padding: 5px 10px; border-radius: 6px; background: var(--tint); border: 1px solid var(--tint); color: var(--wb-accent);">
+                    CHAMPION ROC-AUC: 95.06%
+                  </span>
+                </div>
+                <div id="rocPrCurveContainer" class="svg-chart-wrapper" style="min-height: 360px;"></div>
+              </div>
+
+              <div class="wb-card" id="selectedModelInspector" style="padding: 22px;">
+                <!-- Populated dynamically with selected model's ROC-AUC, Base Paper Ref, Specificity & Confusion Matrix -->
+              </div>
+            </div>
+
+            <!-- Clean Head-to-Head ROC-AUC Comparison Table (Base Paper vs. Live) -->
+            <div class="wb-card" style="padding: 0; overflow: hidden; margin-bottom: 24px;">
+              <div style="padding: 18px 24px 14px; border-bottom: 1px solid var(--wb-border); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+                <div>
+                  <span class="wb-kicker" style="margin-bottom: 4px;">Published Base Paper Figures &amp; New Clinical Models</span>
+                  <h3 style="font-size: 1.08rem; font-weight: 500; color: var(--ink);">ROC-AUC Benchmark Comparison (NSCLC &bull; Fig. 3)</h3>
+                </div>
+                <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-muted);">
+                  Base Paper (Zhang et al., 2024): XGBoost+Pairwise 89.29% &bull; Clinical Safe Ensemble 95.06%
+                </span>
+              </div>
+              <div class="benchmark-table-wrapper" style="overflow-x: auto;">
+                <table class="benchmark-table" role="table">
+                  <thead>
+                    <tr>
+                      <th>Model / Algorithm</th>
+                      <th>ROC-AUC Score</th>
+                      <th>Specificity</th>
+                      <th>Source</th>
+                      <th>vs. Base Paper Champion (89.29%)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="benchmarkTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Top Predictive Biological Features -->
+            <div class="wb-card" style="margin-bottom: 24px; padding: 22px;">
+              <span class="wb-kicker" style="margin-bottom: 4px;">Biological Feature Attribution</span>
+              <h3 style="font-size: 1.08rem; font-weight: 500; color: var(--ink); margin-bottom: 14px;">Top 7 Biological &amp; Single-Cell Features Driving ROC-AUC</h3>
+              <div id="featureImportanceBars" style="display: flex; flex-direction: column; gap: 10px;"></div>
+            </div>
+
+            <div id="results-mount" style="display: none;"></div>
+          </section>
+
+          <!-- ===================================================================
+               PANEL 4: INTERACTIVE PAIR COMPARISON WORKBENCH
+               =================================================================== -->
+          <section id="app-panel-compare" class="app-panel" style="display: none;">
+            <div class="wb-section-head">
+              <div>
+                <span class="wb-kicker">Multi-Candidate Decision Matrix</span>
+                <h2 class="wb-title">Pair Comparison Workbench</h2>
+                <p class="wb-subtitle">
+                  Overlay up to 4 competing bispecific target pairs simultaneously on a 5-axis biophysical radar and export comparative dossiers to CSV.
+                </p>
+              </div>
+              <button type="button" id="btnExportCompareCsv" class="wb-btn-ghost">
+                <span>&darr; Export Matrix CSV</span>
+              </button>
+            </div>
+
+            <!-- Interactive Pair Builder Bar -->
+            <div class="compare-builder-bar">
+              <div class="compare-builder-field">
+                <label for="compareSelectA" class="form-label" style="color: var(--wb-accent);">Target A</label>
+                <select id="compareSelectA" class="form-select"></select>
+              </div>
+              <div class="compare-builder-field">
+                <label for="compareSelectB" class="form-label" style="color: var(--wb-amber);">Target B</label>
+                <select id="compareSelectB" class="form-select"></select>
+              </div>
+              <button type="button" id="btnAddComparePair" class="wb-btn-primary" style="height: 44px; padding: 0 20px;">
+                <span>+ Add Pair to Matrix</span>
+              </button>
+            </div>
+
+            <!-- Overlaid Multi-Pair Radar + Dynamic Side-by-Side Candidate Cards -->
+            <div class="compare-top-grid">
+              <div class="wb-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <span class="wb-kicker" style="margin-bottom: 4px;">5-Axis Overlay</span>
+                  <h3 style="font-size: 1.05rem; color: var(--ink); margin-bottom: 12px;">Comparative Biophysics Radar</h3>
+                </div>
+                <div id="compareRadarContainer" style="width: 100%; display: flex; justify-content: center;"></div>
+                <div id="compareLegendContainer" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; justify-content: center;"></div>
+              </div>
+
+              <div id="compareCardsGrid" class="compare-cards-grid">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </section>
+
+          <!-- ===================================================================
+               PANEL 5: CLINICAL BISPECIFIC REGISTRY (791 RECORDS)
+               =================================================================== -->
+          <section id="app-panel-registry" class="app-panel" style="display: none;">
+            <div class="wb-section-head">
+              <div>
+                <span class="wb-kicker">Global Clinical Precedents</span>
+                <h2 class="wb-title">Clinical Bispecific Registry</h2>
+                <p class="wb-subtitle">
+                  Explore all 791 curated bispecific antibody programs. Click <strong>Screen Pair &rarr;</strong> on any drug to evaluate its target pair live in the Screening Studio.
+                </p>
+              </div>
+            </div>
+
+            <!-- Registry Live KPI Summary -->
+            <div class="wb-kpi-grid" id="registryKpiStrip">
+              <div class="wb-kpi-card">
+                <div class="wb-kpi-label"><span>Total Programs</span></div>
+                <div class="wb-kpi-val tabular-nums" id="regStatTotal">791</div>
+                <div class="wb-kpi-sub">Curated bispecific clinical records</div>
+              </div>
+              <div class="wb-kpi-card wb-card-accent-teal">
+                <div class="wb-kpi-label"><span>Approved Biologics</span><span style="color: var(--wb-accent);">FDA / GLOBAL</span></div>
+                <div class="wb-kpi-val tabular-nums" id="regStatApproved" style="color: var(--wb-accent);">12</div>
+                <div class="wb-kpi-sub">Marketed bispecific therapies</div>
+              </div>
+              <div class="wb-kpi-card wb-card-accent-amber">
+                <div class="wb-kpi-label"><span>Active Clinical Trials</span><span style="color: var(--wb-amber);">PHASE 1–3</span></div>
+                <div class="wb-kpi-val tabular-nums" id="regStatClinical">--</div>
+                <div class="wb-kpi-sub">Ongoing oncology &amp; immunology studies</div>
+              </div>
+              <div class="wb-kpi-card">
+                <div class="wb-kpi-label"><span>Filtered Results</span></div>
+                <div class="wb-kpi-val tabular-nums" id="regStatShown">791</div>
+                <div class="wb-kpi-sub">Matching current filter criteria</div>
+              </div>
+            </div>
+
+            <!-- Search + Interactive Phase Filter Pills -->
+            <div class="registry-controls-bar">
+              <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+                <input
+                  type="text"
+                  id="registrySearchInput"
+                  class="form-input"
+                  placeholder="Search drug name, target symbol (e.g. EGFR, CD3E), indication, or sponsor..."
+                  style="flex: 1; min-width: 240px;"
+                />
+                <span id="registryMatchCount" class="tag-illustrative-sm">Showing 1–50 of 791 entries</span>
+              </div>
+              <div class="registry-phase-pills" id="registryPhasePills">
+                <button type="button" class="phase-filter-pill active" data-phase="All">All Phases</button>
+                <button type="button" class="phase-filter-pill" data-phase="Approved">Approved</button>
+                <button type="button" class="phase-filter-pill" data-phase="Phase 3">Phase 3</button>
+                <button type="button" class="phase-filter-pill" data-phase="Phase 2">Phase 2</button>
+                <button type="button" class="phase-filter-pill" data-phase="Phase 1">Phase 1</button>
+                <button type="button" class="phase-filter-pill" data-phase="Preclinical">Preclinical</button>
+              </div>
+              <div id="registryPhaseBar" class="phase-stacked-bar" title="Click any phase segment to filter"></div>
+            </div>
+
+            <div class="data-table-wrapper wb-card" style="padding: 0; overflow-x: auto;">
+              <table class="data-table" role="table">
+                <thead>
+                  <tr>
+                    <th>Drug / Candidate</th>
+                    <th>Target Combination</th>
+                    <th>Clinical Phase</th>
+                    <th>Primary Indication</th>
+                    <th>Developer / Sponsor</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="registryTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ===================================================================
+               PANEL 6: MY RESEARCH HISTORY & DOSSIER VAULT
+               =================================================================== -->
+          <section id="app-panel-research" class="app-panel" style="display: none;">
+            <div class="wb-section-head">
+              <div>
+                <span class="wb-kicker">SQLite Account-Scoped Vault</span>
+                <h2 class="wb-title">My Research History &amp; Dossiers</h2>
+                <p class="wb-subtitle" id="researchPanelSubtitle">
+                  Persistent screening audit trail saved to your investigator profile. Re-open any pair in the studio or generate a printable clinical dossier.
+                </p>
+              </div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="wb-btn-ghost" id="btnExportHistoryCsv">&darr; Export History CSV</button>
+                <button type="button" class="wb-btn-primary" onclick="window.__appWorkspace.switchAppTab('screening')">
+                  <span>+ Run New Screen</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="data-table-wrapper wb-card" style="padding: 0; overflow-x: auto;">
+              <table class="data-table" role="table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Screened Target Pair</th>
+                    <th>Compatibility Score</th>
+                    <th>Indication</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="researchHistoryTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <!-- FLOATING AI COPILOT LAUNCHER ORB (Accessible from any workspace tab) -->
+      <button type="button" id="btnOpenCopilot" class="copilot-fab" title="Open BiSpec AI Computational Biologist Copilot">
+        <span>&#10022;</span>
+        <span>AI Copilot</span>
+      </button>
+    </div>
+
+    <!-- DOCKABLE AI COPILOT SLIDE-OVER DRAWER -->
+    <aside id="aiCopilotDrawer" class="copilot-drawer" aria-label="BiSpec AI Computational Biologist Copilot">
+      <div class="copilot-header">
+        <div>
+          <span class="wb-kicker" style="margin-bottom: 2px;">NVIDIA Nemotron + Literature RAG</span>
+          <h3 style="font-size: 1.05rem; color: var(--ink); font-weight: 500; margin: 0;">BiSpec AI Copilot</h3>
+        </div>
+        <button type="button" id="btnCloseCopilot" class="wb-btn-ghost" style="padding: 5px 10px;">&times; Close</button>
+      </div>
+      <div id="copilotMessages" class="copilot-messages">
+        <div class="copilot-msg ai">
+          <strong>BiSpec Copilot Ready.</strong> Ask me about any of the 193 single-cell targets, clinical bispecific mechanisms (e.g., Amivantamab, Epcoritamab, F10), or our XGBoost benchmark metrics.
+        </div>
+      </div>
+      <div class="copilot-footer">
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <button type="button" class="phase-filter-pill js-copilot-quick" data-q="explain about f10 antigen">F10 Antigen</button>
+          <button type="button" class="phase-filter-pill js-copilot-quick" data-q="why is xgboost champion in the benchmark">XGBoost Champion</button>
+          <button type="button" class="phase-filter-pill js-copilot-quick" data-q="compare EGFR x MET vs CLDN18 x CD3E">EGFR&times;MET vs CLDN18</button>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <input type="text" id="copilotInput" class="form-input" placeholder="Ask computational biologist..." style="flex: 1; padding: 9px 12px; font-size: 0.82rem;" />
+          <button type="button" id="btnCopilotSend" class="wb-btn-primary" style="padding: 9px 14px;">Ask</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- COMMAND PALETTE (Ctrl+K) -->
+    <div id="cmdPaletteOverlay" class="cmd-palette-overlay" role="dialog" aria-modal="true" aria-label="BiSpec Command Palette">
+      <div class="cmd-palette-box">
+        <div class="cmd-palette-input-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--wb-accent)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="cmdPaletteInput" class="cmd-palette-input" placeholder="Type a command, gene symbol (EGFR, CLDN18), or drug name..." autocomplete="off" />
+          <span class="cmd-kbd">ESC</span>
+        </div>
+        <div id="cmdPaletteList" class="cmd-palette-list"></div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION STACK -->
+    <div id="wbToastStack" class="wb-toast-stack" aria-live="polite"></div>
+
+    <!-- INTERACTIVE DOSSIER REPORT MODAL -->
+    <div id="dossierModalOverlay" class="dossier-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="dossierModalTitle">
+      <div class="dossier-modal-box">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--wb-border);">
+          <div>
+            <span class="wb-kicker" style="margin-bottom: 4px;">BiSpec Regulatory &amp; Preclinical Dossier</span>
+            <h3 id="dossierModalTitle" style="font-size: 1.35rem; color: var(--ink); font-weight: 500;">Target Pair Dossier</h3>
+          </div>
+          <button type="button" id="btnCloseDossierModal" class="wb-btn-ghost">&times; Close</button>
+        </div>
+        <div id="dossierModalBody"></div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--wb-border);">
+          <button type="button" class="wb-btn-ghost" id="btnDossierPrint">Print / Save PDF</button>
+          <button type="button" class="wb-btn-primary" id="btnDossierOpenStudio">Open in Screening Studio &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application Script Entry Point -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

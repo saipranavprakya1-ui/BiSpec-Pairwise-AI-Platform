@@ -1,0 +1,123 @@
+/* ==========================================================================
+   BiSpec AI — "Sky & Coral" Light Theme (SINGLE SOURCE OF TRUTH)
+   Every color across the entire application derives strictly from these tokens.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Core Sky & Coral Palette */
+  --bg: #F3F9FF;
+  --surface: #FFFFFF;
+  --tint: #DCEEFF;
+  --tint-50: rgba(220, 238, 255, 0.50);
+  --ink: #0E2A47;
+  --muted: #546A84;
+  --primary: #0A74DA;
+  --primary-dark: #0856A6;
+  --accent: #FF8A6B;
+  --accent-deep: #FF6F4D;
+  --accent-soft: #FFE6DE;
+  --accent-ink: #C2482A;
+  --white: #FFFFFF;
+
+  /* Borders, Grid & Elevation */
+  --border: rgba(10, 116, 218, 0.14);
+  --border-strong: rgba(10, 116, 218, 0.28);
+  --border-accent: rgba(255, 138, 107, 0.42);
+  --grid-dot: rgba(10, 116, 218, 0.08);
+  --chart-grid: rgba(10, 116, 218, 0.12);
+  --radar-grid: rgba(10, 116, 218, 0.25);
+  --scrim-light: rgba(243, 249, 255, 0.86);
+  --scrim-mid: rgba(243, 249, 255, 0.54);
+  --scrim-soft: rgba(243, 249, 255, 0.12);
+  --scrim-backdrop: rgba(14, 42, 71, 0.28);
+  --surface-glass: rgba(255, 255, 255, 0.92);
+  --surface-hover: rgba(220, 238, 255, 0.45);
+  --primary-soft: rgba(10, 116, 218, 0.12);
+  --primary-glow: rgba(10, 116, 218, 0.22);
+  --accent-glow: rgba(255, 138, 107, 0.13);
+  --accent-glow-strong: rgba(255, 138, 107, 0.28);
+  --blob-sky: #9FD0FF;
+  --blob-coral: #FFE6DE;
+  --bar-sky-mid: #9CC9F5;
+  --bar-slate: #CBD7E6;
+  --scroll-thumb: rgba(10, 116, 218, 0.30);
+
+  --shadow: 0 20px 40px -30px #0856A6;
+  --shadow-sm: 0 8px 20px -12px rgba(8, 86, 166, 0.18);
+  --shadow-lg: 0 28px 56px -24px rgba(8, 86, 166, 0.28);
+  --shadow-btn: 0 14px 26px -14px #0A74DA;
+
+  /* Radii & Focus */
+  --radius-card: 20px;
+  --radius-panel: 24px;
+  --radius-ctrl: 12px;
+  --radius-control: 12px;
+  --radius-pill: 999px;
+  --radius-tag: 999px;
+  --focus: 3px solid #FF8A6B;
+
+  /* Semantic Status Tokens (Sky & Coral only — no green/yellow/purple) */
+  --success: #0A74DA;
+  --warn: #FF8A6B;
+  --danger: #C2482A;
+
+  /* Typography */
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-short: 160ms;
+  --duration-medium: 280ms;
+
+  /* Legacy Variable Aliases (100% mapped to Sky & Coral tokens) */
+  --color-night: var(--bg);
+  --color-surface-deep: var(--tint-50);
+  --color-surface-card: var(--surface);
+  --color-surface-raised: var(--surface);
+  --color-tint: var(--tint);
+  --color-paper: var(--ink);
+  --color-dots: var(--ink);
+  --color-muted: var(--muted);
+  --color-a: var(--primary);
+  --color-a-hover: var(--primary-dark);
+  --color-b: var(--accent);
+  --color-b-soft: var(--accent-soft);
+  --hairline: var(--border);
+  --hairline-hover: var(--border-strong);
+  --bg-primary: var(--bg);
+  --text-primary: var(--ink);
+  --text-muted: var(--muted);
+  --accent-arm-a: var(--primary);
+  --accent-arm-b: var(--accent);
+  --shadow-card: var(--shadow);
+  --shadow-card-hover: var(--shadow-lg);
+  --shadow-button: var(--shadow-btn);
+
+  /* Workbench Shell Aliases */
+  --wb-bg: var(--bg);
+  --wb-bg-elevated: var(--tint-50);
+  --wb-surface: var(--surface);
+  --wb-surface-solid: var(--surface);
+  --wb-surface-hover: var(--tint);
+  --wb-border: var(--border);
+  --wb-border-strong: var(--border-strong);
+  --wb-accent: var(--primary);
+  --wb-accent-soft: var(--tint);
+  --wb-accent-glow: var(--primary-glow);
+  --wb-amber: var(--accent);
+  --wb-amber-soft: var(--accent-soft);
+  --wb-violet: var(--primary-dark);
+  --wb-sky: var(--primary);
+  --wb-danger: var(--danger);
+  --wb-sidebar-w: 260px;
+}
+
+/* Global Tabular Figures */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}

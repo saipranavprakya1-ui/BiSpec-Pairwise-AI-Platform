@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "isPlaceholder": true,
+    "illustrativeTag": "Illustrative data"
+  },
+  "sectionHeader": {
+    "kicker": "Experimental data",
+    "heading": "Preclinical Biophysical Validation & Potency",
+    "subhead": "Biophysical characterization establishing sub-nanomolar dual affinity, multi-tissue selectivity window, and picomolar in-vitro cytotoxicity."
+  },
+  "summaryCards": [
+    {
+      "id": "kd",
+      "label": "Binding Affinity (KD)",
+      "value": "0.38 nM",
+      "context": "Simultaneous Target A & Target B SPR equilibrium dissociation constant.",
+      "isPlaceholder": true
+    },
+    {
+      "id": "selectivity",
+      "label": "Selectivity Index",
+      "value": "> 140x",
+      "context": "Preferential cytolysis in dual-antigen vs single-antigen expressing cells.",
+      "isPlaceholder": true
+    },
+    {
+      "id": "ec50",
+      "label": "In-Vitro Potency (EC50)",
+      "value": "14.2 pM",
+      "context": "Redirected T-cell tumor lysis half-maximal effective concentration.",
+      "isPlaceholder": true
+    }
+  ],
+  "bindingAffinity": {
+    "title": "Binding Affinity (KD nM): BiSpec vs Monovalent References",
+    "subtitle": "Surface plasmon resonance (SPR) kinetic evaluation of monovalent reference monoclonal antibodies versus bivalent BiSpec antibody on Target A and Target B.",
+    "isPlaceholder": true,
+    "unit": "nM",
+    "yAxisLabel": "KD (nM) — Lower is Higher Affinity",
+    "categories": [
+      {
+        "target": "Target A (Tumor Anchor)",
+        "bispecValue": 0.38,
+        "refValue": 4.12,
+        "refLabel": "Monovalent mAb-A",
+        "bispecLabel": "BiSpec (Fab Arm 1)"
+      },
+      {
+        "target": "Target B (Effector Receptor)",
+        "bispecValue": 1.45,
+        "refValue": 18.60,
+        "refLabel": "Monovalent mAb-B",
+        "bispecLabel": "BiSpec (Fab Arm 2)"
+      }
+    ],
+    "notes": "SPR measurements at 25°C, pH 7.4 with running buffer HBS-EP+. Lower numeric value denotes tighter equilibrium binding affinity."
+  },
+  "doseResponse": {
+    "title": "In-Vitro Cytotoxicity Dose-Response Curve (EC50)",
+    "subtitle": "T-cell redirected cytolysis titration curve in target-positive tumor cells over a 7-log concentration range.",
+    "isPlaceholder": true,
+    "ec50Value": 14.2,
+    "ec50Unit": "pM",
+    "ec50Label": "EC50 = 14.2 pM",
+    "xAxisLabel": "Concentration (pM, log10 scale)",
+    "yAxisLabel": "Specific Tumor Lysis (%)",
+    "dataPoints": [
+      { "conc": 0.01, "response": 2.6, "isPlaceholder": true },
+      { "conc": 0.1, "response": 3.4, "isPlaceholder": true },
+      { "conc": 1.0, "response": 9.1, "isPlaceholder": true },
+      { "conc": 5.0, "response": 26.8, "isPlaceholder": true },
+      { "conc": 14.2, "response": 50.5, "isPlaceholder": true },
+      { "conc": 50.0, "response": 78.2, "isPlaceholder": true },
+      { "conc": 200.0, "response": 92.4, "isPlaceholder": true },
+      { "conc": 1000.0, "response": 96.8, "isPlaceholder": true },
+      { "conc": 10000.0, "response": 98.1, "isPlaceholder": true }
+    ],
+    "controlPoints": [
+      { "conc": 0.01, "response": 1.2, "isPlaceholder": true },
+      { "conc": 1.0, "response": 1.8, "isPlaceholder": true },
+      { "conc": 100.0, "response": 2.4, "isPlaceholder": true },
+      { "conc": 10000.0, "response": 3.1, "isPlaceholder": true }
+    ],
+    "controlLabel": "Antigen-Negative Control Cells",
+    "activeLabel": "Target A+/B+ Tumor Target Cells",
+    "notes": "48-hour LDH release assay using human primary PBMC effectors (E:T ratio 10:1)."
+  },
+  "selectivityPanel": {
+    "title": "Tissue & Cellular Selectivity Heatmap Panel",
+    "subtitle": "Relative binding and activation index across dual-positive tumor cells, single-antigen expressing healthy tissues, and negative controls.",
+    "isPlaceholder": true,
+    "scaleLabel": "Relative Binding & Activation Index (0.0 to 1.0)",
+    "columns": [
+      "Target A+/B+ Tumor",
+      "Target A+ Only (Epithelial)",
+      "Target B+ Only (Peripheral)",
+      "Dual Negative (Fibroblast)"
+    ],
+    "rows": [
+      {
+        "sample": "Tumor Cell Line 01",
+        "category": "Malignant Target",
+        "values": [0.96, 0.12, 0.04, 0.01],
+        "isPlaceholder": true
+      },
+      {
+        "sample": "Tumor Cell Line 02",
+        "category": "Malignant Target",
+        "values": [0.91, 0.09, 0.03, 0.01],
+        "isPlaceholder": true
+      },
+      {
+        "sample": "Primary Hepatocytes",
+        "category": "Healthy Normal",
+        "values": [0.03, 0.05, 0.02, 0.00],
+        "isPlaceholder": true
+      },
+      {
+        "sample": "Renal Proximal Tubular",
+        "category": "Healthy Normal",
+        "values": [0.02, 0.08, 0.01, 0.00],
+        "isPlaceholder": true
+      },
+      {
+        "sample": "Cardiomyocytes",
+        "category": "Healthy Normal",
+        "values": [0.01, 0.02, 0.01, 0.00],
+        "isPlaceholder": true
+      },
+      {
+        "sample": "Resting Splenocytes",
+        "category": "Healthy Immune",
+        "values": [0.04, 0.01, 0.11, 0.01],
+        "isPlaceholder": true
+      }
+    ],
+    "notes": "Flow cytometry mean fluorescence intensity (MFI) normalized to dual-positive positive control (1.0)."
+  }
+}
