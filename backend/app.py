@@ -16,7 +16,9 @@ Serves:
 import os
 import sys
 import json
+import time
 import joblib
+from collections import defaultdict
 from dotenv import load_dotenv
 
 # Load environment variables (.env)
@@ -25,7 +27,7 @@ import pandas as pd
 import numpy as np
 from typing import Optional, List, Dict, Any
 
-from fastapi import FastAPI, HTTPException, Query, Header, Depends
+from fastapi import FastAPI, HTTPException, Query, Header, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
@@ -49,6 +51,7 @@ from data_processor import clean_target_pair
 from explainability import generate_multi_ai_explanation, generate_gpt_explanation
 from rag_engine import RAGEngine
 import database
+import scientific_meta
 
 # Paths
 DATA_CSV_PATH = os.path.join(project_root, 'DATA', 'PROCESSED DATA', 'lung cancer.xlsx - Results.csv')
@@ -64,14 +67,81 @@ app = FastAPI(
     version="2.0.0"
 )
 
-# CORS Middleware for secure frontend-backend communication
+# CORS Middleware — restricted to configured origin(s) or local dev
+ALLOWED_ORIGINS = [
+    o.strip() for o in os.environ.get(
+        "ALLOWED_ORIGINS",
+        "https://bispec-pairwise-ai-platform.onrender.com,http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:8000,http://localhost:8000"
+    ).split(",") if o.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
 )
+
+# In-memory sliding-window rate limiter (strict on auth & copilot)
+_RATE_BUCKETS: Dict[str, List[float]] = defaultdict(list)
+PUBLIC_API_PATHS = {
+    "/api/health",
+    "/api/meta/summary",
+    "/api/meta/public",
+    "/api/version",
+    "/api/model-card",
+    "/api/auth/login",
+    "/api/auth/register",
+    "/api/auth/demo",
+    "/api/auth/demo-users",
+}
+
+
+def _check_rate_limit(key: str, max_hits: int, window_sec: int) -> bool:
+    now = time.time()
+    hits = [t for t in _RATE_BUCKETS[key] if now - t < window_sec]
+    if len(hits) >= max_hits:
+        _RATE_BUCKETS[key] = hits
+        return False
+    hits.append(now)
+    _RATE_BUCKETS[key] = hits
+    return True
+
+
+@app.middleware("http")
+async def security_and_auth_middleware(request: Request, call_next):
+    path = request.url.path
+    client_ip = request.client.host if request.client else "unknown"
+
+    # 1. Rate limiting on auth and copilot routes
+    if request.method == "POST" and path in ("/api/auth/login", "/api/auth/register"):
+        if not _check_rate_limit(f"auth:{client_ip}:{path}", max_hits=10, window_sec=900):
+            return JSONResponse(status_code=429, content={"detail": "Too many authentication attempts. Please wait 15 minutes."})
+    elif request.method == "POST" and path in ("/api/ask", "/ask", "/api/rag/chat", "/api/rag/explain"):
+        if not _check_rate_limit(f"copilot:{client_ip}", max_hits=30, window_sec=60):
+            return JSONResponse(status_code=429, content={"detail": "Copilot rate limit reached. Please try again in a minute."})
+
+    # 2. Server-side Bearer token enforcement on all protected /api/* routes
+    if path.startswith("/api/") and request.method != "OPTIONS" and path not in PUBLIC_API_PATHS:
+        auth_hdr = request.headers.get("authorization", "")
+        token = auth_hdr.split(" ", 1)[1].strip() if auth_hdr.startswith("Bearer ") else ""
+        user = database.get_user_by_token(token) if token else None
+        if not user:
+            return JSONResponse(status_code=401, content={"detail": "Authentication required. Please sign in or launch the demo workspace."})
+        # Enforce read-only guard on demo workspace mutations
+        if token.startswith("demo_") and request.method in ("POST", "PUT", "DELETE") and path.startswith("/api/research-history"):
+            return JSONResponse(status_code=403, content={"detail": "Demo workspace is read-only. Create a free researcher account to save or delete screens."})
+        request.state.user = user
+        request.state.token = token
+
+    response = await call_next(request)
+    # 3. Security headers
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    response.headers["Content-Security-Policy"] = "frame-ancestors 'none'"
+    return response
 
 # Global in-memory resources
 RESOURCES: Dict[str, Any] = {
@@ -464,14 +534,60 @@ CLINICAL_TEST_QUEUE: List[Dict[str, Any]] = [
 
 @app.get("/api/health")
 def health():
+    db_ok = database.db_health_check()
+    models_ok = len(RESOURCES.get("models", {})) > 0
+    copilot_ok = bool(os.environ.get("NVIDIA_API_KEY", "").strip())
+    failing = []
+    if not db_ok:
+        failing.append("database_write_read")
+    if not models_ok:
+        failing.append("ml_models_not_loaded")
+    if not copilot_ok:
+        failing.append("copilot_api_key_missing")
     return {
-        "status": "healthy",
+        "status": "healthy" if (db_ok and models_ok) else "degraded",
+        "overall": "All systems operational" if not failing else f"Degraded: {', '.join(failing)}",
+        "checks": {
+            "database": db_ok,
+            "models_loaded": models_ok,
+            "copilot_configured": copilot_ok,
+        },
+        "failing_checks": failing,
         "service": "BiSpec Pairwise AI Backend",
+        "model_version": scientific_meta.MODEL_VERSION,
         "active_models": list(RESOURCES['models'].keys()),
-        "champion_model": "XGBoost + Pairwise AI",
+        "champion_model": "Clinical Safe Ensemble",
         "dataset_records": len(RESOURCES['drugs_df']) if RESOURCES['drugs_df'] is not None else 0,
         "unique_targets_count": len(RESOURCES['unique_targets'])
     }
+
+
+@app.get("/api/meta/summary")
+@app.get("/api/meta/public")
+def get_meta_summary():
+    """Single source of truth for all counts, phases, CIs, and provenance."""
+    return scientific_meta.build_meta_summary(project_root, RESOURCES)
+
+
+@app.get("/api/version")
+def get_version():
+    return {
+        "model_version": scientific_meta.MODEL_VERSION,
+        "data_version": scientific_meta.DATA_VERSION,
+        "trained_on": scientific_meta.TRAINED_ON,
+        "api_version": "2.1.0",
+    }
+
+
+@app.get("/api/model-card")
+def download_model_card():
+    meta = scientific_meta.build_meta_summary(project_root, RESOURCES)
+    md = scientific_meta.build_model_card_markdown(meta)
+    return PlainTextResponse(
+        content=md,
+        media_type="text/markdown; charset=utf-8",
+        headers={"Content-Disposition": "attachment; filename=BiSpec-Pairwise-AI-Model-Card.md"},
+    )
 
 @app.get("/api/targets")
 def get_targets():
@@ -531,6 +647,17 @@ def predict_pairwise_compatibility(req: PredictionRequest):
         raise HTTPException(status_code=400, detail="Invalid or empty biological target symbol provided.")
     if g1 == g2:
         raise HTTPException(status_code=400, detail="Target A and Target B must be distinct biological targets.")
+
+    # Validate gene symbols against known catalog (HTTP 422 with suggestions)
+    known_genes = set(RESOURCES.get('unique_targets') or []) | set(TARGET_BIOLOGY.keys())
+    if known_genes:
+        unknown = [g for g in (g1, g2) if g not in known_genes]
+        if unknown:
+            sugg = {g: scientific_meta.suggest_gene_symbols(g, sorted(known_genes)) for g in unknown}
+            raise HTTPException(
+                status_code=422,
+                detail={"message": f"Unknown target gene symbol(s): {', '.join(unknown)}", "suggestions": sugg}
+            )
 
     # 1. Compute symmetric feature vector
     feat_dict = compute_pairwise_features(g1, g2, indication=req.indication)
@@ -659,11 +786,24 @@ def predict_pairwise_compatibility(req: PredictionRequest):
     except Exception as e:
         print(f"[!] Notice: auto-save research history: {e}")
 
+    # Compute exact TreeSHAP per-pair feature contributions & training-set membership flag
+    treeshap = scientific_meta.compute_treeshap_contributions(
+        RESOURCES.get("xgb_model") or RESOURCES.get("models", {}).get("XGBoost + Pairwise AI"),
+        feat_vector,
+        list(feature_names),
+    )
+    in_training_set = len(matched_drugs) > 0
+    training_set_notice = (
+        "This pair is in the training set. Its score is not a prospective prediction."
+        if in_training_set else None
+    )
+
     return {
         "target_a": g1,
         "target_b": g2,
         "indication": req.indication,
         "model_used": model_key,
+        "model_version": scientific_meta.MODEL_VERSION,
         "compatibility_score": round(prob_compat, 4),
         "compatibility_percentage": round(prob_compat * 100, 1),
         "priority_tier": priority_tier,
@@ -671,6 +811,10 @@ def predict_pairwise_compatibility(req: PredictionRequest):
         "badge_type": badge_type,
         "clinical_verdict": verdict,
         "clinical_consensus": clinical_consensus,
+        "in_training_set": in_training_set,
+        "training_set_notice": training_set_notice,
+        "feature_contributions": treeshap,
+        "disclaimer": scientific_meta.RESEARCH_DISCLAIMER,
         "radar_metrics": radar_data,
         "matched_clinical_drugs": matched_drugs,
         "raw_features": feat_dict
@@ -1021,20 +1165,46 @@ def rag_chat_endpoint(req: RAGChatRequest):
 
 @app.post("/ask", response_model=AskResponse)
 @app.post("/api/ask", response_model=AskResponse)
-def ask_endpoint(payload: AskRequest):
-    """POST route at /ask accepting {'question': '...'} and returning live RAG + NVIDIA NIM answer."""
+def ask_endpoint(payload: AskRequest, request: Request):
+    """POST route at /ask accepting {'question': '...'} and returning sourced RAG answer with guardrails."""
     q = (payload.question or payload.query or "").strip()
     if not q:
         raise HTTPException(status_code=400, detail="The 'question' field is required in the JSON payload.")
+
+    user_id = getattr(request.state, "user", {}).get("id") if hasattr(request.state, "user") else None
+
+    # Clinical advice / dosing / diagnosis guardrail
+    if scientific_meta.is_clinical_advice_request(q):
+        refusal = (
+            "I cannot provide patient diagnosis, dosing, or clinical treatment advice. "
+            "BiSpec Pairwise AI is research software intended strictly for preclinical target-pair analysis. "
+            "Please consult a qualified clinician for medical decisions.\n\n"
+            f"— {scientific_meta.COPILOT_DISCLAIMER}"
+        )
+        database.log_copilot_audit(user_id, q, refusal, sources_count=0, refused=True)
+        return AskResponse(
+            answer=refusal,
+            model_used="safety-guardrail",
+            provider="BiSpec Guardrail",
+            live_llm=False,
+            sources=[]
+        )
+
     try:
         rag = RAGEngine.get_instance()
         res = rag.query(q)
+        raw_sources = res.get("sources", []) or []
+        ans = (res.get("answer", "") or "").strip()
+        if not raw_sources:
+            ans += "\n\n*No supporting source was retrieved.*"
+        ans += f"\n\n---\n*{scientific_meta.COPILOT_DISCLAIMER}*"
+        database.log_copilot_audit(user_id, q, ans, sources_count=len(raw_sources), refused=False)
         return AskResponse(
-            answer=res.get("answer", ""),
+            answer=ans,
             model_used=res.get("model_used"),
             provider=res.get("provider"),
             live_llm=res.get("live_llm", False),
-            sources=res.get("sources", [])
+            sources=raw_sources
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"RAG query execution error: {str(e)}")
@@ -1135,13 +1305,29 @@ def get_demo_users():
     """Return public profiles of the 5 pre-seeded biotech researchers."""
     return {"users": database.get_demo_users()}
 
+@app.post("/api/auth/demo")
+def login_demo_workspace():
+    """Sign into a read-only demo workspace backed by sample data."""
+    try:
+        sess = database.create_demo_session()
+        return {
+            "status": "success",
+            "message": "Launched read-only demo workspace (sample data).",
+            "user": sess["user"],
+            "token": sess["token"],
+            "is_demo": True
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Demo workspace unavailable: {str(e)}")
+
+
 @app.post("/api/auth/login")
 def login(req: LoginRequest):
     """Authenticate researcher credentials (by email or username) and return session token."""
     identifier = (req.email or req.username or "").strip()
     user = database.authenticate_user(identifier, req.password)
     if not user:
-        raise HTTPException(status_code=401, detail="Invalid email/username or password. Please verify your credentials.")
+        raise HTTPException(status_code=401, detail="Email or password is incorrect.")
     return {
         "status": "success",
         "message": f"Welcome back, {user['full_name']}",
@@ -1152,6 +1338,9 @@ def login(req: LoginRequest):
 @app.post("/api/auth/register")
 def register(req: RegisterRequest):
     """Register a new investigator account in SQLite users_history.db and return an authenticated session token."""
+    pwd_err = database.validate_password_strength(req.password)
+    if pwd_err:
+        raise HTTPException(status_code=400, detail=pwd_err)
     try:
         user = database.register_user(
             email=req.email,
@@ -1159,7 +1348,7 @@ def register(req: RegisterRequest):
             full_name=req.full_name,
             username=req.username,
             role=req.role or "Senior Oncology Scientist",
-            organization=req.organization or "BiSpec Oncology Consortium"
+            organization=req.organization or "Northwind Bio"
         )
         return {
             "status": "success",

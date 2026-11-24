@@ -116,12 +116,110 @@ export class AppWorkspace {
     this.renderRegistryPhaseBar();
     this.renderClinicalRegistry();
     this.renderResearchHistory();
-    this.loadLiveBenchmarks();
+    this.loadMetaSummaryAndHealth();
+  }
+
+  apiFetch(url, options = {}) {
+    const token = localStorage.getItem('bispec_auth_token') || '';
+    const headers = { ...(options.headers || {}) };
+    if (token && !headers.Authorization) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+    return fetch(url, { ...options, headers });
+  }
+
+  async loadMetaSummaryAndHealth() {
+    try {
+      const res = await fetch('/api/meta/summary');
+      if (res.ok) {
+        const meta = await res.json();
+        this.metaSummary = meta;
+        document.querySelectorAll('[data-meta]').forEach((el) => {
+          const key = el.getAttribute('data-meta');
+          if (meta[key] !== undefined && meta[key] !== null) {
+            el.textContent = typeof meta[key] === 'number' ? meta[key].toLocaleString() : String(meta[key]);
+          }
+        });
+      }
+    } catch (_) {}
+
+    try {
+      const hRes = await fetch('/api/health');
+      const h = hRes.ok ? await hRes.json() : null;
+      document.querySelectorAll('.js-live-health-badge').forEach((el) => {
+        if (h && h.status === 'healthy') {
+          el.textContent = h.overall || 'All systems operational';
+          el.title = `DB: ${h.checks?.database ? 'OK' : 'FAIL'} | Models: ${h.checks?.models_loaded ? 'OK' : 'FAIL'} | Copilot: ${h.checks?.copilot_configured ? 'OK' : 'Not configured'}`;
+        } else {
+          el.textContent = h?.overall || 'Degraded: API unreachable';
+          el.title = (h?.failing_checks || ['api_unreachable']).join(', ');
+        }
+      });
+    } catch (_) {}
+  }
+
+  async launchDemoWorkspace() {
+    try {
+      const res = await fetch('/api/auth/demo', { method: 'POST' });
+      if (!res.ok) {
+        this.showLoginPortal();
+        return;
+      }
+      const data = await res.json();
+      if (data.token) {
+        localStorage.setItem('bispec_auth_token', data.token);
+      }
+      const ribbon = document.getElementById('demoDataRibbon');
+      if (ribbon) ribbon.style.display = 'inline-flex';
+      const u = data.user || {};
+      await this.signInWithPersona(
+        u.full_name || 'Demo Researcher',
+        u.role || 'Read-Only Demo Workspace',
+        u.organization || 'Northwind Bio (Sample Data)',
+        'DR',
+        u.id || 1,
+        u.email || ''
+      );
+    } catch (_) {
+      this.showLoginPortal();
+    }
+  }
+
+  openMethodsModal() {
+    const m = this.metaSummary || {};
+    const ci = m.champion_metrics || {};
+    const pb = m.phases_breakdown || {};
+    const missingList = (m.missing_sc_genes || []).slice(0, 12).join(', ') || 'None';
+    if (this.dossierModalTitle) {
+      this.dossierModalTitle.textContent = `Methods & Validation — ${m.model_version || 'BiSpec-Safe-v2.1'}`;
+    }
+    if (this.dossierModalBody) {
+      this.dossierModalBody.innerHTML = `
+        <div style="display:flex;flex-direction:column;gap:14px;font-size:0.88rem;line-height:1.6;color:var(--ink);">
+          <div style="padding:12px 14px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--border-accent);color:var(--accent-ink);font-family:var(--font-mono);font-size:0.74rem;">
+            Research use only. Not a drug, medical device, or clinical advice. Predictions are hypotheses for wet-lab validation.
+          </div>
+          <div><strong>1. Data &amp; Stage Labels:</strong> ${m.drugs_in_registry || 791} bispecific records (${m.unique_target_pairs_in_registry || 324} unique unordered pairs): Approved (${pb.Approved ?? 12}), Phase 3/2-3 (${pb['Phase 3 / 2-3'] ?? 12}), Phase 1/2 (${pb['Phase 1/2'] ?? 279}), Preclinical/IND (${pb['Preclinical/IND'] ?? 315}), Discontinued/Pending (${pb['Discontinued/Pending'] ?? 173}). Single-cell lung-tumor atlas: GSE131907 (Kim et al., <em>Nat Commun</em> 2020) across ${m.genes_with_single_cell_profiles || 193} surface genes (${m.candidate_pairs_label || '18,528 unordered pairs'}).</div>
+          <div><strong>2. Missing Single-Cell Profiles (${m.missing_sc_genes_count ?? 0} registry genes):</strong> ${m.missing_sc_handling || 'Neutral median imputation applied.'} <span style="font-family:var(--font-mono);font-size:0.74rem;color:var(--muted);">Genes: ${missingList}</span></div>
+          <div><strong>3. Order-Invariant Features (${m.engineered_features || 27}):</strong> Guaranteed f(A,B) = f(B,A) across target relevance, MW, toxicity/localization, synergy/pathway proxies, modality flags, indication alignment, and GSE131907 single-cell safety/co-expression metrics.</div>
+          <div><strong>4. Held-out Validation &amp; Uncertainty:</strong> <strong style="font-family:var(--font-mono);color:var(--primary-dark);">${ci.formatted || 'ROC-AUC 0.951 (95% CI computed on n = 155)'}</strong>. Canonical unordered pairs (A,B) and (B,A) are collapsed before splitting so no pair straddles train and test.</div>
+          <div><strong>5. Comparison to Base Paper (Zhang et al., 2024):</strong> The 2024 paper reports 89.29% 5-fold CV AUC on its own dataset and feature set. Our held-out metric uses a distinct dataset and split, so the two numbers are not a direct like-for-like benchmark.</div>
+          <div><strong>6. Known Limitations:</strong> Small positive class (${pb.Approved ?? 12} approved drugs) produces wide confidence intervals; development stage is a proxy for clinical viability; commercial/CMC/regulatory factors are unmodelled; single-cell expression comes from lung tumors (NSCLC).</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--border);">
+            <a href="/api/model-card" download="BiSpec-Pairwise-AI-Model-Card.md" class="wb-btn-primary" style="text-decoration:none;padding:9px 18px;">Download Model Card (.md)</a>
+            <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);align-self:center;">Model ${m.model_version || 'BiSpec-Safe-v2.1'} &bull; Trained ${m.trained_on || '2026-11-22'}</span>
+          </div>
+        </div>
+      `;
+    }
+    if (this.dossierModalOverlay) {
+      this.dossierModalOverlay.style.display = 'flex';
+    }
   }
 
   async loadLiveBenchmarks() {
     try {
-      const res = await fetch('/api/benchmark');
+      const res = await this.apiFetch('/api/benchmark');
       if (!res.ok) return;
       const data = await res.json();
       if (data?.metrics?.models && Array.isArray(data.metrics.models)) {
@@ -217,6 +315,22 @@ export class AppWorkspace {
       });
     });
 
+    // Try Demo Workspace (Read-Only Sample Data)
+    document.querySelectorAll('.js-try-demo').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.launchDemoWorkspace();
+      });
+    });
+
+    // Methods & Validation Modal
+    document.querySelectorAll('.js-open-methods').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.openMethodsModal();
+      });
+    });
+
     // Close Login Portal (return to About page)
     this.closeLoginBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
@@ -241,12 +355,14 @@ export class AppWorkspace {
       this.tabModeSignUp.addEventListener('click', () => this.switchAuthMode('signup'));
     }
 
-    // Password Visibility Toggles
+    // Password Visibility Toggles (accessible aria-label toggle)
     const btnToggleSignInPwd = document.getElementById('btnToggleSignInPwd');
     const portalToken = document.getElementById('portalToken');
     if (btnToggleSignInPwd && portalToken) {
       btnToggleSignInPwd.addEventListener('click', () => {
-        portalToken.type = portalToken.type === 'password' ? 'text' : 'password';
+        const show = portalToken.type === 'password';
+        portalToken.type = show ? 'text' : 'password';
+        btnToggleSignInPwd.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
       });
     }
 
@@ -254,7 +370,9 @@ export class AppWorkspace {
     const regPassword = document.getElementById('regPassword');
     if (btnToggleSignUpPwd && regPassword) {
       btnToggleSignUpPwd.addEventListener('click', () => {
-        regPassword.type = regPassword.type === 'password' ? 'text' : 'password';
+        const show = regPassword.type === 'password';
+        regPassword.type = show ? 'text' : 'password';
+        btnToggleSignUpPwd.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
       });
     }
 
@@ -587,7 +705,11 @@ export class AppWorkspace {
     if (this.viewApp) {
       this.viewApp.style.display = 'flex';
       window.scrollTo(0, 0);
+      const token = localStorage.getItem('bispec_auth_token') || '';
+      const ribbon = document.getElementById('demoDataRibbon');
+      if (ribbon) ribbon.style.display = token.startsWith('demo_') ? 'inline-flex' : 'none';
       this.updateUserHeader();
+      this.loadLiveBenchmarks();
       this.switchAppTab(this.activeTab || 'home');
     }
   }
@@ -722,8 +844,8 @@ export class AppWorkspace {
       return;
     }
 
-    if (password.length < 6) {
-      this.showAuthFeedback('Password must be at least 6 characters long.', 'error');
+    if (password.length < 10) {
+      this.showAuthFeedback('Password must be at least 10 characters long (letters + number/symbol).', 'error');
       return;
     }
 
@@ -780,7 +902,7 @@ export class AppWorkspace {
 
     // Fetch real SQLite research history for this investigator from FastAPI
     try {
-      const res = await fetch(`/api/research-history?user_id=${userId}`);
+      const res = await this.apiFetch(`/api/research-history?user_id=${userId}`);
       if (res.ok) {
         const data = await res.json();
         if (data && Array.isArray(data.history) && data.history.length > 0) {
@@ -1210,7 +1332,7 @@ export class AppWorkspace {
 
     if (symA !== symB) {
       try {
-        const res = await fetch('/api/predict', {
+        const res = await this.apiFetch('/api/predict', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -1339,6 +1461,47 @@ export class AppWorkspace {
             </div>
           </div>
         </div>
+
+        <!-- Training-Set Honesty Banner (D4) -->
+        ${liveBackend && liveBackend.in_training_set ? `
+          <div style="margin-bottom: 14px; padding: 10px 14px; border-radius: 10px; background: var(--accent-soft); border: 1px solid var(--border-accent); color: var(--accent-ink); font-family: var(--font-mono); font-size: 0.74rem; display: flex; align-items: center; gap: 8px;">
+            <strong>IN TRAINING DATA:</strong>
+            <span>${liveBackend.training_set_notice || 'This pair is in the training set. Its score is not a prospective prediction.'}</span>
+          </div>
+        ` : ''}
+
+        <!-- Why This Score: XGBoost TreeSHAP Feature Drivers (D5) -->
+        ${liveBackend && liveBackend.feature_contributions && liveBackend.feature_contributions.available ? `
+          <div style="margin-bottom: 16px; padding: 14px 16px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;">
+              <span style="font-family:var(--font-mono);font-size:0.72rem;font-weight:700;color:var(--primary-dark);text-transform:uppercase;letter-spacing:0.08em;">Why This Score &bull; Per-Pair TreeSHAP Drivers</span>
+              <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--muted);">${liveBackend.feature_contributions.method || 'XGBoost TreeSHAP'}</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+              <div>
+                <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--primary-dark);margin-bottom:6px;font-weight:600;">TOP POSITIVE DRIVERS (+)</div>
+                ${(liveBackend.feature_contributions.positive_drivers || []).map((d) => `
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;margin-bottom:4px;border-radius:8px;background:var(--tint);font-size:0.75rem;color:var(--ink);">
+                    <span>${d.label}</span>
+                    <strong style="font-family:var(--font-mono);color:var(--primary-dark);">+${Number(d.contribution).toFixed(3)}</strong>
+                  </div>
+                `).join('') || '<div style="font-size:0.74rem;color:var(--muted);">No positive drivers</div>'}
+              </div>
+              <div>
+                <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-ink);margin-bottom:6px;font-weight:600;">TOP RISK / NEGATIVE DRIVERS (&minus;)</div>
+                ${(liveBackend.feature_contributions.negative_drivers || []).map((d) => `
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;margin-bottom:4px;border-radius:8px;background:var(--accent-soft);font-size:0.75rem;color:var(--ink);">
+                    <span>${d.label}</span>
+                    <strong style="font-family:var(--font-mono);color:var(--accent-ink);">${Number(d.contribution).toFixed(3)}</strong>
+                  </div>
+                `).join('') || '<div style="font-size:0.74rem;color:var(--muted);">No negative drivers</div>'}
+              </div>
+            </div>
+            <div style="margin-top:8px;font-family:var(--font-mono);font-size:0.68rem;color:var(--muted);">
+              ${liveBackend.disclaimer || 'Research use only. Predictions are hypotheses for laboratory validation, not clinical evidence.'}
+            </div>
+          </div>
+        ` : ''}
 
         <!-- Live Python 27-Feature Vector Inspector -->
         ${rawFeaturesHtml}
@@ -1491,7 +1654,7 @@ export class AppWorkspace {
     // Persist to SQLite users_history.db via /api/research-history if authenticated
     try {
       const token = localStorage.getItem('bispec_auth_token') || '';
-      await fetch('/api/research-history', {
+      await this.apiFetch('/api/research-history', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1512,7 +1675,7 @@ export class AppWorkspace {
     if (!container) return;
 
     try {
-      const res = await fetch('/api/rag/explain', {
+      const res = await this.apiFetch('/api/rag/explain', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1620,7 +1783,7 @@ export class AppWorkspace {
       }
 
       try {
-        const res = await fetch('/api/ask', {
+        const res = await this.apiFetch('/api/ask', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ question: q })
@@ -2030,7 +2193,7 @@ export class AppWorkspace {
       (p) => (p.targetA === targetA && p.targetB === targetB) || (p.targetA === targetB && p.targetB === targetA)
     );
     if (!exists) {
-      if (this.comparePairs.length >= 4) {
+      if (this.comparePairs.length >= 10) {
         this.comparePairs.shift();
       }
       this.comparePairs.push({ targetA, targetB, indication });
@@ -2602,7 +2765,7 @@ export class AppWorkspace {
       messages.scrollTop = messages.scrollHeight;
 
       try {
-        const res = await fetch('/api/ask', {
+        const res = await this.apiFetch('/api/ask', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ question: q })

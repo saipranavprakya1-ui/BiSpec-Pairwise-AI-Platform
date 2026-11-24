@@ -7,11 +7,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="BiSpec AI" />
-    <title>BiSpec — Next-Generation Bispecific Oncology Biotherapeutics</title>
+    <title>BiSpec Pairwise AI — Risk-Aware Bispecific Antibody Target Discovery</title>
     <meta
       name="description"
-      content="BiSpec is an AI-guided oncology discovery platform engineering next-generation bispecific antibodies targeting two synergistic antigens simultaneously."
+      content="BiSpec Pairwise AI is a research platform that ranks bispecific antibody target pairs using single-cell lung-tumor expression data, safety signals, and pairwise XGBoost."
     />
+    <meta property="og:title" content="BiSpec Pairwise AI — Risk-Aware Target Synergy Scoring" />
+    <meta property="og:description" content="Rank bispecific antibody target pairs across 193 profiled genes, 27 order-invariant features, and 791 clinical drug records. Research use only." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230A74DA'/%3E%3Cpath d='M18 18 L32 34 L46 18 M32 34 L32 50' stroke='%23FFFFFF' stroke-width='6' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='18' cy='18' r='5' fill='%23DCEEFF'/%3E%3Ccircle cx='46' cy='18' r='5' fill='%23FF8A6B'/%3E%3C/svg%3E" />
 
     <!-- Google Fonts: Plus Jakarta Sans, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,27 +59,30 @@
 
         <!-- Center / Hero Content -->
         <div class="hero-body">
-          <span class="hero-badge" data-placeholder="program-code">Dual-target oncology biotherapeutics</span>
+          <span class="hero-badge" data-placeholder="program-code">BiSpec Pairwise AI &bull; Research Software</span>
           <!-- Exactly ONE h1 on the page -->
-          <h1 data-placeholder="hero-headline">Two targets. One molecule.</h1>
+          <h1 data-placeholder="hero-headline">Two targets. One molecule. A data-driven starting point.</h1>
           <p class="hero-tagline" data-placeholder="hero-tagline">
-            Engineering dual-antigen avidity to overcome mutational antigen escape and off-tumor toxicity in refractory solid tumors.
+            BiSpec Pairwise AI helps scientists decide which two targets are worth pairing in a bispecific antibody &mdash; ranking pairs with single-cell expression data, safety signals, and the history of <span data-meta="drugs_in_registry">791</span> bispecific records.
           </p>
           <div class="hero-cta-row">
             <button type="button" class="btn-hero-primary js-open-login">
-              <span>Launch Screening Studio</span>
+              <span>Sign in</span>
               <span aria-hidden="true">&rarr;</span>
             </button>
-            <a href="#problem" class="btn-hero-secondary">
-              <span>Explore Clinical Barrier</span>
-            </a>
+            <button type="button" class="btn-hero-secondary js-try-demo">
+              <span>Try the demo workspace</span>
+            </button>
           </div>
+          <p style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);">
+            Research use only. Predictions are hypotheses for laboratory validation, not clinical evidence.
+          </p>
         </div>
 
         <!-- Hero Bottom Bar -->
         <div class="hero-footer">
-          <span class="hero-status-tag" data-placeholder="hero-stage">Preclinical lead candidate</span>
-          <span class="hero-status-tag" data-placeholder="hero-modality">Asymmetric 1+1 IgG-like bispecific</span>
+          <span class="hero-status-tag" data-placeholder="hero-stage"><span data-meta="candidate_pairs_label">18,528 unordered pairs across 193 genes</span></span>
+          <span class="hero-status-tag" data-placeholder="hero-modality"><span data-meta="engineered_features">27</span> order-invariant features &bull; <span data-meta="models_compared">9</span> models compared</span>
         </div>
       </section>
 
@@ -141,9 +149,11 @@
             </div>
           </div>
           <div class="footer-bottom">
-            <p>&copy; 2026 BiSpec Therapeutics Consortium. For investigational research use only.</p>
+            <p>BiSpec Pairwise AI is research software. Research use only; not medical advice. Data is encrypted in transit (HTTPS). Passwords are stored as salted hashes.</p>
             <div class="footer-legal">
-              <span class="status-pill status-active">System Operational</span>
+              <button type="button" class="btn-text-link js-open-methods">Methods &amp; Validation</button>
+              <a href="/api/model-card" download="BiSpec-Pairwise-AI-Model-Card.md" class="btn-text-link">Model Card</a>
+              <span class="status-pill status-active js-live-health-badge" title="Live /api/health check">Checking status...</span>
               <a href="#hero" class="back-to-top" aria-label="Back to top of overview">&uarr; Back to Top</a>
             </div>
           </div>
@@ -190,11 +200,11 @@
         <!-- Center Headline & Subcopy -->
         <div class="login-left-hero">
           <h2 class="login-hero-headline">
-            Predictive Druggability.<br />
-            Zero-Risk Target Synergy.
+            Risk-aware target<br />
+            synergy scoring.
           </h2>
           <p class="login-hero-subcopy">
-            Narrowing 24,753 dual-protein combinations with biophysical validation and dynamic Nemotron RAG intelligence.
+            Every score ships with safety signals and uncertainty across <span data-meta="candidate_pairs_label">18,528 unordered pairs across 193 genes</span>.
           </p>
         </div>
 
@@ -206,18 +216,18 @@
           </div>
           <span class="lm-sep">&bull;</span>
           <div class="login-metric-col">
-            <span class="lm-num">24,753</span>
-            <span class="lm-label">Candidate Pairs</span>
+            <span class="lm-num" data-meta="candidate_pairs_scored">18,528</span>
+            <span class="lm-label">Unordered Pairs (193 Genes)</span>
           </div>
           <span class="lm-sep">&bull;</span>
           <div class="login-metric-col">
-            <span class="lm-num">40</span>
-            <span class="lm-label">Engineered Biological Features</span>
+            <span class="lm-num" data-meta="engineered_features">27</span>
+            <span class="lm-label">Engineered Pair Features</span>
           </div>
           <span class="lm-sep">&bull;</span>
           <div class="login-metric-col">
-            <span class="lm-num">791</span>
-            <span class="lm-label">Trial Benchmarks</span>
+            <span class="lm-num" data-meta="drugs_in_registry">791</span>
+            <span class="lm-label">Bispecific Drug Records</span>
           </div>
         </div>
       </div>
@@ -253,7 +263,7 @@
                 id="portalEmail"
                 class="auth-input"
                 placeholder="name@institution.org or username"
-                value="elena.rostova@genebiotech.com"
+                value=""
                 autocomplete="username"
                 required
               />
@@ -261,10 +271,7 @@
 
             <div class="auth-field">
               <div class="auth-label-row">
-                <label for="portalToken" class="auth-label">Passkey / Password</label>
-                <button type="button" class="auth-forgot-link" id="btnResetDemoPass" title="Reset to default demo password (Password123!)">
-                  Forgot?
-                </button>
+                <label for="portalToken" class="auth-label">Password</label>
               </div>
               <div class="auth-password-wrap">
                 <input
@@ -272,11 +279,11 @@
                   id="portalToken"
                   class="auth-input"
                   placeholder="Enter your password"
-                  value="Password123!"
+                  value=""
                   autocomplete="current-password"
                   required
                 />
-                <button type="button" class="btn-toggle-pwd" id="btnToggleSignInPwd" aria-label="Toggle password visibility">
+                <button type="button" class="btn-toggle-pwd" id="btnToggleSignInPwd" aria-label="Show password">
                   &#128065;
                 </button>
               </div>
@@ -374,77 +381,47 @@
           <div class="quick-demo-box">
             <div class="quick-demo-header">
               <span class="quick-bolt">&#9889;</span>
-              <span>Quick Launch Live Demo Profiles</span>
+              <span>Sample Research Workspace (Read-Only)</span>
             </div>
-            <div class="quick-demo-pills">
-              <button
-                type="button"
-                class="demo-pill active js-persona-select"
-                data-user-id="1"
-                data-name="Dr. Elena Rostova, PhD"
-                data-role="Lead Computational Biologist"
-                data-org="Genentech Oncology R&amp;D"
-                data-email="elena.rostova@genebiotech.com"
-                data-initials="ER"
-              >
-                <span>Clinical Lead (Dr. Rostova)</span>
-                <span class="pill-caret">&#9662;</span>
-              </button>
-
+            <button type="button" id="btnTryDemoWorkspace" class="wb-btn-secondary js-try-demo" style="width: 100%; justify-content: center; padding: 10px 14px; margin-bottom: 10px;">
+              Try the demo workspace (sample data) &rarr;
+            </button>
+            <div class="quick-demo-pills" style="opacity: 0.9;">
               <button
                 type="button"
                 class="demo-pill js-persona-select"
-                data-user-id="2"
-                data-name="Dr. Marcus Vance, MD, PhD"
-                data-role="Director of Immuno-Oncology"
-                data-org="Memorial Sloan Kettering Cancer Center"
-                data-email="marcus.vance@mskcc-immuno.org"
-                data-initials="MV"
+                data-user-id="1"
+                data-name="Demo Researcher"
+                data-role="Lead Computational Biologist"
+                data-org="Northwind Bio"
+                data-email="elena.rostova@genebiotech.com"
+                data-initials="NB"
               >
-                <span>Research Lead (Dr. Vance)</span>
-                <span class="pill-caret">&#9662;</span>
+                <span>Northwind Bio (Sample)</span>
               </button>
-
               <button
                 type="button"
                 class="demo-pill js-persona-select"
                 data-user-id="3"
-                data-name="Dr. Priya Ramanathan, PhD"
+                data-name="Demo Translational Lead"
                 data-role="Translational Medicine Director"
-                data-org="AstraZeneca Biologics Engineering"
+                data-org="Helix Oncology Lab"
                 data-email="priya.ramanathan@astrazeneca-rd.com"
-                data-initials="PR"
+                data-initials="HO"
               >
-                <span>AstraZeneca Dossier</span>
-                <span class="pill-caret">&#9662;</span>
+                <span>Helix Oncology Lab (Sample)</span>
               </button>
-
               <button
                 type="button"
                 class="demo-pill js-persona-select"
                 data-user-id="4"
-                data-name="Dr. Arthur Chen, PhD"
-                data-role="Principal Scientist — Structural Biology"
-                data-org="Dana-Farber Cancer Institute"
+                data-name="Demo Structural Scientist"
+                data-role="Principal Scientist"
+                data-org="Meridian Research Institute"
                 data-email="arthur.chen@dana-farber.harvard.edu"
-                data-initials="AC"
+                data-initials="MR"
               >
-                <span>Dana-Farber (Dr. Chen)</span>
-                <span class="pill-caret">&#9662;</span>
-              </button>
-
-              <button
-                type="button"
-                class="demo-pill js-persona-select"
-                data-user-id="5"
-                data-name="Dr. Sarah Jenkins, PhD"
-                data-role="Senior Bioinformatician"
-                data-org="Amgen Synthetic Biology Hub"
-                data-email="sarah.jenkins@amgen-discovery.com"
-                data-initials="SJ"
-              >
-                <span>Amgen BiTE Hub</span>
-                <span class="pill-caret">&#9662;</span>
+                <span>Meridian Research Institute</span>
               </button>
             </div>
           </div>
@@ -452,7 +429,7 @@
 
         <!-- Bottom Compliance Footer -->
         <div class="login-right-compliance">
-          SOC 2 Type II Compliant &bull; PBKDF2-SHA256 SQLite Auth &bull; End-to-End Encrypted
+          Data is encrypted in transit (HTTPS). Passwords are stored as salted hashes. &bull; Research use only.
         </div>
       </div>
     </div>
@@ -502,19 +479,24 @@
           <button type="button" class="wb-nav-btn app-nav-tab" data-tab="models" role="tab" aria-selected="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
             <span class="wb-nav-label">Model Arena</span>
-            <span class="wb-nav-badge">6</span>
+            <span class="wb-nav-badge" data-meta="models_compared">9</span>
           </button>
 
           <button type="button" class="wb-nav-btn app-nav-tab" data-tab="registry" role="tab" aria-selected="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
             <span class="wb-nav-label">Clinical Registry</span>
-            <span class="wb-nav-badge">791</span>
+            <span class="wb-nav-badge" data-meta="drugs_in_registry">791</span>
           </button>
 
           <button type="button" class="wb-nav-btn app-nav-tab" data-tab="research" role="tab" aria-selected="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             <span class="wb-nav-label">My Research</span>
             <span class="wb-nav-badge" id="navHistoryBadge">3</span>
+          </button>
+
+          <button type="button" class="wb-nav-btn js-open-methods">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span class="wb-nav-label">Methods &amp; Validation</span>
           </button>
         </nav>
 
@@ -561,6 +543,7 @@
             <span class="wb-breadcrumb-root">BiSpec Suite</span>
             <span class="wb-breadcrumb-sep">/</span>
             <span class="wb-topbar-title" id="wbTopbarTitle">Command Center</span>
+            <span id="demoDataRibbon" style="display: none; margin-left: 10px; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); border: 1px solid var(--border-accent); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;">DEMO DATA (READ-ONLY)</span>
           </div>
 
           <!-- Global Instant Search (Targets & Clinical Drugs) -->

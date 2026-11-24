@@ -14,9 +14,20 @@ import secrets
 from typing import Dict, Any, List, Optional
 from datetime import datetime
 
-# Path to SQLite database
+# Path to SQLite database (configurable via DB_PATH env var for persistent disks)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_PATH = os.path.join(BASE_DIR, "users_history.db")
+DB_PATH = os.environ.get("DB_PATH") or os.path.join(BASE_DIR, "users_history.db")
+os.makedirs(os.path.dirname(os.path.abspath(DB_PATH)), exist_ok=True)
+
+# Local list of common / breached passwords blocked on signup
+COMMON_BREACHED_PASSWORDS = {
+    "password", "password123", "password123!", "1234567890", "qwerty1234",
+    "letmein123", "admin12345", "welcome123", "iloveyou12", "monkey1234",
+    "dragon1234", "football12", "baseball12", "abc1234567", "trustno123",
+    "sunshine12", "master1234", "shadow1234", "ashley1234", "bailey1234",
+    "passw0rd12", "superman12", "qazwsx1234", "michael123", "1111111111",
+    "0000000000", "123456789a", "qwertyuiop", "bispec1234", "research12",
+}
 
 # Simple in-memory token storage (token -> user_id)
 ACTIVE_TOKENS: Dict[str, Dict[str, Any]] = {}
@@ -106,6 +117,27 @@ def init_db():
         notes TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )
+    """)
+
+    # Create copilot_audit_logs table (prompts & responses, no PHI)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS copilot_audit_logs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        prompt TEXT NOT NULL,
+        response_preview TEXT,
+        sources_count INTEGER DEFAULT 0,
+        refused INTEGER DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+    """)
+
+    # Create health_check_probe table for /api/health write+read verification
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS health_check_probe (
+        id INTEGER PRIMARY KEY CHECK (id = 1),
+        checked_at TEXT NOT NULL
     )
     """)
     conn.commit()
@@ -628,6 +660,78 @@ def delete_research_screening(screening_id: int, user_id: int) -> bool:
     conn.commit()
     conn.close()
     return affected > 0
+
+
+def validate_password_strength(password: str) -> Optional[str]:
+    """Enforce >=10 chars, <=128 chars, and reject common/breached passwords."""
+    if not password or len(password) < 10:
+        return "Password must be at least 10 characters long."
+    if len(password) > 128:
+        return "Password must be 128 characters or fewer."
+    if password.strip().lower() in COMMON_BREACHED_PASSWORDS:
+        return "This password appears on a list of commonly breached passwords. Please choose a stronger passphrase."
+    has_letter = any(c.isalpha() for c in password)
+    has_digit_or_sym = any(c.isdigit() or not c.isalnum() for c in password)
+    if not (has_letter and has_digit_or_sym):
+        return "Password must include letters and at least one number or symbol."
+    return None
+
+
+def db_health_check() -> bool:
+    """Prove SQLite write + read works end-to-end."""
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        ts = datetime.utcnow().isoformat()
+        cur.execute(
+            "INSERT INTO health_check_probe (id, checked_at) VALUES (1, ?) "
+            "ON CONFLICT(id) DO UPDATE SET checked_at = excluded.checked_at",
+            (ts,),
+        )
+        conn.commit()
+        cur.execute("SELECT checked_at FROM health_check_probe WHERE id = 1")
+        row = cur.fetchone()
+        conn.close()
+        return bool(row and row["checked_at"] == ts)
+    except Exception:
+        return False
+
+
+def log_copilot_audit(user_id: Optional[int], prompt: str, response_text: str, sources_count: int = 0, refused: bool = False):
+    """Audit log Copilot prompts and responses (no personal health data)."""
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute(
+            "INSERT INTO copilot_audit_logs (user_id, prompt, response_preview, sources_count, refused) VALUES (?, ?, ?, ?, ?)",
+            (user_id, (prompt or "")[:1000], (response_text or "")[:1500], int(sources_count), 1 if refused else 0),
+        )
+        conn.commit()
+        conn.close()
+    except Exception:
+        pass
+
+
+def create_demo_session() -> Dict[str, Any]:
+    """Create a read-only demo workspace session backed by sample data."""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT id, username, email, full_name, role, organization, avatar_color FROM users ORDER BY id ASC LIMIT 1")
+    row = cur.fetchone()
+    if not row:
+        conn.close()
+        raise RuntimeError("No demo user available in database.")
+    user = dict(row)
+    user["is_demo"] = True
+    user["organization"] = "Northwind Bio (Sample Data)"
+    user["full_name"] = "Demo Researcher"
+    user["role"] = "Read-Only Demo Workspace"
+    token = "demo_" + secrets.token_urlsafe(32)
+    cur.execute("INSERT INTO user_sessions (token, user_id) VALUES (?, ?)", (token, user["id"]))
+    conn.commit()
+    conn.close()
+    ACTIVE_TOKENS[token] = user
+    return {"token": token, "user": user}
 
 
 # Initialize database upon import
