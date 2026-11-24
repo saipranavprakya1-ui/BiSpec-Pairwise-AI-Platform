@@ -1,0 +1,34 @@
+# Secrets & Local Environment (NEVER COMMIT)
+.env
+*.local
+
+# Dependencies & Build Outputs
+node_modules/
+dist/
+.vite/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Giant Raw GEO Downloads (>100MB GitHub limit — processed data is in DATA/)
+DATA/RAW DATA/
+
+# Local Runtime Databases & Logs
+users_history.db
+users_history.db-journal
+*.log
+
+# IDE, OS & Large Non-Source Archives
+.vscode/
+.vscode.zip
+.DS_Store
+Thumbs.db
+
+# Unrelated / Scratch / Non-Prototype Files
+FrameDemo.java
+Untitled-1.java
+unslop/
+skills/
+base papers/
+*.pptx
