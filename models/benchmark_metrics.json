@@ -1,0 +1,190 @@
+{
+  "dataset_records": 791,
+  "test_records": 155,
+  "models": [
+    {
+      "model_name": "Clinical Safe Ensemble",
+      "description": "Soft-voting clinical consensus (Monotonic HistGBDT + Tuned GBDT + Safety ExtraTrees + XGBoost)",
+      "roc_auc": 0.9506,
+      "pr_auc": 0.8682,
+      "cv_roc_auc": 0.9554,
+      "cv_pr_auc": 0.8844,
+      "accuracy": 0.8968,
+      "precision": 0.8214,
+      "recall": 0.8846,
+      "specificity": 0.9029,
+      "f1_score": 0.8519,
+      "confusion_matrix": {
+        "tp": 46,
+        "fp": 10,
+        "tn": 93,
+        "fn": 6
+      },
+      "is_champion": true
+    },
+    {
+      "model_name": "HistGBDT (Monotonic Safe)",
+      "description": "LightGBM-class histogram boosting with hard biological toxicity monotonic guardrails",
+      "roc_auc": 0.9489,
+      "pr_auc": 0.8668,
+      "cv_roc_auc": 0.9498,
+      "cv_pr_auc": 0.8678,
+      "accuracy": 0.9032,
+      "precision": 0.8246,
+      "recall": 0.9038,
+      "specificity": 0.9029,
+      "f1_score": 0.8624,
+      "confusion_matrix": {
+        "tp": 47,
+        "fp": 10,
+        "tn": 93,
+        "fn": 5
+      },
+      "is_champion": false
+    },
+    {
+      "model_name": "ExtraTrees (Safety-First)",
+      "description": "Class-balanced randomized forest maximizing clinical specificity against discontinued pairs",
+      "roc_auc": 0.9338,
+      "pr_auc": 0.8559,
+      "cv_roc_auc": 0.9208,
+      "cv_pr_auc": 0.8424,
+      "accuracy": 0.8774,
+      "precision": 0.8,
+      "recall": 0.8462,
+      "specificity": 0.8932,
+      "f1_score": 0.8224,
+      "confusion_matrix": {
+        "tp": 44,
+        "fp": 11,
+        "tn": 92,
+        "fn": 8
+      },
+      "is_champion": false
+    },
+    {
+      "model_name": "XGBoost + Pairwise AI",
+      "description": "Extreme Gradient Boosting with regularized objective & pairwise optimization",
+      "roc_auc": 0.9461,
+      "pr_auc": 0.8601,
+      "cv_roc_auc": 0.9522,
+      "cv_pr_auc": 0.8698,
+      "accuracy": 0.8903,
+      "precision": 0.807,
+      "recall": 0.8846,
+      "specificity": 0.8932,
+      "f1_score": 0.844,
+      "confusion_matrix": {
+        "tp": 46,
+        "fp": 11,
+        "tn": 92,
+        "fn": 6
+      },
+      "is_champion": false
+    },
+    {
+      "model_name": "GBDT",
+      "description": "Regularized Gradient Boosted Decision Trees minimizing pseudo-residuals",
+      "roc_auc": 0.9497,
+      "pr_auc": 0.8742,
+      "cv_roc_auc": 0.9536,
+      "cv_pr_auc": 0.8721,
+      "accuracy": 0.9032,
+      "precision": 0.8246,
+      "recall": 0.9038,
+      "specificity": 0.9029,
+      "f1_score": 0.8624,
+      "confusion_matrix": {
+        "tp": 47,
+        "fp": 10,
+        "tn": 93,
+        "fn": 5
+      },
+      "is_champion": false
+    },
+    {
+      "model_name": "Random Forest",
+      "description": "Bagging ensemble of decorrelated decision trees",
+      "roc_auc": 0.9487,
+      "pr_auc": 0.8601,
+      "cv_roc_auc": 0.9561,
+      "cv_pr_auc": 0.879,
+      "accuracy": 0.8903,
+      "precision": 0.807,
+      "recall": 0.8846,
+      "specificity": 0.8932,
+      "f1_score": 0.844,
+      "confusion_matrix": {
+        "tp": 46,
+        "fp": 11,
+        "tn": 92,
+        "fn": 6
+      },
+      "is_champion": false
+    },
+    {
+      "model_name": "Decision Tree",
+      "description": "Non-linear hierarchical rule-based partitioner",
+      "roc_auc": 0.9423,
+      "pr_auc": 0.865,
+      "cv_roc_auc": 0.9202,
+      "cv_pr_auc": 0.7977,
+      "accuracy": 0.9097,
+      "precision": 0.8065,
+      "recall": 0.9615,
+      "specificity": 0.8835,
+      "f1_score": 0.8772,
+      "confusion_matrix": {
+        "tp": 50,
+        "fp": 12,
+        "tn": 91,
+        "fn": 2
+      },
+      "is_champion": false
+    },
+    {
+      "model_name": "Logistic Regression",
+      "description": "Linear baseline using log-odds optimization",
+      "roc_auc": 0.8832,
+      "pr_auc": 0.7761,
+      "cv_roc_auc": 0.8511,
+      "cv_pr_auc": 0.7656,
+      "accuracy": 0.8452,
+      "precision": 0.8043,
+      "recall": 0.7115,
+      "specificity": 0.9126,
+      "f1_score": 0.7551,
+      "confusion_matrix": {
+        "tp": 37,
+        "fp": 9,
+        "tn": 94,
+        "fn": 15
+      },
+      "is_champion": false
+    },
+    {
+      "model_name": "DNN (MLP)",
+      "description": "Multi-Layer Perceptron neural network with backpropagation",
+      "roc_auc": 0.8996,
+      "pr_auc": 0.8534,
+      "cv_roc_auc": 0.8978,
+      "cv_pr_auc": 0.837,
+      "accuracy": 0.8516,
+      "precision": 0.8372,
+      "recall": 0.6923,
+      "specificity": 0.932,
+      "f1_score": 0.7579,
+      "confusion_matrix": {
+        "tp": 36,
+        "fp": 7,
+        "tn": 96,
+        "fn": 16
+      },
+      "is_champion": false
+    }
+  ],
+  "metric_explanation": {
+    "title": "Why ROC-AUC and PR-AUC Are the Definitive Metrics in Target Discovery",
+    "summary": "In biomedical pairwise screening and oncology drug discovery, datasets suffer from severe class imbalance. A naive baseline that blindly predicts all pairs as active achieves high nominal accuracy while failing to distinguish true synergistic drugs from unviable candidates. ROC-AUC measures the ranking probability: the likelihood that the model assigns a higher compatibility score to an active pair than a discontinued/failed pair across all decision thresholds. PR-AUC (Precision-Recall Area) measures positive class precision without being inflated by true negatives, making it the most critical indicator for clinical pipeline selection."
+  }
+}
