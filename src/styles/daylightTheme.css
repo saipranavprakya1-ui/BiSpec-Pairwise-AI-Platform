@@ -1,0 +1,1126 @@
+/* ==========================================================================
+   BiSpec AI — "Sky & Coral" Light Theme (100% Token-Pure)
+   Zero hard-coded color literals; all values derive from tokens.css.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. GLOBAL BASE, TYPOGRAPHY, SCROLLBARS, FOCUS & SCROLL-PROGRESS BAR
+   -------------------------------------------------------------------------- */
+html {
+  color-scheme: light;
+}
+
+html,
+body {
+  background-color: var(--bg) !important;
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1.3px) !important;
+  background-size: 26px 26px !important;
+  color: var(--ink) !important;
+  font-family: var(--font-sans) !important;
+}
+
+h1, h2, h3, h4,
+.section-heading,
+.wb-panel-header h1,
+.wb-panel-header h2,
+.wb-section-title,
+.stage-name,
+#loginPortalHeading {
+  font-family: var(--font-heading) !important;
+  color: var(--ink) !important;
+}
+
+.section-label,
+.wb-nav-section-label,
+.wb-card-kicker,
+.stage-index,
+.milestones-label,
+.rag-item-label,
+.wb-kpi-label,
+.kpi-label,
+.meb-label,
+th {
+  font-family: var(--font-mono) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.section-label,
+.wb-card-kicker {
+  font-size: 12px;
+  color: var(--accent-ink) !important;
+}
+
+*:focus-visible {
+  outline: var(--focus) !important;
+  outline-offset: 3px !important;
+}
+
+::selection {
+  background: var(--tint);
+  color: var(--ink);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: var(--radius-pill);
+}
+
+/* Top Scroll-Progress Bar (--primary to --accent) */
+.sky-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  z-index: 9999;
+  pointer-events: none;
+  transition: width 80ms linear;
+}
+
+/* --------------------------------------------------------------------------
+   1. PAGE 1: ABOUT & SCIENCE LANDING (#view-about) + HERO VIDEO
+   -------------------------------------------------------------------------- */
+#view-about {
+  background: transparent !important;
+  color: var(--ink) !important;
+}
+
+#stage {
+  opacity: 1 !important;
+  filter: none !important;
+  z-index: 0 !important;
+  background: var(--bg) !important;
+}
+
+#stage .hero-cinema-video {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+#stage .hero-video-vignette {
+  background:
+    linear-gradient(90deg, var(--scrim-light) 0%, var(--scrim-mid) 42%, var(--scrim-soft) 72%, transparent 100%),
+    linear-gradient(180deg, var(--scrim-soft) 0%, transparent 25%, transparent 78%, var(--bg) 100%) !important;
+}
+
+#stage .hero-video-hud {
+  background: var(--surface-glass) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--ink) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+#stage .hud-pulse-dot {
+  background: var(--accent) !important;
+}
+
+#view-about .hero {
+  background: transparent !important;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink) !important;
+}
+
+#view-about .hero-header {
+  background: var(--surface-glass) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-card);
+  margin: 16px auto 0;
+  max-width: 1200px;
+  padding: 12px 24px !important;
+  box-shadow: var(--shadow-sm);
+}
+
+#view-about .hero-logo,
+#view-about .footer-logo,
+#view-about .hero h1 {
+  color: var(--ink) !important;
+}
+
+#view-about .hero-logo-dot {
+  color: var(--primary) !important;
+}
+
+#view-about .hero-nav a,
+#view-about .hero-tagline,
+#view-about .problem-card-desc,
+#view-about .site-footer {
+  color: var(--muted) !important;
+}
+
+#view-about .hero-nav a:hover,
+#view-about .footer-links a,
+#view-about .btn-text-link,
+#view-about .back-to-top {
+  color: var(--primary) !important;
+}
+
+#view-about .hero-badge,
+#view-about .hero-status-tag {
+  background: var(--surface) !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-pill) !important;
+}
+
+#view-about #main-content,
+#view-about .section-pad {
+  background-color: var(--bg) !important;
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1.3px) !important;
+  background-size: 26px 26px !important;
+  position: relative;
+  z-index: 2;
+}
+
+#view-about .card,
+#view-about .editorial-quote,
+#view-about .site-footer {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow) !important;
+  color: var(--ink) !important;
+}
+
+#view-about .site-footer {
+  border-radius: 0 !important;
+}
+
+#view-about .problem-card-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--tint) !important;
+  color: var(--primary-dark) !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 700 !important;
+}
+
+#view-about .editorial-quote {
+  border-left: 4px solid var(--accent) !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. PAGE 2: LOGIN / AUTH PORTAL (#view-login)
+   -------------------------------------------------------------------------- */
+#view-login.login-split-screen {
+  background-color: var(--bg) !important;
+  background-image:
+    radial-gradient(520px circle at 16% 18%, var(--blob-sky), transparent 58%),
+    radial-gradient(520px circle at 84% 82%, var(--blob-coral), transparent 58%),
+    radial-gradient(var(--grid-dot) 1px, transparent 1.3px) !important;
+  background-size: 100% 100%, 100% 100%, 26px 26px !important;
+  color: var(--ink) !important;
+}
+
+.login-split-left {
+  background: linear-gradient(135deg, var(--tint) 0%, var(--bg) 55%, var(--accent-soft) 100%) !important;
+  border-right: 1px solid var(--border) !important;
+  color: var(--ink) !important;
+}
+
+.login-left-scrim {
+  background: linear-gradient(180deg, var(--scrim-light) 0%, var(--scrim-mid) 50%, var(--scrim-light) 100%) !important;
+}
+
+.login-left-top,
+.login-left-bottom,
+.login-serif-brand,
+.login-engine-status,
+.login-metric-val,
+.login-metric-lbl,
+.login-showcase-headline,
+.login-showcase-sub {
+  color: var(--ink) !important;
+}
+
+.login-metric-lbl,
+.login-showcase-sub {
+  color: var(--muted) !important;
+}
+
+.login-metric-val {
+  color: var(--primary-dark) !important;
+  font-family: var(--font-mono) !important;
+}
+
+.login-version-pill {
+  background: var(--tint) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--primary) !important;
+  border-radius: var(--radius-pill) !important;
+}
+
+.login-engine-status .engine-dot {
+  background: var(--accent) !important;
+}
+
+.login-split-right {
+  background: transparent !important;
+  color: var(--ink) !important;
+}
+
+.login-auth-box,
+.login-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-panel) !important;
+  box-shadow: var(--shadow) !important;
+  color: var(--ink) !important;
+}
+
+#loginPortalHeading {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  color: var(--ink) !important;
+}
+
+#loginPortalSub,
+.login-auth-box p,
+.auth-field label,
+.login-compliance-note,
+.auth-divider {
+  color: var(--muted) !important;
+}
+
+.auth-mode-tabs {
+  background: var(--tint) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-ctrl) !important;
+  padding: 4px !important;
+}
+
+.auth-mode-tab {
+  color: var(--ink) !important;
+  background: transparent !important;
+  border-radius: 9px !important;
+  font-weight: 600 !important;
+}
+
+.auth-mode-tab.active {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+.auth-quick-launch,
+.demo-profiles-panel,
+.persona-grid-wrap {
+  background: var(--tint) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-card) !important;
+  color: var(--ink) !important;
+}
+
+.persona-card,
+.js-persona-select {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-ctrl) !important;
+  color: var(--ink) !important;
+}
+
+.persona-card:hover,
+.js-persona-select:hover,
+.persona-card.active,
+.js-persona-select.active {
+  border-color: var(--primary) !important;
+  background: var(--surface) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.btn-split-close {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-pill) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.btn-split-close:hover {
+  background: var(--tint) !important;
+  color: var(--primary) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. APP SHELL: SIDEBAR & TOPBAR (#view-app)
+   -------------------------------------------------------------------------- */
+.app-workspace-layout {
+  background-color: var(--bg) !important;
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1.3px) !important;
+  background-size: 26px 26px !important;
+  color: var(--ink) !important;
+}
+
+.wb-sidebar {
+  background: var(--surface) !important;
+  border-right: 1px solid var(--border) !important;
+  box-shadow: var(--shadow) !important;
+  color: var(--ink) !important;
+}
+
+.wb-sidebar-brand,
+.wb-sidebar-footer {
+  border-color: var(--border) !important;
+}
+
+.wb-brand-logo {
+  font-family: var(--font-heading) !important;
+  font-style: normal !important;
+  font-weight: 800 !important;
+  color: var(--ink) !important;
+}
+
+.wb-brand-pill {
+  background: var(--tint) !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-pill) !important;
+  font-family: var(--font-mono) !important;
+}
+
+.wb-nav-section-label {
+  font-size: 11px !important;
+  color: var(--muted) !important;
+  opacity: 1 !important;
+}
+
+.wb-nav-item {
+  color: var(--ink) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: var(--radius-ctrl) !important;
+  border: 1px solid transparent !important;
+  position: relative;
+}
+
+.wb-nav-item svg {
+  color: var(--muted) !important;
+}
+
+.wb-nav-item:hover {
+  background: var(--tint) !important;
+  color: var(--ink) !important;
+}
+
+.wb-nav-item.active {
+  background: var(--tint) !important;
+  color: var(--primary-dark) !important;
+  font-weight: 600 !important;
+  border-left: 4px solid var(--accent) !important;
+}
+
+.wb-nav-item.active svg {
+  color: var(--primary) !important;
+}
+
+.wb-nav-badge {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border: none !important;
+  border-radius: var(--radius-pill) !important;
+  font-family: var(--font-mono) !important;
+}
+
+/* Sidebar Status Card (XGBOOST + NEMOTRON ONLINE) */
+.wb-sidebar-status,
+.wb-engine-card,
+.sidebar-status-card {
+  background: var(--tint) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-ctrl) !important;
+  color: var(--ink) !important;
+}
+
+.wb-sidebar-status strong,
+.wb-engine-card strong {
+  color: var(--primary-dark) !important;
+  font-family: var(--font-mono) !important;
+}
+
+.wb-sidebar-status .pulse-dot,
+.wb-engine-card .pulse-dot,
+.status-dot-live {
+  background: var(--accent) !important;
+}
+
+.wb-user-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-ctrl) !important;
+  color: var(--ink) !important;
+}
+
+.wb-user-avatar {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+.wb-user-name {
+  color: var(--ink) !important;
+}
+
+.wb-user-role {
+  color: var(--muted) !important;
+}
+
+/* Topbar */
+.wb-topbar {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-sm) !important;
+  color: var(--ink) !important;
+}
+
+.wb-topbar-title,
+#wbTopbarTitle {
+  color: var(--ink) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+}
+
+.wb-mobile-menu-btn {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-ctrl) !important;
+}
+
+.wb-mobile-menu-btn:hover {
+  background: var(--tint) !important;
+  color: var(--primary) !important;
+}
+
+.wb-global-search,
+#wbGlobalSearch {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-ctrl) !important;
+}
+
+.wb-search-kbd,
+kbd {
+  background: var(--tint) !important;
+  color: var(--primary-dark) !important;
+  border: 1px solid var(--border) !important;
+  font-family: var(--font-mono) !important;
+}
+
+.wb-search-dropdown {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-radius: var(--radius-ctrl) !important;
+  color: var(--ink) !important;
+}
+
+.wb-search-item {
+  color: var(--ink) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.wb-search-item:hover {
+  background: var(--tint) !important;
+}
+
+.wb-topbar-pill {
+  background: var(--tint) !important;
+  color: var(--primary-dark) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-pill) !important;
+  font-family: var(--font-mono) !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. BUTTONS (PRIMARY SHINE SWEEP, HIGHLIGHT, OUTLINE, GHOST)
+   -------------------------------------------------------------------------- */
+.wb-btn-primary,
+.btn-primary,
+.btn-hero-primary,
+.btn-login-header,
+.btn-auth-submit,
+#btnRunScreening,
+#btnAddComparePair,
+#loginSubmitBtn,
+#registerSubmitBtn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+  color: var(--white) !important;
+  border: none !important;
+  border-radius: var(--radius-pill) !important;
+  font-weight: 600 !important;
+  box-shadow: var(--shadow-btn) !important;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-short) var(--ease-standard), box-shadow var(--duration-short) var(--ease-standard) !important;
+}
+
+.wb-btn-primary::after,
+.btn-primary::after,
+.btn-hero-primary::after,
+#btnRunScreening::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(110deg, transparent, var(--surface-glass), transparent);
+  opacity: 0.25;
+  transition: left 480ms var(--ease-standard);
+  pointer-events: none;
+}
+
+.wb-btn-primary:hover::after,
+.btn-primary:hover::after,
+.btn-hero-primary:hover::after,
+#btnRunScreening:hover::after {
+  left: 140%;
+}
+
+.wb-btn-primary:hover,
+.btn-primary:hover,
+.btn-hero-primary:hover,
+.btn-login-header:hover,
+.btn-auth-submit:hover,
+#btnRunScreening:hover,
+#btnAddComparePair:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.wb-btn-secondary,
+.btn-secondary,
+.btn-hero-secondary,
+#btnSwapTargets {
+  background: var(--surface) !important;
+  color: var(--primary) !important;
+  border: 1.5px solid var(--primary) !important;
+  border-radius: var(--radius-pill) !important;
+  font-weight: 600 !important;
+}
+
+.wb-btn-secondary:hover,
+.btn-secondary:hover,
+.btn-hero-secondary:hover,
+#btnSwapTargets:hover {
+  background: var(--tint) !important;
+  color: var(--primary-dark) !important;
+}
+
+.wb-btn-ghost,
+.wb-signout-btn,
+.js-sign-out,
+#btnAddCurrentToCompare,
+#btnExportCompareCsv,
+#btnToggleCurveType {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-ctrl) !important;
+  font-weight: 500 !important;
+}
+
+.wb-btn-ghost:hover,
+.wb-signout-btn:hover,
+.js-sign-out:hover,
+#btnAddCurrentToCompare:hover,
+#btnExportCompareCsv:hover {
+  background: var(--tint) !important;
+  color: var(--primary) !important;
+  border-color: var(--border-strong) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. INPUTS, SELECTS, TEXTAREAS & RANGE SLIDERS
+   -------------------------------------------------------------------------- */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='search'],
+input[type='number'],
+select,
+textarea,
+.studio-select,
+.wb-select,
+.wb-input,
+.auth-input-wrap input {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-ctrl) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted) !important;
+  opacity: 1 !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--primary-soft) !important;
+}
+
+select option {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+}
+
+input[type='range'] {
+  accent-color: var(--primary);
+  background: var(--tint) !important;
+  border-radius: var(--radius-pill);
+}
+
+/* --------------------------------------------------------------------------
+   6. CARDS, SUB-PANELS, KPIs, CORAL SPOTLIGHT HOVER & PAGE-SPECIFIC RULES
+   -------------------------------------------------------------------------- */
+.home-welcome-banner,
+.home-hero-card,
+.wb-hero-banner {
+  background: linear-gradient(135deg, var(--tint) 0%, var(--surface) 78%) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow) !important;
+  color: var(--ink) !important;
+}
+
+#homeWelcomeName {
+  color: var(--primary) !important;
+}
+
+.wb-card,
+.wb-bento-card,
+.wb-kpi-card,
+.kpi-card,
+.studio-card,
+.studio-controls-card,
+.studio-verdict-card,
+.verdict-hero-card,
+.model-card,
+.model-selector-card,
+.model-inspector-card,
+.compare-card,
+.compare-radar-card,
+.registry-card,
+.history-card,
+.rag-brief-card,
+.rag-panel,
+.stage-card-body,
+.mechanism-interactive-card,
+.results-card,
+.results-chart-card,
+.results-metric-card,
+.benchmark-card,
+.base-paper-card,
+.priority-lead-row,
+.roc-legend-box {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow) !important;
+  color: var(--ink) !important;
+  transition: transform var(--duration-medium) var(--ease-standard), border-color var(--duration-short) var(--ease-standard), box-shadow var(--duration-medium) var(--ease-standard);
+}
+
+.wb-card:hover,
+.wb-kpi-card:hover,
+.model-selector-card:hover,
+.stage-card-body:hover,
+.compare-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong) !important;
+  background-image: radial-gradient(320px circle at var(--spot-x, 85%) var(--spot-y, 15%), var(--accent-glow), transparent 65%) !important;
+}
+
+.model-selector-card.active,
+tr.champion-row,
+tr.active-model-row {
+  background: var(--tint) !important;
+  border: 2px solid var(--primary) !important;
+  color: var(--primary-dark) !important;
+}
+
+/* Inner Sub-Panels & Metric Rows */
+.rag-grid-item,
+.rag-quadrant,
+.inspector-target-box,
+.meb-box,
+.quorum-model-chip,
+.feature-bar-row,
+.compare-metric-row,
+.stat-mini-tile {
+  background: var(--tint-50) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-ctrl) !important;
+  color: var(--ink) !important;
+}
+
+/* Fab-Arm Cards (Arm 1 Blue, Arm 2 Coral) */
+.fab-arm-card-a,
+.target-arm-a-card,
+#inspectorTargetA {
+  background: var(--surface) !important;
+  border: 2px solid var(--primary) !important;
+  border-radius: var(--radius-card) !important;
+  color: var(--ink) !important;
+}
+
+.fab-arm-card-b,
+.target-arm-b-card,
+#inspectorTargetB {
+  background: var(--surface) !important;
+  border: 2px solid var(--accent) !important;
+  border-radius: var(--radius-card) !important;
+  color: var(--ink) !important;
+}
+
+/* Pair Comparison Candidate Cards (3px Top Borders) */
+.compare-card:nth-child(1) {
+  border-top: 3px solid var(--primary) !important;
+}
+.compare-card:nth-child(2) {
+  border-top: 3px solid var(--accent) !important;
+}
+.compare-card:nth-child(3) {
+  border-top: 3px solid var(--primary-dark) !important;
+}
+
+/* KPI Numbers & Stat Tiles */
+.wb-kpi-value,
+.kpi-value,
+.results-big-num,
+.meb-val,
+.score-ring-number,
+.cm-val {
+  font-family: var(--font-mono) !important;
+  font-weight: 700 !important;
+  color: var(--primary) !important;
+}
+
+/* Confusion Matrix Tiles */
+.cm-cell-tp,
+.cm-cell-tn {
+  background: var(--tint) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--primary-dark) !important;
+}
+.cm-cell-tp *,
+.cm-cell-tn * {
+  color: var(--primary-dark) !important;
+}
+
+.cm-cell-fp,
+.cm-cell-fn {
+  background: var(--accent-soft) !important;
+  border: 1px solid var(--border-accent) !important;
+  color: var(--accent-ink) !important;
+}
+.cm-cell-fp *,
+.cm-cell-fn * {
+  color: var(--accent-ink) !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. BADGES, PILLS, CHIPS & INSTANT-SCREEN CHIPS
+   -------------------------------------------------------------------------- */
+.instant-screen-pill,
+.quick-pair-chip,
+.radar-legend-pill,
+.copilot-suggest-chip {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-pill) !important;
+}
+
+.instant-screen-pill:hover,
+.quick-pair-chip:hover,
+.copilot-suggest-chip:hover {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-color: var(--primary) !important;
+}
+
+.status-pill.status-completed,
+.tier-badge-1,
+.badge-approved,
+.stage-timeline-badge {
+  background: var(--tint) !important;
+  color: var(--primary-dark) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-pill) !important;
+  font-family: var(--font-mono) !important;
+}
+
+.status-pill.status-active,
+.tier-badge-2,
+.badge-base-paper,
+.badge-champion {
+  background: var(--accent-soft) !important;
+  color: var(--accent-ink) !important;
+  border: 1px solid var(--border-accent) !important;
+  border-radius: var(--radius-pill) !important;
+  font-family: var(--font-mono) !important;
+}
+
+.status-pill.status-planned,
+.phase-filter-pill {
+  background: var(--bg) !important;
+  color: var(--muted) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-pill) !important;
+}
+
+.phase-filter-pill.active {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-color: var(--primary) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. TABLES, PROGRESS BARS, ROC ANIMATION & PAGINATION BAR
+   -------------------------------------------------------------------------- */
+table {
+  color: var(--ink) !important;
+  background: var(--surface) !important;
+}
+
+table thead th {
+  background: var(--tint) !important;
+  color: var(--muted) !important;
+  font-size: 11px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+table tbody tr {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+table tbody tr:hover {
+  background: var(--tint) !important;
+}
+
+table tbody td {
+  color: var(--ink) !important;
+  font-size: 14px;
+}
+
+.registry-pagination-bar,
+.wb-table-footer {
+  background: var(--surface) !important;
+  border-top: 1px solid var(--border) !important;
+  color: var(--ink) !important;
+}
+
+.feature-bar-track,
+.feat-bar-track,
+.progress-track {
+  background: var(--tint) !important;
+  border-radius: var(--radius-pill) !important;
+  height: 8px;
+}
+
+.feature-bar-fill,
+.feat-bar-fill,
+.progress-fill {
+  background: linear-gradient(90deg, var(--primary), var(--accent)) !important;
+  border-radius: var(--radius-pill) !important;
+  transition: width 700ms var(--ease-standard);
+}
+
+/* ROC Line Stroke-Dash Draw Animation (2.2s ease-out) */
+.roc-curve-path {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 0;
+  animation: rocDrawIn 2.2s ease-out both;
+}
+
+@keyframes rocDrawIn {
+  from {
+    stroke-dashoffset: 1200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Evolution Timeline Rail (--primary turning --accent) */
+.timeline-rail {
+  background: var(--tint) !important;
+}
+
+.timeline-rail-progress {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 72%, var(--accent) 100%) !important;
+}
+
+.node-circle.status-completed {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-color: var(--primary) !important;
+}
+
+.node-circle.status-active {
+  background: var(--surface) !important;
+  border: 3px solid var(--accent) !important;
+}
+
+.pulse-active-dot {
+  background: var(--accent) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. AI COPILOT FAB, DRAWER, COMMAND PALETTE & DOSSIER MODAL
+   -------------------------------------------------------------------------- */
+#btnOpenCopilot,
+.copilot-fab {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+  color: var(--white) !important;
+  border: 2px solid var(--surface) !important;
+  box-shadow: var(--shadow-btn) !important;
+}
+
+#copilotDrawer,
+.copilot-drawer,
+.cmd-palette-modal,
+.dossier-modal {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-lg) !important;
+  color: var(--ink) !important;
+}
+
+.copilot-header {
+  background: var(--tint) !important;
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--ink) !important;
+}
+
+.copilot-msg-ai {
+  background: var(--bg) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.copilot-msg-user {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+#cmdPaletteOverlay,
+#dossierModalOverlay {
+  background: var(--scrim-backdrop) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9B. SCREENING PAIR STUDIO — TOP HORIZONTAL SELECTOR DECK + FULL-WIDTH RESULTS
+   -------------------------------------------------------------------------- */
+.studio-workbench-grid.studio-stacked-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  grid-template-columns: 1fr !important;
+}
+
+.studio-config-deck {
+  padding: 20px 22px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.studio-arms-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+
+@media (min-width: 960px) {
+  .studio-arms-row {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+.studio-arms-row .studio-arm-block {
+  margin-bottom: 0 !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.studio-arms-row .studio-swap-row {
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studio-arms-row .btn-swap-arms {
+  white-space: nowrap;
+  padding: 10px 16px !important;
+}
+
+.studio-controls-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  align-items: end;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 960px) {
+  .studio-controls-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  }
+}
+
+.studio-run-btn {
+  height: 44px;
+  padding: 0 24px !important;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#screeningResultBox {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   10. REDUCED MOTION COMPLIANCE
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .roc-curve-path,
+  .wb-card,
+  .wb-btn-primary::after,
+  .sky-scroll-progress {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

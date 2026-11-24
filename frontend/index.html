@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiSpec Pairwise AI | Enterprise Target Combination Platform</title>
+
+  <!-- Typography: Plus Jakarta Sans & JetBrains Mono (Minimalist Biotech SaaS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Interactive Chart.js Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Clinical Biotech Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%231E5631%22><path d=%22M8 2h8v6h6v8h-6v6H8v-6H2V8h6V2z%22/></svg>">
+
+  <!-- Enterprise Minimalist Biotech Stylesheet -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="biotech-app">
+
+  <!-- =========================================================================
+       DEDICATED ENTERPRISE RESEARCHER LOGIN PORTAL (Appears First)
+       ========================================================================= -->
+  <div id="loginPortalView" class="login-portal-screen" style="display: flex;">
+    <div class="login-portal-container">
+      <div class="login-portal-card">
+        
+        <!-- Brand Header -->
+        <div class="login-brand-header">
+          <div class="brand-icon-lg">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 2h8v6h6v8h-6v6H8v-6H2V8h6V2z" fill="#1E5631" stroke="#ffffff" stroke-width="1.5"/>
+              <path d="M12 6v12M6 12h12" stroke="#ffffff" stroke-width="2.5" stroke-linecap="square"/>
+            </svg>
+          </div>
+          <div>
+            <div class="login-brand-title">
+              <span class="brand-name-lg">BiSpec Pairwise AI</span>
+              <span class="badge-enterprise">Enterprise</span>
+            </div>
+            <p class="login-brand-sub">Computational Target Combination Platform &bull; Oncology Biologics</p>
+          </div>
+        </div>
+
+        <div class="login-intro">
+          <h2 class="login-heading">Researcher Authentication</h2>
+          <p class="login-sub">Sign in with your verified institutional identity to access account-scoped target screenings, XGBoost pairwise inference, and dual-target comparative dossiers.</p>
+        </div>
+
+        <!-- 1-Click Fast Demo Login Switcher -->
+        <div class="demo-profiles-box">
+          <div class="demo-box-label">
+            <span>⚡ INSTANT ACCESS &bull; SELECT A PRE-SEEDED RESEARCHER</span>
+          </div>
+          <div class="demo-profiles-list">
+            <button type="button" class="demo-profile-item" onclick="loginAsDemoUser(1)">
+              <div class="demo-profile-left">
+                <span class="demo-avatar-circle" style="background:#1E5631;">ER</span>
+                <div>
+                  <div class="demo-profile-name">Dr. Elena Rostova, PhD</div>
+                  <div class="demo-profile-org">Lead Computational Biologist &bull; Genentech R&amp;D</div>
+                </div>
+              </div>
+              <div class="demo-profile-right">
+                <span class="demo-history-pill">13 Screenings</span>
+                <span class="demo-arrow">&rarr;</span>
+              </div>
+            </button>
+
+            <button type="button" class="demo-profile-item" onclick="loginAsDemoUser(2)">
+              <div class="demo-profile-left">
+                <span class="demo-avatar-circle" style="background:#3B82F6;">MV</span>
+                <div>
+                  <div class="demo-profile-name">Dr. Marcus Vance, MD, PhD</div>
+                  <div class="demo-profile-org">Director of Immuno-Oncology &bull; MSKCC</div>
+                </div>
+              </div>
+              <div class="demo-profile-right">
+                <span class="demo-history-pill">4 Screenings</span>
+                <span class="demo-arrow">&rarr;</span>
+              </div>
+            </button>
+
+            <button type="button" class="demo-profile-item" onclick="loginAsDemoUser(3)">
+              <div class="demo-profile-left">
+                <span class="demo-avatar-circle" style="background:#8B5CF6;">PR</span>
+                <div>
+                  <div class="demo-profile-name">Dr. Priya Ramanathan, PhD</div>
+                  <div class="demo-profile-org">Translational Medicine &bull; AstraZeneca</div>
+                </div>
+              </div>
+              <div class="demo-profile-right">
+                <span class="demo-history-pill">3 Screenings</span>
+                <span class="demo-arrow">&rarr;</span>
+              </div>
+            </button>
+
+            <button type="button" class="demo-profile-item" onclick="loginAsDemoUser(4)">
+              <div class="demo-profile-left">
+                <span class="demo-avatar-circle" style="background:#D97706;">AC</span>
+                <div>
+                  <div class="demo-profile-name">Dr. Arthur Chen, PhD</div>
+                  <div class="demo-profile-org">Principal Scientist &bull; Dana-Farber</div>
+                </div>
+              </div>
+              <div class="demo-profile-right">
+                <span class="demo-history-pill">3 Screenings</span>
+                <span class="demo-arrow">&rarr;</span>
+              </div>
+            </button>
+
+            <button type="button" class="demo-profile-item" onclick="loginAsDemoUser(5)">
+              <div class="demo-profile-left">
+                <span class="demo-avatar-circle" style="background:#EC4899;">SJ</span>
+                <div>
+                  <div class="demo-profile-name">Dr. Sarah Jenkins, PhD</div>
+                  <div class="demo-profile-org">Senior Bioinformatician &bull; Amgen Discovery</div>
+                </div>
+              </div>
+              <div class="demo-profile-right">
+                <span class="demo-history-pill">3 Screenings</span>
+                <span class="demo-arrow">&rarr;</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-or-divider">
+          <span>OR SIGN IN WITH WORK EMAIL</span>
+        </div>
+
+        <!-- Manual Credentials Form -->
+        <form id="portalLoginForm" onsubmit="event.preventDefault(); submitPortalLogin();" class="login-form-body">
+          <div id="portalLoginAlert" class="alert-banner-danger" style="display:none; margin-bottom:1rem; padding:0.6rem 0.9rem; font-size:0.8rem;"></div>
+
+          <div class="form-group-login">
+            <label for="portalEmail" class="form-label-login">Institutional Work Email</label>
+            <input type="email" id="portalEmail" class="form-input-login" required value="elena.rostova@genebiotech.com" placeholder="researcher@institution.org">
+          </div>
+
+          <div class="form-group-login">
+            <label for="portalPassword" class="form-label-login">Security Token / Password</label>
+            <input type="password" id="portalPassword" class="form-input-login" required value="Password123!" placeholder="••••••••••••">
+          </div>
+
+          <button type="submit" id="btnSubmitPortalLogin" class="btn-login-cta">
+            <span id="portalLoginBtnText">Sign In to Platform</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+
+        <div class="login-footer-trust">
+          <span>🔒 PBKDF2-HMAC-SHA256 Encrypted</span>
+          <span>&bull;</span>
+          <span>Local SQLite Audit Trail</span>
+          <span>&bull;</span>
+          <span>SOC2 Type II Protected</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SCROLL-SYNCED AMBIENT VIDEO BACKDROP
+       Cross-fades across video_1.mp4, video_2.mp4, video_3.mp4, video_4.mp4
+       ========================================================================= -->
+  <div id="ambientVideoContainer" class="ambient-video-container" aria-hidden="true" style="display: none;">
+    <video id="bgVideo1" class="ambient-video-layer active" src="/video_1.mp4" autoplay muted loop playsinline></video>
+    <video id="bgVideo2" class="ambient-video-layer" src="/video_2.mp4" autoplay muted loop playsinline></video>
+    <video id="bgVideo3" class="ambient-video-layer" src="/video_3.mp4" autoplay muted loop playsinline></video>
+    <video id="bgVideo4" class="ambient-video-layer" src="/video_4.mp4" autoplay muted loop playsinline></video>
+    <div class="ambient-video-overlay"></div>
+  </div>
+
+  <!-- =========================================================================
+       GLOBAL FROSTED-GLASS NAVIGATION HEADER
+       ========================================================================= -->
+  <header id="appHeader" class="top-navbar frosted-header" style="display: none;">
+    <div class="brand-section">
+      <div class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 2h8v6h6v8h-6v6H8v-6H2V8h6V2z" fill="#1E5631" stroke="#ffffff" stroke-width="1.5"/>
+          <path d="M12 6v12M6 12h12" stroke="#ffffff" stroke-width="2.5" stroke-linecap="square"/>
+        </svg>
+      </div>
+      <div class="brand-titles">
+        <div class="brand-headline">
+          <span class="brand-name">BiSpec Pairwise AI</span>
+          <span class="brand-badge-enterprise">Enterprise</span>
+        </div>
+        <p class="brand-sub">Computational Target Combination Platform</p>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tab-group" role="tablist">
+      <button class="nav-tab active" data-tab="tab-home" onclick="switchNavTab('tab-home')" role="tab" aria-selected="true">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </button>
+      <button class="nav-tab" data-tab="tab-screening" onclick="switchNavTab('tab-screening')" role="tab" aria-selected="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5s-2.5-1.1-2.5-2.5V2"/><path d="M8.5 2h7"/></svg>
+        Screening Studio
+      </button>
+      <button class="nav-tab" data-tab="tab-compare" onclick="switchNavTab('tab-compare')" role="tab" aria-selected="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/><path d="m10 9 4 3-4 3"/></svg>
+        Pair Comparison
+      </button>
+      <button class="nav-tab" data-tab="tab-benchmark" onclick="switchNavTab('tab-benchmark')" role="tab" aria-selected="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        Model Architecture
+      </button>
+      <button class="nav-tab" data-tab="tab-registry" onclick="switchNavTab('tab-registry')" role="tab" aria-selected="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>
+        Clinical Registry
+      </button>
+      <button class="nav-tab" data-tab="tab-rag" onclick="switchNavTab('tab-rag')" role="tab" aria-selected="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        RAG Assistant
+      </button>
+    </nav>
+
+    <!-- Header Actions & Account Status -->
+    <div class="nav-indicators">
+      <!-- Quick Export Dossier Button -->
+      <button type="button" id="btnExportHeaderReport" class="btn-header-action" title="Export Full Screening Dossier (PDF/Print)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Export Report</span>
+      </button>
+
+      <!-- My Research Drawer Trigger -->
+      <button type="button" id="btnOpenResearchDrawer" class="btn-header-action research-badge-btn" title="Open My Previous Research History">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>My Research</span>
+        <span id="researchHistoryHeaderCount" class="count-pill">13</span>
+      </button>
+
+      <!-- Researcher User Avatar & Profile Dropdown -->
+      <div id="userProfileSection" class="user-profile-trigger">
+        <button type="button" id="btnUserMenu" class="user-avatar-btn" title="Researcher Profile" onclick="toggleUserProfileDropdown(event)">
+          <span id="userAvatarCircle" class="avatar-circle">ER</span>
+          <div class="user-meta-text">
+            <span id="userDisplayName" class="user-name">Dr. Elena Rostova</span>
+            <span id="userDisplayRole" class="user-role">Lead Computational Biologist</span>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div id="userProfileDropdown" class="user-dropdown-card" style="display:none;">
+          <div class="dropdown-user-header">
+            <div id="dropdownAvatar" class="avatar-circle-sm">ER</div>
+            <div>
+              <div id="dropdownName" class="dropdown-user-name">Dr. Elena Rostova, PhD</div>
+              <div id="dropdownEmail" class="dropdown-user-email">elena.rostova@genebiotech.com</div>
+              <div id="dropdownOrg" class="dropdown-user-org">Genentech Oncology R&amp;D</div>
+            </div>
+          </div>
+          <div class="dropdown-sep"></div>
+          <button type="button" class="dropdown-link" onclick="openResearchDrawer(); closeUserProfileDropdown();">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>My Research Screening History</span>
+          </button>
+          <div class="dropdown-sep"></div>
+          <button type="button" class="dropdown-link danger" onclick="signOutResearcher()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Sign Out / Switch Researcher</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Server QR Code Modal Button -->
+      <button type="button" id="btnOpenQrModal" class="indicator-pill qr-pill" title="Access via Mobile / QR Code">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>QR Mobile</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN APPLICATION WORKSPACE
+       ========================================================================= -->
+  <main id="mainAppWorkspace" class="main-wrapper" style="display: none;">
+
+    <!-- Bold Error Alert Banner (Matte Red) -->
+    <div id="dangerAlertBanner" class="alert-banner-danger" style="display:none;">
+      <span id="dangerAlertText"></span>
+    </div>
+
+    <!-- Hidden elements for backward-compatible JS references -->
+    <span id="statChampionAuc" style="display:none;">0.8701</span>
+    <span id="statTotalDrugs" style="display:none;">791</span>
+
+    <!-- =========================================================================
+         TAB 0: INTERACTIVE HOME PAGE WITH SCROLL-SYNCED VIDEO BACKGROUND
+         ========================================================================= -->
+    <section id="tab-home" class="tab-content-panel active home-scroll-container">
+
+      <!-- Section 1: Hero & Project Motive (Video 1 Synced) -->
+      <article id="section-hero" class="home-scroll-section" data-video-index="1">
+        <div class="hero-content-card">
+          <div class="hero-eyebrow">
+            <span>BIOPHARMACEUTICAL DISCOVERY PLATFORM</span>
+          </div>
+          <h1 class="hero-headline">
+            Pairwise AI for Predictive Combinatorial Target Prioritization
+          </h1>
+          <p class="hero-subtext">
+            Monovalent antibody therapeutics frequently face acquired resistance, pathway escape, and off-target systemic toxicities. 
+            <strong>BiSpec Pairwise AI</strong> applies gradient-boosted decision trees over 40 biological cross-talk interaction features 
+            to screen 197 human oncogenic antigens—delivering high-avidity, synergistic bispecific candidates for preclinical oncology pipelines.
+          </p>
+
+          <!-- Core Metric Badges (Flat, Solid White with #E2E8F0 Borders) -->
+          <div class="hero-metrics-grid">
+            <div class="hero-metric-card">
+              <div class="hero-metric-header">Champion PR-AUC</div>
+              <div class="hero-metric-val highlight-metric">0.8701</div>
+              <div class="hero-metric-sub">XGBoost Pairwise AI</div>
+            </div>
+            <div class="hero-metric-card">
+              <div class="hero-metric-header">Clinical Drug Records</div>
+              <div class="hero-metric-val">791</div>
+              <div class="hero-metric-sub">Approved &amp; Investigational</div>
+            </div>
+            <div class="hero-metric-card">
+              <div class="hero-metric-header">Human Target Genes</div>
+              <div class="hero-metric-val">197</div>
+              <div class="hero-metric-sub">Curated Oncology Antigens</div>
+            </div>
+            <div class="hero-metric-card">
+              <div class="hero-metric-header">Biological Features</div>
+              <div class="hero-metric-val">40</div>
+              <div class="hero-metric-sub">Cross-Talk Interaction Vectors</div>
+            </div>
+          </div>
+
+          <!-- Hero Action CTAs -->
+          <div class="hero-cta-group">
+            <button type="button" class="btn-hero-primary" onclick="switchNavTab('tab-screening')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5s-2.5-1.1-2.5-2.5V2"/><path d="M8.5 2h7"/></svg>
+              <span>Launch Screening Studio</span>
+            </button>
+            <button type="button" class="btn-hero-secondary" onclick="switchNavTab('tab-compare')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/><path d="m10 9 4 3-4 3"/></svg>
+              <span>Side-by-Side Pair Comparison</span>
+            </button>
+            <button type="button" class="btn-hero-ghost" onclick="switchNavTab('tab-benchmark')">
+              <span>Explore Model Benchmarks &rarr;</span>
+            </button>
+          </div>
+
+          <div class="scroll-down-hint">
+            <span>Scroll to explore biological foundations</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 2: Interactive Biology 101 Cards (Video 2 Synced) -->
+      <article id="section-biology-101" class="home-scroll-section" data-video-index="2">
+        <div class="section-content-wrapper">
+          <div class="section-header-pill">BIOLOGICAL PRIMER</div>
+          <h2 class="section-title">Foundations of Bispecific Dual-Targeting</h2>
+          <p class="section-lead">
+            Click on any card below to open an interactive deep dive into bispecific antibody engineering, target biology, and synthetic lethality.
+          </p>
+
+          <div class="biology-cards-grid">
+            <!-- Card 1: Antibody -->
+            <div class="bio-primer-card" onclick="openBioModal('antibody')">
+              <div class="bio-primer-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5631" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <span class="bio-primer-tag">Molecular Scaffold</span>
+              <h3>1. What is an Antibody?</h3>
+              <p>Y-shaped immunoglobulin proteins (IgG) composed of two Fab binding arms and an Fc crystallizable effector stem orchestrating immune responses.</p>
+              <div class="bio-primer-footer">
+                <span>Explore Structure &bull; Fab &bull; Fc</span>
+                <span class="arrow">&rarr;</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Antigen -->
+            <div class="bio-primer-card" onclick="openBioModal('antigen')">
+              <div class="bio-primer-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 14.14 14.14M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+              </div>
+              <span class="bio-primer-tag">Receptor Target</span>
+              <h3>2. What is an Antigen?</h3>
+              <p>Cell surface biomarkers (e.g. EGFR, MET, CD3E, PD-L1) presenting specific epitopes recognized by paratopes to trigger inhibitory or lytic cascades.</p>
+              <div class="bio-primer-footer">
+                <span>Explore Epitopes &bull; Lineage Targets</span>
+                <span class="arrow">&rarr;</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Bispecific Mechanism -->
+            <div class="bio-primer-card" onclick="openBioModal('bispecific')">
+              <div class="bio-primer-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 8.5 15.5 15.5M14 6h4v4M6 14v4h4"/></svg>
+              </div>
+              <span class="bio-primer-tag">Synthetic Construct</span>
+              <h3>3. How Bispecifics Work</h3>
+              <p>Engineered antibodies engineered with two distinct binding domains, creating obligate immunological synapses (BiTEs) or simultaneous dual RTK cross-linking.</p>
+              <div class="bio-primer-footer">
+                <span>Explore BiTEs &bull; Dual Kinase Blockade</span>
+                <span class="arrow">&rarr;</span>
+              </div>
+            </div>
+
+            <!-- Card 4: Synergy Rationale -->
+            <div class="bio-primer-card" onclick="openBioModal('synergy')">
+              <div class="bio-primer-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span class="bio-primer-tag">Pairwise Chemistry</span>
+              <h3>4. Dual-Target Synergy</h3>
+              <p>Why combining Target A + Target B outscores single-agent therapies: extinguishing compensatory bypass loops and achieving avidity-driven tumor selectivity.</p>
+              <div class="bio-primer-footer">
+                <span>Explore Resistance Suppression</span>
+                <span class="arrow">&rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 3: Platform Capabilities (Video 3 Synced) -->
+      <article id="section-capabilities" class="home-scroll-section" data-video-index="3">
+        <div class="section-content-wrapper">
+          <div class="section-header-pill">SUITE CAPABILITIES</div>
+          <h2 class="section-title">Architected for Translational Immuno-Oncology</h2>
+          <p class="section-lead">Explore the integrated tools designed to accelerate antibody design from exploratory screening to preclinical validation.</p>
+
+          <div class="capabilities-grid">
+            <div class="capability-box" onclick="switchNavTab('tab-screening')">
+              <div class="cap-header">
+                <span class="cap-badge">Inference Studio</span>
+                <span class="cap-action">&nearr;</span>
+              </div>
+              <h3>Pairwise Screening Studio</h3>
+              <p>Select any pair from 197 antigens. Compute cross-talk feature vectors, predict compatibility with XGBoost, and generate publication-grade biological MoA dossiers.</p>
+              <ul class="cap-features">
+                <li>Permutation invariant scoring: f(A, B) = f(B, A)</li>
+                <li>Instant 5-dimension synergy radar profiling</li>
+                <li>Automatic clinical precedent matching</li>
+              </ul>
+            </div>
+
+            <div class="capability-box" onclick="switchNavTab('tab-compare')">
+              <div class="cap-header">
+                <span class="cap-badge">Benchmarking Tool</span>
+                <span class="cap-action">&nearr;</span>
+              </div>
+              <h3>Side-by-Side Pair Comparison</h3>
+              <p>Directly benchmark 2 to 4 competitor constructs simultaneously across prediction scores, double-positive expression, safety indices, and trial status.</p>
+              <ul class="cap-features">
+                <li>Structured R&amp;D scannable matrix view</li>
+                <li>One-click CSV &amp; printable PDF export</li>
+                <li>Pre-configured competitor preset suites</li>
+              </ul>
+            </div>
+
+            <div class="capability-box" onclick="switchNavTab('tab-benchmark')">
+              <div class="cap-header">
+                <span class="cap-badge">ML Architecture</span>
+                <span class="cap-action">&nearr;</span>
+              </div>
+              <h3>Model Architecture &amp; Benchmark Hub</h3>
+              <p>Transparent benchmark evaluations across all 6 algorithms. Learn why XGBoost outscores Random Forest, GBDT, Decision Trees, and DNNs under severe clinical class imbalance.</p>
+              <ul class="cap-features">
+                <li>PR-AUC: 0.8701 vs ROC-AUC: 0.6550 rationale</li>
+                <li>Interactive ROC &amp; Precision-Recall curves</li>
+                <li>Top-20 Gini split feature importance rankings</li>
+              </ul>
+            </div>
+
+            <div class="capability-box" onclick="switchNavTab('tab-rag')">
+              <div class="cap-header">
+                <span class="cap-badge">NVIDIA NIM RAG</span>
+                <span class="cap-action">&nearr;</span>
+              </div>
+              <h3>RAG Biologist Assistant</h3>
+              <p>Query our grounded retrieval engine powered by NVIDIA Nemotron-3.5 embeddings and Mistral Large for deep biological inquiries strictly bounded to application evidence.</p>
+              <ul class="cap-features">
+                <li>Nemotron 8B vector embeddings in FAISS</li>
+                <li>Pre-loaded with 791 clinical records &amp; biology literature</li>
+                <li>REST API available at POST /ask</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 4: Clinical Impact Summary (Video 4 Synced) -->
+      <article id="section-impact" class="home-scroll-section" data-video-index="4">
+        <div class="section-content-wrapper">
+          <div class="section-header-pill">TRANSLATIONAL EVIDENCE</div>
+          <h2 class="section-title">791 Clinical Drug Precedents &amp; 4-Tier Prioritization</h2>
+          <p class="section-lead">Trained on real clinical records spanning FDA approved drugs to investigational pipeline constructs.</p>
+
+          <div class="impact-grid">
+            <div class="impact-card">
+              <h3>Four-Tier Clinical Decision Workflow</h3>
+              <div class="tier-explain-list">
+                <div class="tier-explain-item tier-1">
+                  <span class="badge-t1">&#9733; Tier 1 (&gt;90% Score)</span>
+                  <p>Exceptional synergy and verified immunological or RTK co-engagement. Top-priority candidates nominated directly for in vitro binding and cellular killing assays.</p>
+                </div>
+                <div class="tier-explain-item tier-2">
+                  <span class="badge-t2">Tier 2 (75%–90% Score)</span>
+                  <p>Strong biological compatibility. Solid candidates for translational lead optimization and tumor xenograft efficacy validation.</p>
+                </div>
+                <div class="tier-explain-item tier-3">
+                  <span class="badge-t3">Tier 3 (60%–75% Score)</span>
+                  <p>Moderate compatibility. Explores novel biology requiring secondary screening to rule out single-agent redundancies.</p>
+                </div>
+                <div class="tier-explain-item tier-review">
+                  <span class="badge-tr">&#9888; Need a Review Tier (&lt;60%)</span>
+                  <p>Elevated on-target / off-tumor toxicity risk or unfavorable molecular mass ratio. Detailed structural review needed.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="impact-card">
+              <h3>Validated Clinical Precedents in Dataset</h3>
+              <div class="precedent-table-preview">
+                <div class="precedent-row">
+                  <div>
+                    <strong>Amivantamab (Rybrevant)</strong>
+                    <span class="sub">EGFR &bull; MET</span>
+                  </div>
+                  <span class="pill-approved">FDA Approved (NSCLC)</span>
+                </div>
+                <div class="precedent-row">
+                  <div>
+                    <strong>Epcoritamab (Epkinly)</strong>
+                    <span class="sub">MS4A1 (CD20) &bull; CD3E</span>
+                  </div>
+                  <span class="pill-approved">FDA Approved (DLBCL)</span>
+                </div>
+                <div class="precedent-row">
+                  <div>
+                    <strong>Cadonilimab (AK104)</strong>
+                    <span class="sub">PDCD1 (PD-1) &bull; CTLA4</span>
+                  </div>
+                  <span class="pill-approved">Approved (Cervical / Gastric)</span>
+                </div>
+                <div class="precedent-row">
+                  <div>
+                    <strong>Faricimab (Vabysmo)</strong>
+                    <span class="sub">VEGFA &bull; ANGPT2</span>
+                  </div>
+                  <span class="pill-approved">Approved (Angiogenesis)</span>
+                </div>
+                <div class="precedent-row">
+                  <div>
+                    <strong>Emicizumab (Hemlibra)</strong>
+                    <span class="sub">F10 (Factor X) &bull; F9 (Factor IX)</span>
+                  </div>
+                  <span class="pill-approved">Approved (Cofactor Bridge)</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.5rem; text-align: center;">
+                <button type="button" class="btn-hero-primary" onclick="switchNavTab('tab-registry')" style="width: 100%;">
+                  <span>Browse All 791 Clinical Drug Records &rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+
+    <!-- =========================================================================
+         TAB 1: PAIRWISE SCREENING STUDIO (LAYOUT FIX: 28% Sidebar / 72% Upfront Report)
+         ========================================================================= -->
+    <section id="tab-screening" class="tab-content-panel">
+
+      <div class="studio-layout-grid">
+
+        <!-- =====================================================================
+             LEFT SIDEBAR (~28-30% Width): Compact Dual-Target Control Panel
+             ===================================================================== -->
+        <aside class="studio-controls-sidebar matte-card">
+          <div class="card-topbar">
+            <h2 class="card-heading">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/></svg>
+              Dual-Target Specification
+            </h2>
+            <span class="tag-invariant">INVARIANT</span>
+          </div>
+
+          <form id="pairwiseScreeningForm" onsubmit="event.preventDefault(); runPairwisePrediction();">
+            <!-- Target A Selection -->
+            <div class="form-group-compact">
+              <label for="selectTargetA" class="form-label-compact">
+                <span>Target Arm 1 (Primary Antigen)</span>
+              </label>
+              <select id="selectTargetA" class="form-select-compact" required>
+                <option value="">-- Choose Antigen 1 --</option>
+              </select>
+            </div>
+
+            <!-- Target B Selection -->
+            <div class="form-group-compact">
+              <label for="selectTargetB" class="form-label-compact">
+                <span>Target Arm 2 (Co-Target / Effector)</span>
+              </label>
+              <select id="selectTargetB" class="form-select-compact" required>
+                <option value="">-- Choose Antigen 2 --</option>
+              </select>
+            </div>
+
+            <!-- Tumor Indication -->
+            <div class="form-group-compact">
+              <label for="selectIndication" class="form-label-compact">Tumor Category / Indication</label>
+              <select id="selectIndication" class="form-select-compact">
+                <option value="Non-Small Cell Lung Cancer">Non-Small Cell Lung Cancer (NSCLC)</option>
+                <option value="Small Cell Lung Cancer">Small Cell Lung Cancer (SCLC)</option>
+                <option value="Colorectal Cancer">Colorectal Carcinoma</option>
+                <option value="B-Cell Lymphoma">B-Cell Lymphoma (DLBCL / FL)</option>
+                <option value="Gastric Cancer">Gastric &amp; GEJ Adenocarcinoma</option>
+                <option value="Breast Cancer">HER2+ / Triple-Negative Breast</option>
+                <option value="Acute Myeloid Leukemia">Acute Myeloid Leukemia (AML)</option>
+                <option value="Advanced Solid Tumors">Advanced Refractory Solid Tumors</option>
+              </select>
+            </div>
+
+            <!-- Inference Algorithm -->
+            <div class="form-group-compact">
+              <label for="selectModel" class="form-label-compact">Inference Algorithm</label>
+              <select id="selectModel" class="form-select-compact">
+                <option value="XGBoost + Pairwise AI" selected>XGBoost + Pairwise AI (Champion: 0.8701)</option>
+                <option value="Random Forest">Random Forest (PR-AUC: 0.8657)</option>
+                <option value="GBDT">GBDT (PR-AUC: 0.8628)</option>
+                <option value="Logistic Regression">Logistic Regression (PR-AUC: 0.8586)</option>
+                <option value="Decision Tree">Decision Tree (PR-AUC: 0.8470)</option>
+                <option value="DNN (MLP)">DNN / MLP Neural Net (PR-AUC: 0.7943)</option>
+              </select>
+            </div>
+
+            <!-- Sensitivity Cutoff Slider -->
+            <div class="form-group-compact">
+              <div class="slider-header-compact">
+                <label for="sliderCutoff" class="form-label-compact">Sensitivity Cutoff</label>
+                <span id="valCutoff" class="slider-val-badge">0.75</span>
+              </div>
+              <input type="range" id="sliderCutoff" min="0.50" max="0.95" step="0.01" value="0.75" class="form-range-compact">
+            </div>
+
+            <!-- Primary Inference Button -->
+            <button type="submit" id="btnPredict" class="btn-predict-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Run Pairwise Inference</span>
+            </button>
+          </form>
+
+          <!-- Quick Preset Chips -->
+          <div class="preset-chips-box">
+            <span class="preset-chips-title">High-Synergy Clinical Presets:</span>
+            <div class="preset-chips-list">
+              <button type="button" class="preset-chip" onclick="applyTargetPreset('EGFR', 'MET')">EGFR + MET</button>
+              <button type="button" class="preset-chip" onclick="applyTargetPreset('MS4A1', 'CD3E')">CD20 + CD3</button>
+              <button type="button" class="preset-chip" onclick="applyTargetPreset('PDCD1', 'CTLA4')">PD-1 + CTLA-4</button>
+              <button type="button" class="preset-chip" onclick="applyTargetPreset('CLDN18', 'CD3E')">CLDN18.2 + CD3</button>
+              <button type="button" class="preset-chip" onclick="applyTargetPreset('F10', 'F9')">F10 + Factor IX</button>
+              <button type="button" class="preset-chip" onclick="applyTargetPreset('VEGFA', 'ANGPT2')">VEGF + Ang2</button>
+            </div>
+          </div>
+
+          <!-- Target Biological Quick Summary -->
+          <div id="targetQuickDetails" class="target-quick-box">
+            <div class="quick-target-pane" id="paneTargetA">
+              <span class="quick-target-title">Target A Profile</span>
+              <div id="infoTargetA" class="quick-target-body">Select Target Arm 1 above</div>
+            </div>
+            <div class="quick-target-pane" id="paneTargetB">
+              <span class="quick-target-title">Target B Profile</span>
+              <div id="infoTargetB" class="quick-target-body">Select Target Arm 2 above</div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- =====================================================================
+             MAIN WORKSPACE (~70-72% Width): Upfront Score + Immediate Biological Report
+             ===================================================================== -->
+        <main class="studio-results-workspace">
+
+          <!-- Initial Empty Placeholder State -->
+          <div id="emptyScreeningPrompt" class="matte-card empty-state-box">
+            <div class="empty-icon-circle">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1E5631" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
+            </div>
+            <h3>Ready for Target Pair Prioritization</h3>
+            <p>Select Target Arm 1 and Target Arm 2 in the sidebar and click <strong>"Run Pairwise Inference"</strong> (or choose a verified clinical preset above) to compute 40-dimensional biological synergy scores and view the upfront Mechanism of Action report.</p>
+          </div>
+
+          <!-- Results Workspace Container (Shown after Inference) -->
+          <div id="predictionResultContainer" style="display: none;">
+
+            <!-- 1. Top Anchor: AI Score + Priority Tier Banner -->
+            <div class="score-anchor-card matte-card">
+              <div class="score-anchor-main">
+                <div class="score-display-block">
+                  <span class="score-eyebrow">PREDICTED COMPATIBILITY SCORE</span>
+                  <div class="score-number-group">
+                    <span id="displayScorePct" class="score-big-number">81.8%</span>
+                    <span id="displayTierBadge" class="tier-pill-large tier-2">Tier 2 (75%–90%)</span>
+                  </div>
+                </div>
+
+                <div class="score-meta-block">
+                  <div class="pair-headline">
+                    <span id="displayTargetPair" class="pair-genes">EGFR + MET</span>
+                    <span id="displayModel" class="model-badge">XGBoost + Pairwise AI</span>
+                  </div>
+                  <p id="clinicalVerdictText" class="clinical-verdict">
+                    Strong biological compatibility (75%-90%). Promising candidate for translational clinical pipeline.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="score-anchor-actions">
+                <button type="button" id="btnNominateClinicalTest" class="btn-action-primary" onclick="nominateCurrentPairToClinicalQueue()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                  <span>Add to Clinical Queue</span>
+                </button>
+                <button type="button" class="btn-action-secondary" onclick="addCurrentPairToComparison()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/><path d="m10 9 4 3-4 3"/></svg>
+                  <span>Compare with Others</span>
+                </button>
+                <button type="button" class="btn-action-ghost" onclick="printScreeningDossier()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                  <span>Print Dossier</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. UPFRONT BIOLOGICAL REPORT CONTAINER (Tabbed Directly Upfront) -->
+            <div class="upfront-report-card matte-card">
+              <div class="report-tabs-header">
+                <div class="report-header-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E5631" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  <span>Biological Mechanism of Action &amp; Clinical Dossier</span>
+                </div>
+
+                <div class="report-nav-pills" role="tablist">
+                  <button type="button" class="report-pill active" onclick="switchReportTab('moa')" id="tabBtnMoa">
+                    Mechanism &amp; Synergy
+                  </button>
+                  <button type="button" class="report-pill" onclick="switchReportTab('resistance')" id="tabBtnResistance">
+                    Resistance Blockade
+                  </button>
+                  <button type="button" class="report-pill" onclick="switchReportTab('safety')" id="tabBtnSafety">
+                    Safety &amp; Toxicity
+                  </button>
+                  <button type="button" class="report-pill" onclick="switchReportTab('protocol')" id="tabBtnProtocol">
+                    Preclinical Protocol
+                  </button>
+                </div>
+              </div>
+
+              <!-- Report Tab 1: Mechanism & Synergy -->
+              <div id="reportMoAPanel" class="report-tab-pane active">
+                <div id="reportMoA" class="bio-report-markdown">
+                  <div class="loading-report-spinner">Generating biological mechanism of action...</div>
+                </div>
+              </div>
+
+              <!-- Report Tab 2: Resistance Blockade -->
+              <div id="reportResistancePanel" class="report-tab-pane">
+                <div id="reportResistance" class="bio-report-markdown">
+                  <div class="loading-report-spinner">Analyzing resistance bypass pathways...</div>
+                </div>
+              </div>
+
+              <!-- Report Tab 3: Safety & Toxicity -->
+              <div id="reportSafetyPanel" class="report-tab-pane">
+                <div id="reportSafety" class="bio-report-markdown">
+                  <div class="loading-report-spinner">Assessing biodistribution and on-target toxicities...</div>
+                </div>
+              </div>
+
+              <!-- Report Tab 4: Preclinical Protocol -->
+              <div id="reportProtocolPanel" class="report-tab-pane">
+                <div id="reportOutlook" class="bio-report-markdown">
+                  <div class="loading-report-spinner">Drafting recommended 3-phase investigation protocol...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. COMPACT SUB-METRICS & RADAR CHART SECTION -->
+            <div class="submetrics-layout-grid">
+              <!-- Compact Radar Chart Card -->
+              <div class="matte-card radar-card-compact">
+                <h4 class="card-subtitle-compact">Synergy Geometry &bull; 5 Axes</h4>
+                <div class="radar-chart-container-compact">
+                  <canvas id="radarChart"></canvas>
+                </div>
+              </div>
+
+              <!-- 5 Dimension Synergy Progress Bars -->
+              <div class="matte-card dimensions-card-compact">
+                <h4 class="card-subtitle-compact">Biological Dimension Deconstruction</h4>
+
+                <div class="dimension-progress-row">
+                  <div class="dimension-meta">
+                    <span class="dim-name">Biological Synergy</span>
+                    <span id="valBioSynergy" class="dim-val">88.5%</span>
+                  </div>
+                  <div class="progress-track"><div id="barBioSynergy" class="progress-bar-fill emerald" style="width: 88.5%;"></div></div>
+                </div>
+
+                <div class="dimension-progress-row">
+                  <div class="dimension-meta">
+                    <span class="dim-name">Pathway Overlap Proxy</span>
+                    <span id="valPathwayOverlap" class="dim-val">76.0%</span>
+                  </div>
+                  <div class="progress-track"><div id="barPathwayOverlap" class="progress-bar-fill blue" style="width: 76.0%;"></div></div>
+                </div>
+
+                <div class="dimension-progress-row">
+                  <div class="dimension-meta">
+                    <span class="dim-name">Tumor Relevance Sum</span>
+                    <span id="valTumorRelevance" class="dim-val">90.0%</span>
+                  </div>
+                  <div class="progress-track"><div id="barTumorRelevance" class="progress-bar-fill purple" style="width: 90.0%;"></div></div>
+                </div>
+
+                <div class="dimension-progress-row">
+                  <div class="dimension-meta">
+                    <span class="dim-name">Safety &bull; Low Off-Target Risk</span>
+                    <span id="valSafetyProfile" class="dim-val">82.0%</span>
+                  </div>
+                  <div class="progress-track"><div id="barSafetyProfile" class="progress-bar-fill amber" style="width: 82.0%;"></div></div>
+                </div>
+
+                <div class="dimension-progress-row">
+                  <div class="dimension-meta">
+                    <span class="dim-name">Structural Molecular Mass Ratio</span>
+                    <span id="valStructuralFit" class="dim-val">74.2%</span>
+                  </div>
+                  <div class="progress-track"><div id="barStructuralFit" class="progress-bar-fill slate" style="width: 74.2%;"></div></div>
+                </div>
+              </div>
+
+              <!-- Matched Clinical Precedents Card -->
+              <div class="matte-card precedents-card-compact">
+                <h4 class="card-subtitle-compact">Clinical Trial Precedents (791 Records)</h4>
+                <div id="matchedDrugsList" class="matched-drugs-container-compact">
+                  <p class="text-muted-sm">Searching approved and investigational records...</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ===================================================================
+               PRECLINICAL CLINICAL TRIAL QUEUE TABLE
+               =================================================================== -->
+          <div class="matte-card clinical-queue-card" style="margin-top: 1.75rem;">
+            <div class="card-topbar">
+              <div>
+                <h3 class="card-heading">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  Clinical Trial Nomination Queue
+                </h3>
+                <p class="card-subhead">Prioritized candidate pairings queued for in vitro assay and animal pharmacology validation.</p>
+              </div>
+              <span id="queueCountBadge" class="tier-pill-count">5 Candidates</span>
+            </div>
+
+            <!-- Tier Filters -->
+            <div class="tier-filter-strip">
+              <button type="button" class="tier-filter-btn active" data-filter="all" onclick="filterClinicalQueue('all')">All Tiers</button>
+              <button type="button" class="tier-filter-btn" data-filter="Tier 1" onclick="filterClinicalQueue('Tier 1')">&#9733; Tier 1 (&gt;90%)</button>
+              <button type="button" class="tier-filter-btn" data-filter="Tier 2" onclick="filterClinicalQueue('Tier 2')">Tier 2 (75%–90%)</button>
+              <button type="button" class="tier-filter-btn" data-filter="Tier 3" onclick="filterClinicalQueue('Tier 3')">Tier 3 (60%–75%)</button>
+              <button type="button" class="tier-filter-btn" data-filter="Need a Review Tier" onclick="filterClinicalQueue('Need a Review Tier')">&#9888; Need a Review (&lt;60%)</button>
+            </div>
+
+            <!-- Table -->
+            <div class="benchmark-table-wrapper">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Target Combination</th>
+                    <th>Tumor Category</th>
+                    <th>AI Score</th>
+                    <th>Priority Tier</th>
+                    <th>Drug Precedents</th>
+                    <th>Preclinical Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="clinicalQueueTableBody">
+                  <!-- Populated from /api/clinical-tests -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================================
+         TAB 2: MAJOR FEATURE — SIDE-BY-SIDE PAIR COMPARISON (/compare)
+         ========================================================================= -->
+    <section id="tab-compare" class="tab-content-panel">
+
+      <div class="compare-header-box matte-card">
+        <div class="compare-title-meta">
+          <span class="section-header-pill">MAJOR FEATURE</span>
+          <h2 class="card-heading-large">Side-by-Side Target Pair Comparison Matrix</h2>
+          <p class="card-subhead">
+            Directly benchmark 2 to 4 candidate antibody target combinations side-by-side across algorithmic prediction scores, 
+            double-positive expression, safety indices, gene sequence homology, and clinical precedence.
+          </p>
+        </div>
+
+        <div class="compare-actions-strip">
+          <button type="button" id="btnExportCompareCsv" class="btn-action-primary" onclick="exportComparisonMatrixCsv()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Export Comparison (CSV)</span>
+          </button>
+          <button type="button" class="btn-action-ghost" onclick="window.print()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            <span>Save / Print PDF</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Comparison Preset Suites -->
+      <div class="matte-card compare-preset-bar">
+        <span class="preset-label">Pre-Configured Competitor Suites:</span>
+        <div class="preset-suite-buttons">
+          <button type="button" class="btn-suite" onclick="loadComparisonSuite('benchmarks')">Clinical Champions (EGFR+MET vs CD20+CD3 vs PD-1+CTLA-4)</button>
+          <button type="button" class="btn-suite" onclick="loadComparisonSuite('tce')">T-Cell Engager Rivals (CD20+CD3 vs CLDN18+CD3 vs DLL3+CD3)</button>
+          <button type="button" class="btn-suite" onclick="loadComparisonSuite('checkpoints')">Immune Checkpoint Blockade (PD-1+CTLA-4 vs PD-1+TIGIT vs CTLA-4+LAG3)</button>
+        </div>
+      </div>
+
+      <!-- Target Combination Selectors (Up to 4 pairs) -->
+      <div class="matte-card compare-selector-card">
+        <div class="compare-pairs-grid">
+          <!-- Pair 1 -->
+          <div class="compare-pair-slot">
+            <span class="slot-num">Pair 1</span>
+            <div class="slot-inputs">
+              <select id="compareSelectA1" class="form-select-compact"><option value="EGFR">EGFR</option></select>
+              <span class="slot-plus">+</span>
+              <select id="compareSelectB1" class="form-select-compact"><option value="MET">MET</option></select>
+            </div>
+          </div>
+
+          <!-- Pair 2 -->
+          <div class="compare-pair-slot">
+            <span class="slot-num">Pair 2</span>
+            <div class="slot-inputs">
+              <select id="compareSelectA2" class="form-select-compact"><option value="MS4A1">MS4A1 (CD20)</option></select>
+              <span class="slot-plus">+</span>
+              <select id="compareSelectB2" class="form-select-compact"><option value="CD3E">CD3E</option></select>
+            </div>
+          </div>
+
+          <!-- Pair 3 -->
+          <div class="compare-pair-slot">
+            <span class="slot-num">Pair 3</span>
+            <div class="slot-inputs">
+              <select id="compareSelectA3" class="form-select-compact"><option value="PDCD1">PDCD1 (PD-1)</option></select>
+              <span class="slot-plus">+</span>
+              <select id="compareSelectB3" class="form-select-compact"><option value="CTLA4">CTLA4</option></select>
+            </div>
+          </div>
+
+          <!-- Pair 4 -->
+          <div class="compare-pair-slot">
+            <span class="slot-num">Pair 4</span>
+            <div class="slot-inputs">
+              <select id="compareSelectA4" class="form-select-compact"><option value="VEGFA">VEGFA</option></select>
+              <span class="slot-plus">+</span>
+              <select id="compareSelectB4" class="form-select-compact"><option value="ANGPT2">ANGPT2</option></select>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.25rem; display: flex; justify-content: flex-end;">
+          <button type="button" id="btnRunCompare" class="btn-predict-primary" onclick="executePairComparison()" style="min-width: 220px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Compare Pairs Now</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Comparison Matrix Table Container -->
+      <div id="comparisonMatrixContainer" class="matte-card compare-matrix-card">
+        <div class="loading-report-spinner">Click "Compare Pairs Now" above to load the side-by-side R&amp;D matrix...</div>
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================================
+         TAB 3: DEDICATED MODEL ARCHITECTURE & BENCHMARKS (/models)
+         ========================================================================= -->
+    <section id="tab-benchmark" class="tab-content-panel">
+
+      <!-- Executive Architecture Hero -->
+      <div class="matte-card model-hero-card">
+        <div class="section-header-pill">MACHINE LEARNING STACK &amp; RAG ENGINE</div>
+        <h2 class="card-heading-large">Why XGBoost + Pairwise Learning is the Champion Model</h2>
+        <p class="card-subhead">
+          In clinical drug development datasets, standard single-target classification fails because medical datasets suffer from 
+          <strong>severe class imbalance</strong> (618 Active vs. 173 Discontinued records) and the <strong>Accuracy Paradox</strong>. 
+          BiSpec Pairwise AI prioritizes <strong>PR-AUC (Precision-Recall Area Under the Curve)</strong> over raw accuracy to eliminate false positives in translational lead nomination.
+        </p>
+
+        <!-- Benchmark Stat Strip -->
+        <div class="dimension-metrics-grid" style="grid-template-columns: repeat(4, 1fr); margin-top: 1.5rem;">
+          <div class="matte-card benchmark-stat-card">
+            <div class="stat-metric-title">Evaluated Clinical Records</div>
+            <div class="stat-metric-number">791</div>
+            <div class="stat-metric-sub" style="color: var(--green-dark);">618 Active vs. 173 Discontinued</div>
+          </div>
+          <div class="matte-card benchmark-stat-card highlight-champion">
+            <div class="stat-metric-title">Champion Model PR-AUC</div>
+            <div class="stat-metric-number" style="color: #1E5631;">0.8701</div>
+            <div class="stat-metric-sub" style="color: #137333;">XGBoost + Pairwise AI</div>
+          </div>
+          <div class="matte-card benchmark-stat-card">
+            <div class="stat-metric-title">Champion Model ROC-AUC</div>
+            <div class="stat-metric-number">0.6550</div>
+            <div class="stat-metric-sub" style="color: var(--text-muted);">Outscores GBDT &amp; RF</div>
+          </div>
+          <div class="matte-card benchmark-stat-card">
+            <div class="stat-metric-title">Cross-Talk Feature Vectors</div>
+            <div class="stat-metric-number">40</div>
+            <div class="stat-metric-sub" style="color: var(--navy-primary);">Symmetric Permutation Invariant</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparative Benchmark Table Across All 6 Algorithms -->
+      <div class="matte-card" style="margin-top: 1.5rem;">
+        <div class="card-topbar">
+          <div>
+            <h3 class="card-heading">Empirical Model Comparison Matrix</h3>
+            <p class="card-subhead">Rigorous 5-fold cross-validation results across all 6 evaluated machine learning architectures.</p>
+          </div>
+          <span class="tag-invariant">CHAMPION: XGBOOST</span>
+        </div>
+
+        <div class="benchmark-table-wrapper">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <th>Model / Algorithm</th>
+                <th>ROC-AUC</th>
+                <th>PR-AUC (Avg Precision)</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1-Score</th>
+              </tr>
+            </thead>
+            <tbody id="benchmarkTableBody">
+              <!-- Dynamically populated via /api/benchmark -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Interactive Curves: ROC vs. PR -->
+      <div class="layout-2col" style="margin-top: 1.5rem;">
+        <div class="matte-card">
+          <h3 class="card-heading">Receiver Operating Characteristic (ROC-AUC)</h3>
+          <p class="card-subhead">True Positive Rate vs. False Positive Rate across classification thresholds.</p>
+          <div class="chart-canvas-wrapper">
+            <canvas id="chartRoc"></canvas>
+          </div>
+        </div>
+        <div class="matte-card">
+          <h3 class="card-heading">Precision-Recall (PR-AUC) &bull; Priority Metric</h3>
+          <p class="card-subhead">Precision vs. Recall curves demonstrating XGBoost superiority on imbalanced clinical outcomes.</p>
+          <div class="chart-canvas-wrapper">
+            <canvas id="chartPr"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gini / Feature Importance Rankings -->
+      <div class="matte-card" style="margin-top: 1.5rem;">
+        <h3 class="card-heading">Biological Feature Importance Rankings (Top 20 Cross-Talk Vectors)</h3>
+        <p class="card-subhead">Identifies the primary molecular drivers dictating clinical synergy and therapeutic validation.</p>
+        <div id="featureImportanceContainer" class="feature-importance-bars" style="margin-top: 1.25rem;">
+          <!-- Dynamically populated via /api/benchmark -->
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================================
+         TAB 4: CLINICAL REGISTRY (791 Clinical Bispecific Drugs)
+         ========================================================================= -->
+    <section id="tab-registry" class="tab-content-panel">
+
+      <div class="matte-card">
+        <div class="card-topbar">
+          <div>
+            <h2 class="card-heading">Clinical Bispecific Antibody Drug Database</h2>
+            <p class="card-subhead">Comprehensive database of 791 clinical records spanning FDA approved drugs to investigational pipeline constructs.</p>
+          </div>
+          <span class="tier-pill-count">791 Clinical Records</span>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="registry-filter-strip">
+          <div class="search-input-box">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="inputDrugSearch" placeholder="Search by Drug Name, Target Gene, Indication, or Sponsor..." class="form-input-compact">
+          </div>
+
+          <div class="phase-select-box">
+            <select id="selectDrugPhase" class="form-select-compact">
+              <option value="All">All Phases (Approved &amp; Investigational)</option>
+              <option value="Approved">Approved (12 Drugs)</option>
+              <option value="Phase 3">Phase 3</option>
+              <option value="Phase 2">Phase 2</option>
+              <option value="Phase 1">Phase 1</option>
+              <option value="Preclinical">Preclinical</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="benchmark-table-wrapper" style="margin-top: 1rem;">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <th>Drug Name</th>
+                <th>Highest Phase</th>
+                <th>Target (Gene Name)</th>
+                <th>Target Symbols</th>
+                <th>Indication</th>
+                <th>Originator / Sponsor</th>
+              </tr>
+            </thead>
+            <tbody id="drugsTableBody">
+              <!-- Populated from /api/drugs -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="registry-pagination-bar">
+          <span id="paginationSummary" class="pagination-info">Showing records 1–50 of 791</span>
+          <div class="pagination-buttons">
+            <button type="button" id="btnPrevPage" class="btn-pagination" disabled>&larr; Previous</button>
+            <button type="button" id="btnNextPage" class="btn-pagination">Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================================
+         TAB 5: RAG BIOLOGIST ASSISTANT (NVIDIA Nemotron + Mistral Large)
+         ========================================================================= -->
+    <section id="tab-rag" class="tab-content-panel">
+
+      <div class="matte-card rag-assistant-card">
+        <div class="card-topbar">
+          <div>
+            <h2 class="card-heading">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5631" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              RAG Computational Biologist Assistant
+            </h2>
+            <p class="card-subhead">
+              Query our grounded LangChain retrieval engine powered by NVIDIA Nemotron-3.5 embeddings and Mistral Large LLM. 
+              Responses are strictly bounded to the ingested biology literature, 791 clinical records, and model evaluation benchmarks.
+            </p>
+          </div>
+          <span class="tag-invariant">ENDPOINT: POST /ask</span>
+        </div>
+
+        <!-- Query Input Bar -->
+        <div class="rag-query-input-strip">
+          <input type="text" id="inputRagQuery" placeholder="Ask any biology or benchmark question (e.g. 'explain about f10 antigen' or 'why is xgboost champion?')..." class="rag-search-input">
+          <button type="button" id="btnSubmitRag" class="btn-predict-primary" style="min-width: 150px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span>Ask Biologist</span>
+          </button>
+        </div>
+
+        <!-- Suggested Prompt Chips -->
+        <div class="rag-presets-box">
+          <span class="preset-label">Suggested Queries:</span>
+          <div class="rag-preset-chips">
+            <button type="button" class="rag-preset-btn" data-query="explain about f10 antigen">explain about f10 antigen</button>
+            <button type="button" class="rag-preset-btn" data-query="why does xgboost outscore random forest and dnn?">why does xgboost outscore other models?</button>
+            <button type="button" class="rag-preset-btn" data-query="what is the mechanism of amivantamab in nsclc?">mechanism of amivantamab</button>
+            <button type="button" class="rag-preset-btn" data-query="how does bispecific t-cell redirection work?">t-cell redirection biTE mechanism</button>
+          </div>
+        </div>
+
+        <!-- Response Container -->
+        <div id="ragResponseContainer" class="rag-response-panel" style="display: none;">
+          <div class="rag-response-header">
+            <span class="rag-query-echo">Q: <strong id="ragQueryDisplay"></strong></span>
+            <span class="rag-engine-badge">NVIDIA Nemotron + Mistral Large Grounded RAG</span>
+          </div>
+          <div id="ragAnswerBody" class="rag-response-content"></div>
+          <div class="rag-sources-row">
+            <span class="sources-title">Grounded Sources:</span>
+            <div id="ragSourcesDisplay" class="sources-pills-list"></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================================
+       "MY PREVIOUS RESEARCH" SLIDE-OVER DRAWER
+       ========================================================================= -->
+  <aside id="researchDrawer" class="slide-over-drawer" aria-hidden="true">
+    <div class="drawer-backdrop" onclick="closeResearchDrawer()"></div>
+    <div class="drawer-content matte-card">
+      <div class="drawer-header">
+        <div>
+          <h3 class="drawer-title">My Research History</h3>
+          <p id="drawerUserSubtitle" class="drawer-subtitle">Saved target screenings for Dr. Elena Rostova</p>
+        </div>
+        <button type="button" class="btn-close-drawer" onclick="closeResearchDrawer()" title="Close Drawer">&times;</button>
+      </div>
+
+      <div class="drawer-actions-bar">
+        <button type="button" class="btn-export-history" onclick="exportResearchHistoryCsv()">Export History (CSV)</button>
+        <span id="drawerTotalCount" class="history-count-badge">4 Saved Runs</span>
+      </div>
+
+      <div id="researchHistoryList" class="research-history-items-list">
+        <!-- Dynamically rendered from /api/research-history -->
+      </div>
+    </div>
+  </aside>
+
+
+  <!-- =========================================================================
+       USER AUTHENTICATION & LOGIN MODAL (/login)
+       ========================================================================= -->
+  <div id="loginModal" class="app-modal-overlay" style="display: none;">
+    <div class="app-modal-card matte-card login-modal-box">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Researcher Sign In</h3>
+          <p class="modal-subhead">Access your account-scoped screening history and personalized pipeline queue.</p>
+        </div>
+        <button type="button" class="btn-close-modal" onclick="closeLoginModal()">&times;</button>
+      </div>
+
+      <!-- Quick Demo Credentials Selector -->
+      <div class="demo-credentials-banner">
+        <div class="demo-banner-top">
+          <span class="demo-tag">&#9881; DEMO RESEARCHER PROFILES</span>
+          <span class="demo-hint">Click any profile below to 1-click autofill credentials:</span>
+        </div>
+        <div id="demoUsersList" class="demo-users-pills">
+          <!-- Populated from /api/auth/demo-users -->
+        </div>
+      </div>
+
+      <form id="loginForm" onsubmit="event.preventDefault(); submitLoginForm();" style="margin-top: 1.25rem;">
+        <div class="form-group-compact">
+          <label for="loginEmail" class="form-label-compact">Work Email Address</label>
+          <input type="email" id="loginEmail" class="form-input-compact" required placeholder="name@organization.com" value="elena.rostova@genebiotech.com">
+        </div>
+        <div class="form-group-compact">
+          <label for="loginPassword" class="form-label-compact">Password</label>
+          <input type="password" id="loginPassword" class="form-input-compact" required placeholder="Enter password" value="Password123!">
+        </div>
+        <button type="submit" id="btnLoginSubmit" class="btn-predict-primary" style="width: 100%; margin-top: 1rem;">
+          Sign In to Workspace
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       BIOLOGY 101 INTERACTIVE EXPLAINER MODAL
+       ========================================================================= -->
+  <div id="bioModal" class="app-modal-overlay" style="display: none;">
+    <div class="app-modal-card matte-card bio-explainer-box">
+      <div class="modal-header">
+        <div class="bio-modal-title-group">
+          <span id="bioModalTag" class="section-header-pill">BIOLOGY FOUNDATION</span>
+          <h3 id="bioModalTitle" class="modal-title">What is an Antibody?</h3>
+        </div>
+        <button type="button" class="btn-close-modal" onclick="closeBioModal()">&times;</button>
+      </div>
+      <div id="bioModalBody" class="bio-modal-content">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       QR CODE MODAL
+       ========================================================================= -->
+  <div id="qrModal" class="app-modal-overlay" style="display: none;">
+    <div class="app-modal-card matte-card" style="max-width: 420px; text-align: center;">
+      <div class="modal-header" style="justify-content: flex-end;">
+        <button type="button" class="btn-close-modal" onclick="document.getElementById('qrModal').style.display='none'">&times;</button>
+      </div>
+      <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy-dark); margin-bottom: 0.5rem;">Scan to Open on Mobile Device</h3>
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.25rem;">Connect phone to same Wi-Fi network to test full functionality.</p>
+      <div style="background: #ffffff; padding: 1rem; border-radius: 8px; display: inline-block; border: 1px solid var(--border-medium);">
+        <img id="qrModalImg" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=http%3A%2F%2F10.214.45.176%3A8000" alt="QR Code" style="width: 220px; height: 220px; display: block;" onerror="this.onerror=null;this.src='/static/qr_app_8000.png';">
+      </div>
+      <div id="qrModalUrlText" style="margin-top: 1rem; font-family: var(--font-mono); font-size: 0.82rem; color: var(--navy-primary); font-weight: 700;">
+        http://10.214.45.176:8000
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Application Logic Scripts -->
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

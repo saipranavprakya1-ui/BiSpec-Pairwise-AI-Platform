@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Global Reset & Base Setup
+   ========================================================================== */
+
+/* Universal box-sizing reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent text resize inflation on mobile devices */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Core Document Styles: Dark background, premium antialiased typography */
+body {
+  min-height: 100vh;
+  background-color: var(--color-night);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Responsive media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Form controls font and color inheritance */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Unstyled list defaults */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* ==========================================================================
+   Prefers-Reduced-Motion Block
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "isPlaceholder": false,
+    "illustrativeTag": "Validated Benchmark"
+  },
+  "sectionHeader": {
+    "kicker": "Model Architecture Evolution",
+    "heading": "From Base Paper XGBoost to Clinical Safe Ensemble",
+    "subhead": "How BiSpec-AI advances beyond Zhang et al. (2024) single-model pairwise XGBoost — eliminating target-order leakage, enforcing monotonic toxicity guardrails, and lifting holdout ROC-AUC to 95.06%."
+  },
+  "stages": [
+    {
+      "id": "stage-base-paper",
+      "index": "STAGE 01",
+      "name": "Base Paper Foundation",
+      "status": "complete",
+      "statusLabel": "Zhang et al. 2024",
+      "timeline": "J. Cancer Res. Clin. Oncol. • GSE131907",
+      "description": "Foundational single-cell pairwise learning framework integrating 208,506 NSCLC cells with clinical bispecific antibody precedents.",
+      "keyMilestones": [
+        "6 classical ML baselines benchmarked (Fig. 3 ROC-AUC 77.00%–89.29%)",
+        "198 tumor surface antigens profiled for tumor vs. healthy expression",
+        "Symmetric pairwise feature representation for Target A × Target B"
+      ],
+      "isPlaceholder": false
+    },
+    {
+      "id": "stage-xgboost",
+      "index": "STAGE 02",
+      "name": "XGBoost Pairwise Baseline",
+      "status": "complete",
+      "statusLabel": "89.29% ROC-AUC",
+      "timeline": "Chen & Guestrin (2016) • Base Paper Peak",
+      "description": "Regularized gradient-boosted trees achieved top ROC-AUC in the base paper, but relied on one unconstrained tree model with no hard safety gating.",
+      "keyMilestones": [
+        "Base paper Fig. 3 champion: 89.29% ROC-AUC (XGBoost + Pairwise AI)",
+        "Outperformed GBDT (86.70%), DNN (85.92%), and Random Forest (84.93%)",
+        "Gap: No monotonic toxicity constraints or multi-model uncertainty bounds"
+      ],
+      "isPlaceholder": false
+    },
+    {
+      "id": "stage-monotonic-safe",
+      "index": "STAGE 03",
+      "name": "Leakage-Free & Monotonic Safety",
+      "status": "complete",
+      "statusLabel": "94.89% ROC-AUC",
+      "timeline": "HistGBDT + ExtraTrees • Safety-First Upgrade",
+      "description": "Deduplicated 771 canonical pairs (0% A–B vs. B–A split leakage) with uniform NSCLC context and mathematically enforced off-tumor safety monotonicity.",
+      "keyMilestones": [
+        "Hard monotonic guardrails: tox_max (-1) & sc_safe_score (+1)",
+        "HistGBDT (Monotonic Safe) reaches 94.89% holdout ROC-AUC",
+        "ExtraTrees (Safety-First) hits 93.38% ROC-AUC (+1.70% train–test gap)"
+      ],
+      "isPlaceholder": false
+    },
+    {
+      "id": "stage-clinical-ensemble",
+      "index": "STAGE 04",
+      "name": "Clinical Safe Ensemble + RAG",
+      "status": "active",
+      "statusLabel": "95.06% Champion",
+      "timeline": "4-Model Quorum • Live NVIDIA NIM RAG",
+      "description": "Out-of-fold calibrated 4-model consensus combining HistGBDT, XGBoost, GBDT, and ExtraTrees with live uncertainty (±%) and literature synthesis.",
+      "keyMilestones": [
+        "95.06% holdout ROC-AUC & 95.54% 5-Fold CV (+5.77% over base XGBoost)",
+        "90.3% clinical specificity with live toxicity veto & 4-model quorum",
+        "Real-time NVIDIA Nemotron + FAISS RAG mechanistic explanation"
+      ],
+      "isPlaceholder": false
+    }
+  ]
+}

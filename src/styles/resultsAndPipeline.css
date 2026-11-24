@@ -1,0 +1,503 @@
+/* ==========================================================================
+   BiSpec — Results & Pipeline Component Styles
+   Plain SVG charts, horizontal/vertical responsive timeline, accessible tables
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Illustrative Data Tags
+   -------------------------------------------------------------------------- */
+.kicker-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tag-illustrative {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-b);
+  background: var(--accent-soft);
+  border: 1px solid var(--border-accent);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.tag-illustrative-sm {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background: var(--tint-50);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   Results Section & Summary Grid
+   -------------------------------------------------------------------------- */
+.results-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .results-summary-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.result-metric-card {
+  background: var(--tint-50);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.result-metric-card:hover {
+  border-color: var(--border-strong);
+  background: var(--tint-50);
+}
+
+.card-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Results Charts Grid & Plain SVG Visualizations
+   -------------------------------------------------------------------------- */
+.results-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 960px) {
+  .results-charts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px var(--border-strong);
+}
+
+@media (min-width: 768px) {
+  .chart-card {
+    padding: 28px;
+  }
+}
+
+.chart-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+@media (min-width: 540px) {
+  .chart-header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.chart-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.chart-title {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--color-paper);
+}
+
+.chart-subtitle {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  max-width: 480px;
+}
+
+/* Accessible Table Toggle Button */
+.btn-chart-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--tint-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-tag, 4px);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--duration-short) var(--ease-standard), border-color var(--duration-short) var(--ease-standard), background-color var(--duration-short) var(--ease-standard);
+  white-space: nowrap;
+}
+
+.btn-chart-toggle:hover {
+  background: var(--tint-50);
+  color: var(--color-paper);
+  border-color: var(--color-dots);
+}
+
+.btn-chart-toggle.active {
+  background: var(--primary-soft);
+  border-color: var(--color-a);
+  color: var(--color-paper);
+}
+
+.toggle-arrow {
+  font-size: 0.625rem;
+  transition: transform 0.2s ease;
+}
+
+.btn-chart-toggle.active .toggle-arrow {
+  transform: rotate(180deg);
+}
+
+/* SVG Wrapper */
+.svg-chart-wrapper {
+  width: 100%;
+  aspect-ratio: 560 / 320;
+  background: var(--tint-50);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.svg-chart {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Accessible Data Table Fallback */
+.chart-table-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 12px;
+  overflow-x: auto;
+  animation: panelFade 0.2s ease;
+}
+
+.accessible-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  text-align: left;
+}
+
+.accessible-data-table caption {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-align: left;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+}
+
+.accessible-data-table th,
+.accessible-data-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.accessible-data-table th {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-dots);
+  text-transform: uppercase;
+}
+
+.accessible-data-table td {
+  color: var(--color-paper);
+}
+
+.accessible-data-table tr.highlight-row td {
+  background: var(--primary-soft);
+  color: var(--color-a);
+  font-weight: 600;
+}
+
+.chart-notes-text {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-muted);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   Pipeline Section & Responsive Timeline (Desktop: Horizontal, Mobile: Vertical)
+   -------------------------------------------------------------------------- */
+.pipeline-section-wrapper {
+  width: 100%;
+}
+
+.pipeline-header-wrap {
+  margin-bottom: 48px;
+}
+
+/* Desktop Horizontal Timeline Track */
+.pipeline-timeline-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 900px) {
+  .pipeline-timeline-track {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-top: 40px;
+  }
+
+  /* Horizontal Rail across the top of nodes */
+  .timeline-rail {
+    position: absolute;
+    top: 54px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: var(--tint-50);
+    z-index: 1;
+  }
+
+  .timeline-rail-progress {
+    width: 100%; /* Progressed through Base Paper, XGBoost, Monotonic Safe & active Champion Ensemble */
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-a) 0%, var(--color-b) 100%);
+  }
+}
+
+/* Individual Stage Node */
+.timeline-stage-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+/* Node Marker Circle */
+.node-marker-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 900px) {
+  .node-marker-wrap {
+    justify-content: flex-start;
+  }
+}
+
+.node-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-night);
+  border: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--duration-short) var(--ease-standard), background-color var(--duration-short) var(--ease-standard);
+}
+
+.node-circle.status-completed {
+  border-color: var(--color-a);
+  color: var(--color-a);
+  background: var(--primary-soft);
+}
+
+.node-circle.status-active {
+  border-color: var(--color-b);
+  color: var(--color-b);
+  background: var(--accent-soft);
+}
+
+.node-circle.status-planned {
+  border-color: var(--border-strong);
+  color: var(--color-muted);
+}
+
+.pulse-active-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-b);
+}
+
+.planned-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--tint-50);
+}
+
+/* Stage Card Body */
+.stage-card-body {
+  flex: 1;
+  background: var(--color-surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card, 12px);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--duration-short) var(--ease-standard), background-color var(--duration-short) var(--ease-standard);
+}
+
+.timeline-stage-node:hover .stage-card-body {
+  border-color: var(--hairline-hover);
+  background: var(--tint-50);
+}
+
+.stage-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.stage-index {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
+
+.stage-name {
+  font-size: 1.1875rem;
+  font-weight: 400;
+  color: var(--color-paper);
+  margin-bottom: 6px;
+}
+
+.stage-timeline-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-a);
+  margin-bottom: 12px;
+}
+
+.stage-desc {
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  margin-bottom: 16px;
+}
+
+.stage-milestones-list {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-top: auto;
+}
+
+.milestones-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-dots);
+  margin-bottom: 8px;
+}
+
+.stage-milestones-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stage-milestones-list li {
+  position: relative;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  padding-left: 12px;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.stage-milestones-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-a);
+}
+
+.stage-footer-tag {
+  margin-top: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Vertical Timeline (Viewport <= 899px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 899px) {
+  .pipeline-timeline-track {
+    position: relative;
+    padding-left: 44px;
+  }
+
+  /* Vertical spine line */
+  .timeline-rail {
+    position: absolute;
+    top: 15px;
+    bottom: 40px;
+    left: 14px;
+    width: 2px;
+    height: auto;
+    background: var(--tint-50);
+    z-index: 1;
+  }
+
+  .timeline-rail-progress {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--color-a) 0%, var(--color-b) 100%);
+  }
+
+  .timeline-stage-node {
+    margin-bottom: 24px;
+  }
+
+  .node-marker-wrap {
+    position: absolute;
+    left: -44px;
+    top: 18px;
+    margin-bottom: 0;
+  }
+}
