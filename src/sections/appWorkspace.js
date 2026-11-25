@@ -733,7 +733,7 @@ export class AppWorkspace {
         ? 'register new investigator credentials in SQLite DB'
         : 'or sign in with work email / username';
     }
-    if (titleEl) titleEl.textContent = isSignUp ? 'Create BiSpec AI Account' : 'Sign in to BiSpec AI';
+    if (titleEl) titleEl.textContent = isSignUp ? 'Create BiVex Account' : 'Sign in to BiVex';
     if (subEl) {
       subEl.textContent = isSignUp
         ? 'Register your institutional identity for persistent target discovery.'
@@ -835,7 +835,7 @@ export class AppWorkspace {
     const username = (document.getElementById('regUsername')?.value || '').trim();
     const email = (document.getElementById('regEmail')?.value || '').trim();
     const role = (document.getElementById('regRole')?.value || 'Lead Oncology Scientist').trim();
-    const organization = (document.getElementById('regOrg')?.value || 'BiSpec Consortium').trim();
+    const organization = (document.getElementById('regOrg')?.value || 'BiVex Research').trim();
     const password = document.getElementById('regPassword')?.value || '';
     const regBtn = document.getElementById('registerSubmitBtn');
 
@@ -2677,7 +2677,7 @@ export class AppWorkspace {
       { label: 'Go to Clinical Registry (791 Drugs)', tag: 'TAB', run: () => this.switchAppTab('registry') },
       { label: 'Go to My Research Vault', tag: 'TAB', run: () => this.switchAppTab('research') },
       { label: '✦ Discover Novel White-Space Target Pair', tag: 'AI', run: () => this.discoverNovelWhiteSpacePair() },
-      { label: 'Open BiSpec AI Copilot Drawer', tag: 'RAG', run: () => document.getElementById('aiCopilotDrawer')?.classList.add('open') },
+      { label: 'Open BiVex Copilot Drawer', tag: 'RAG', run: () => document.getElementById('aiCopilotDrawer')?.classList.add('open') },
       { label: 'Export Pair Comparison Matrix CSV', tag: 'CSV', run: () => this.exportComparisonCsv() }
     ];
 

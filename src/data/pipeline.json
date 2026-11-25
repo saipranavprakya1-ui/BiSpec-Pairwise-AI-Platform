@@ -6,7 +6,7 @@
   "sectionHeader": {
     "kicker": "Model Architecture Evolution",
     "heading": "From Base Paper XGBoost to Clinical Safe Ensemble",
-    "subhead": "How BiSpec-AI advances beyond Zhang et al. (2024) single-model pairwise XGBoost — eliminating target-order leakage, enforcing monotonic toxicity guardrails, and lifting holdout ROC-AUC to 95.06%."
+    "subhead": "How BiVex advances beyond Zhang et al. (2024) single-model pairwise XGBoost — eliminating target-order leakage, enforcing monotonic toxicity guardrails, and lifting holdout ROC-AUC to 95.06%."
   },
   "stages": [
     {
