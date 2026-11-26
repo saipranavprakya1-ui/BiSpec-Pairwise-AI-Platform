@@ -2230,12 +2230,8 @@ export class AppWorkspace {
     this.compareRadarContainer.innerHTML = this.buildRadarSvg(radarSeries, 260);
 
     if (this.compareLegendContainer) {
-      this.compareLegendContainer.innerHTML = evaluated.map((e) => `
-        <span style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--surface); background: var(--surface); border: 1px solid ${e.color}55; padding: 4px 10px; border-radius: 999px;">
-          <span style="width: 8px; height: 8px; border-radius: 50%; background: ${e.color};"></span>
-          ${e.targetA} &times; ${e.targetB} (${e.ev.scoreFormatted})
-        </span>
-      `).join('');
+      this.compareLegendContainer.innerHTML = '';
+      this.compareLegendContainer.style.display = 'none';
     }
 
     // Render candidate comparison cards
